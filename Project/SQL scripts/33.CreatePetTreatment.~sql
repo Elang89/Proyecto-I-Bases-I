@@ -1,0 +1,5 @@
+CREATE TABLE petTreatments 
+(
+    pet_Treatment VARCHAR(20) CONSTRAINT pet_Treatment_nn NOT NULL, 
+    pet_treatment_code NUMBER(10) /*PRIMARY KEY*/
+);  

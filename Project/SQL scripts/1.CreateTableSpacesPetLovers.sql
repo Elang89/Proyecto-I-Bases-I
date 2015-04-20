@@ -1,0 +1,17 @@
+/* SCRIPT #1 Tablespaces */
+CREATE TABLESPACE PetLovers_Data
+       DATAFILE 'C:\app\Miuyin\oradata\petloversdb\petloversdata01.dbf'
+       SIZE 10M
+       REUSE
+       AUTOEXTEND ON
+       NEXT 512k
+       MAXSIZE 200M;
+       
+   
+CREATE TABLESPACE PetLovers_Indexes
+       DATAFILE 'C:\app\Miuyin\oradata\petloversdb\petloversind01.dbf'
+       SIZE 10M
+       REUSE
+       AUTOEXTEND ON
+       NEXT 512k
+       MAXSIZE 200M;

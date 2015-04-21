@@ -53,9 +53,6 @@ if(curPageURL() == 'http://localhost/PetLovers/Project/manage-categories.php'){
           <div class="navbar-collapse  collapse">
             <ul class="nav navbar-nav navbar-right">
               <li <?php if(curPageURL() == 'http://localhost/PetLovers/Project/index.php') { ?> class="active" <?php }; ?>><a href="index.php">Home</a></li>
-              <li <?php if(curPageURL() == 'http://localhost/PetLovers/Project/search-pets.php') { ?> class="active" <?php }; ?>><a href="search-pets.php">Find a pet</a></li>
-              <li <?php if(curPageURL() == 'http://localhost/PetLovers/Project/search-users.php') { ?> class="active" <?php }; ?>><a href="search-users.php">Find a user</a></li>
-              <li <?php if(curPageURL() == 'http://localhost/PetLovers/Project/search-users.php') { ?> class="active" <?php }; ?>><a href="#">Top 10</a></li>
               <li <?php if(curPageURL() == 'http://localhost/PetLovers/Project/contact.php') { ?> class="active" <?php }; ?>><a href="contact.php">Contact an admin</a></li>
               <li <?php if(curPageURL() == 'http://localhost/PetLovers/Project/about.php') { ?> class="active" <?php }; ?>><a href="about.php">About</a></li>
             </ul>
@@ -84,19 +81,18 @@ if(curPageURL() == 'http://localhost/PetLovers/Project/manage-categories.php'){
           <?php if(isset($_SESSION['name'])): ?>
             <?php if(isset($_SESSION['name']) && $_SESSION['usertype'] == 1): ?>
               <!-- Admin user buttons -->
-              <li><button type="submit" class="btn btn-info" onclick="window.location.href='edit-user.php'">My account</button></li>
               <li><button type="button" class="btn btn-info" onclick="window.location.href='search-pets.php'">Pets</button></li>
               <li><button type="button" class="btn btn-info" onclick="window.location.href='search-users.php'">Users</button></li>
               <li><button type="button" class="btn btn-info" onclick="window.location.href='manage-categories.php'">Categories</button></li>
               <li><button type="button" class="btn btn-info" onclick="window.location.href='#'">Forms</button></li>
               <li><button type="button" class="btn btn-info" onclick="window.location.href='#'">Blacklist</button></li>
-              <li><button type="button" class="btn btn-info" onclick="window.location.href='#'">Mails</button></li>
             <?php else: ?>
               <!-- Normal user buttons -->
               <li><button type="submit" class="btn btn-info" onclick="window.location.href='edit-user.php'">My account</button></li>
               <li><button type="submit" class="btn btn-info" onclick="window.location.href='#'">My pets</button></li>
-              <li><button type="button" class="btn btn-info" onclick="window.location.href='register-pet.php'">Add a pet</button></li>
-              <li><button type="button" class="btn btn-info" onclick="window.location.href='#'">Adopt a pet</button></li>
+			  <li><button type="button" class="btn btn-info" onclick="window.location.href='search-users.php'">Find A User</button></li>
+              <li><button type="button" class="btn btn-info" onclick="window.location.href='register-pet.php'">Add A Pet</button></li>
+              <li><button type="button" class="btn btn-info" onclick="window.location.href='search-pets'">Find A Pet</button></li>
               <li><button type="button" class="btn btn-info" onclick="window.location.href='#'">My requests</button></li>
               <li><button type="button" class="btn btn-info" onclick="window.location.href='#'">My records</button></li>
             <?php endif ?>

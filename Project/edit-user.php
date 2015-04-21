@@ -47,7 +47,7 @@
 	oci_bind_by_name($dataToReceiveUserEmails, ':email_result', $emailResult, -1, OCI_B_CURSOR);
 	oci_bind_by_name($dataToReceiveUserEmails, ':p_id', $id);
 	oci_bind_by_name($dataToReceiveUserPhones, ':phone_result', $phoneResult, -1, OCI_B_CURSOR);
-		oci_bind_by_name($dataToReceiveUserPhones, ':p_id', $id);
+	oci_bind_by_name($dataToReceiveUserPhones, ':p_id', $id);
 	
 	oci_execute($dataToReceiveUserDetails);
 	oci_execute($result, OCI_DEFAULT);
@@ -67,7 +67,7 @@
 	$primaryEmail = $emailArray[0]['EMAIL'];
 	$primaryPhone = $phoneArray[0]['PHONE_NUMBER'];
 	
-	
+	oci_close($db_connection);
 
 ?>
 <div class="container">
@@ -93,7 +93,7 @@
             <button id="user_phones_butt" type="button" class="btn btn-success" data-toggle="modal" data-target="#user_phones">View Phones</button>
           </div>
           <div class="col-lg-6">
-            <button id="user_email_butt" type="button" class="btn btn-success" data-toggle="modal" data-target="#user_Email">View Email</button>
+            <button id="user_email_butt" type="button" class="btn btn-success" data-toggle="modal" data-target="#user_Email">View Emails</button>
           </div>
         </div>
 		<br>
@@ -118,9 +118,17 @@
       <div class="row">
         <div class="col-sm-6">
           <h4>Phone numbers of <?php echo $_SESSION['name']?></h4>
-          <input id="user_phone" type="text" class="form-control" placeholder="Phone 1" name="form_name" maxlength="20" value="" readonly>
-          <input id="user_phone" type="text" class="form-control" placeholder="Phone 2" name="form_name" maxlength="20" value="" readonly>
-          <input id="user_phone" type="text" class="form-control" placeholder="Phone 3" name="form_name" maxlength="20" value="" readonly>
+          <input id="user_phone" type="text" class="form-control" placeholder="Phone 1" name="form_name" maxlength="20" value="<?php echo $primaryPhone?>" readonly>
+          <input id="user_phone" type="text" class="form-control" placeholder="Phone 2" name="form_name" maxlength="20" value="<?php if(array_key_exists(1, $phoneArray)){
+			  echo $phoneArray[1]['PHONE_NUMBER'];
+		  } else {
+			  echo "Phone 2";
+		  }?>" readonly>
+          <input id="user_phone" type="text" class="form-control" placeholder="Phone 3" name="form_name" maxlength="20" value="<?php if(array_key_exists(2, $phoneArray)){
+			  echo $phoneArray[2]['PHONE_NUMBER'];
+		  } else {
+			  echo "Phone 3";
+		  } ?>" readonly>
         </div>
       </div>
       <div class="row">
@@ -141,9 +149,17 @@
       <div class="row">
         <div class="col-sm-6">
           <h4>Emails of <?php echo $_SESSION['name']?></h4>
-          <input id="user_email" type="text" class="form-control" placeholder="Email 1" name="form_name" maxlength="20" value="" readonly>
-          <input id="user_email" type="text" class="form-control" placeholder="Email 2" name="form_name" maxlength="20" value="" readonly>
-          <input id="user_email" type="text" class="form-control" placeholder="Email 3" name="form_name" maxlength="20" value="" readonly>
+          <input id="user_email" type="text" class="form-control" placeholder="Email 1" name="form_name" maxlength="20" value="<?php echo $primaryEmail ?>" readonly>
+          <input id="user_email" type="text" class="form-control" placeholder="Email 2" name="form_name" maxlength="20" value="<?php if(array_key_exists(1,$emailArray)){
+			  echo $emailArray[1]['EMAIL'];
+		  } else {
+			  echo "Email 1";
+		  }?>" readonly>
+          <input id="user_email" type="text" class="form-control" placeholder="Email 3" name="form_name" maxlength="20" value="<?php if(array_key_exists(2,$emailArray)){
+			  echo emailArray[2]['EMAIL'];  
+		  } else {
+			  echo "Email 2";
+		  }?>" readonly>
         </div>
       </div>
       <div class="row">

@@ -1,16 +1,18 @@
-  <?php
+  <?php 
+ // This php connects to the dadabatse and inserts new options on the tables that only an admin can modify  
+ // These are options are used when a user wants to register a pet. These options are shown in the comboboxes or register-pet.php
+ 
 $conn = oci_connect('DBadmin', 'dbadmin', 'PETLOVERSDB');
 if (!$conn) {
     $e = oci_error();
     trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
 }   
-
+		// Takes the values selected value in the combobox (a select named 'category' in manage-categories.php) 
+		// Also takes in the new name written by the user that wants to be inserted (from an input named 'new name'.php)
 		$var1 =  $_POST['category'];  
 		$var2 = $_POST['new_name'];   
-		$var3 =  $_POST['category.selectedIndex']; 
 		
 		if($var1 == "Pet Type"){  
-			echo $var3; 
 			$stid = ociparse($conn, "BEGIN  setting_package.SET_Type(:p1); END;");
         } 
 		
@@ -65,6 +67,6 @@ if (!$conn) {
         ?>		
 		
 		<script>
-		alert("El nuevo dato fue ingresado correctamente  :)");
+		alert("Felicidades, El nuevo dato fue ingresado correctamente  :)");
 		</script>
 	

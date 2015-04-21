@@ -76,8 +76,9 @@ CREATE OR REPLACE PACKAGE person_package AS
        RETURN NUMBER;
        FUNCTION retrieve_user_details(p_id person.person_id%type)
        RETURN SYS_REFCURSOR;
+       FUNCTION find_users(p_search_data  VARCHAR2)
+       RETURN SYS_REFCURSOR; 
 END person_package;
-
 
 
 CREATE OR REPLACE PACKAGE BODY person_package AS
@@ -117,10 +118,23 @@ CREATE OR REPLACE PACKAGE BODY person_package AS
           RETURN c_details;
        EXCEPTION 
          WHEN NO_DATA_FOUND THEN 
-           dbms_output.put_line('no data found');
-       END;   
+           RETURN null;
+       END;
+       
+       FUNCTION find_users(p_search_data VARCHAR2)
+       RETURN SYS_REFCURSOR
+       IS 
+          c_users SYS_REFCURSOR;
+       BEGIN 
+         OPEN c_users FOR SELECT username, person_id, person_name, first_last_name, second_last_name 
+         FROM person 
+         WHERE  p_search_data = username;
+         RETURN c_users;
+      EXCEPTION 
+        WHEN NO_DATA_FOUND THEN 
+          RETURN null;
+      END;   
 END person_package;
-
 /*----------------------------------------------------------------------------------------*/
 /*PACKAGE FOR PHONE */
 CREATE OR REPLACE PACKAGE phone_package AS

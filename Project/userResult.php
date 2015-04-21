@@ -11,26 +11,28 @@
 <?php 
 	$db_connection = oci_connect('DBadmin', 'dbadmin', 'localhost/petloversdbXDB');
 
-	$searchParameter = $_POST['search_parameter_type'];
     $searchData = $_POST['search_data'];
 	$result;
 	$resultArray;
+	$finalResult = '';
 	
-	$sqlVariableFindUsers = 'BEGIN :user_cursor := person_package.find_users(:p_search_parameter, :p_search_data);END;';
+	if(!$db_connection){                                    /* checks if connection with the database works */
+		exit ("Server could not connect to database");
+	}
+	
+	$sqlVariableFindUsers = 'BEGIN :user_cursor := person_package.find_users(:p_search_data);END;';
 	$result = oci_new_cursor($db_connection);
 	
 	$dataToReceive = oci_parse($db_connection, $sqlVariableFindUsers);
 	
 	oci_bind_by_name($dataToReceive, ':user_cursor', $result, -1, OCI_B_CURSOR);
-	oci_bind_by_name($dataToReceive, ':p_search_parameter', $searchParameter);
 	oci_bind_by_name($dataToReceive, ':p_search_data', $searchData);
 	oci_execute($dataToReceive);
 	oci_execute($result, OCI_DEFAULT);
 	oci_fetch_all($result, $resultArray, null, null, OCI_FETCHSTATEMENT_BY_ROW);
 	
-	var_dump ($searchParameter);
-	var_dump ($searchData);
-	var_dump($resultArray);
+	oci_close($db_connection);
+	
 ?>
 <div class="container">
   <div class="properties-listing spacer">
@@ -66,8 +68,22 @@
       <div class="col-lg-9 col-sm-8">
         <div class="row">
 		<?php 
-			if($searchData == ""){
+			if($searchData == "" || $resultArray == null){
 				echo "<h2>No results found<h2>";
+			} else {
+				$finalResult = $finalResult.'<div class="col-lg-4 col-sm-6"> 
+												<div class="properties">
+													<form action="user-detail.php" method="POST">
+														<input class="form-control" type="text" readonly name="username" value="'.$resultArray[0]['USERNAME'].'"/>
+														<input class="form-control" type="text" style="display: none" readonly name="p_id" value="'.$resultArray[0]['PERSON_ID'].'"/>
+														<input class="form-control" type="text" readonly name="name" value="'.$resultArray[0]['PERSON_NAME'].'"/>
+														<input class="form-control" type="text" readonly name="last_name" value="'.$resultArray[0]['FIRST_LAST_NAME'].'"/>
+														<input class="form-control" type="text" readonly name="second_last_name" value="'.$resultArray[0]['SECOND_LAST_NAME'].'"/>
+														<input type="submit" class="btn btn-primary" value="View Details"
+													<form/>
+												</div>
+											   </div>'; 
+			    echo $finalResult;
 			}
 		?>
         </div>

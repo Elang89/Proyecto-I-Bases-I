@@ -67,6 +67,6 @@ if (!$conn) {
         ?>		
 		
 		<script>
-		alert("Felicidades, El nuevo dato fue ingresado correctamente  :)");
+		alert("Congratulation, the insertion was successful !  :)");
 		</script>
 	

@@ -11,7 +11,7 @@ if (!$conn) {
 }     
 		//parameter received by ajax in the function update in manage-categories.php 
 		
-		$Selected = $_GET['selectedOption'];   
+		$Selected = $_GET['selectedOption'];    
 		
 		if($Selected == "Pet Type"){  
 			$query= 'select * from pettype order by PET_TYPE_CODE';

@@ -64,17 +64,9 @@
           </div>
           <div class="row">
             <div class="col-lg-12 col-sm-12">
-              <!-- Base structure for listing the categories -->
-              <!--
-              <div class="category-list">
-                <div class="col-lg-8"><p class="text"><?php echo $category_name; ?></p></div>
-                <div class="col-lg-3"><a class="btn btn-primary" href="pet-detail.php">Edit</a></div>
-                <div class="col-lg-1"><div class="checkbox"><label><input type="checkbox"></label></div></div>
-              </div>
-              --> 
               <div class="category-list" id = "categoryList"> 
-			  <div class="col-" class="text">Type Options</div>
-                <form  id = "Options"> 
+                <form  id = "Options">  
+				 <div class="col-" class="text">Type Options</div>
 				 <?php
 				$conn = oci_connect('DBadmin', 'dbadmin', 'PETLOVERSDB');
 				if (!$conn) {
@@ -84,12 +76,10 @@
 							$query= 'select * from pettype order by PET_TYPE_CODE';
 							$stmt = oci_parse($conn, $query);
 							oci_execute($stmt); 
-							
 
 								while($row=oci_fetch_assoc($stmt)) { 				
 									 echo "<label>{$row['PET_TYPE_NAME']}</label><input  type = 'radio'  name = 'radio' id = '{$row['PET_TYPE_CODE']}'  value = '{$row['PET_TYPE_NAME']}'/><br /> "  ; 		 
-								} 				 
-							
+								} 				 						
 				 ?>  
 				</form> 
               </div>
@@ -111,14 +101,9 @@
     </div>
   </div> 
   
-    <!--Function to update info--> 
-   <script type="text/javascript"> 
-	/*function update(){  
-			var Id = document.getElementById("consultFacts");
-            var selectedOption = Id.options[Id.selectedIndex].value; 
-		    alert(selectedOption);   											
-	} */
-	
+   <script type="text/javascript">  
+    /*Function to update the options to selected according to the option selected 
+	  AJAX function that calls settings.php and sends the text of the selected option as text as selectedOption*/
 	function update()
 	{ 
 		var xmlhttp;
@@ -133,43 +118,66 @@
 		  {// code for IE6, IE5
 		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 		  }
-		xmlhttp.onreadystatechange=function()
+		 xmlhttp.onreadystatechange=function()
 		  {
 		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
-			document.getElementById("categoryList").innerHTML=xmlhttp.responseText;
+			document.getElementById("Options").innerHTML=xmlhttp.responseText;
 			}
 		  }
 		xmlhttp.open("GET","updateOptions.php?selectedOption=" + selectedOption ,true);
 		xmlhttp.send();
 	}
 
-	function checked(){ 
-			var length = document.getElementById("consultFacts").length; 
-			for(var i = 0;  i < length - 1; i++){
-				if(document.getElementById(i).checked){
-					var selectedId = i; 
-					var slecetedValue = document.getElementById(i).value; 
+	
+	function checked(){  
+			var Id = document.getElementById("consultFacts");
+			var selectedOption = Id.options[Id.selectedIndex].value;
+			var length = document.getElementById("Options").length; 
+			for(var i = 0;  i < length - 1; i++){ 
+				if(document.getElementById(i) != null){
+					if(document.getElementById(i).checked){
+						var selectedId = i; 
+						var selectedValue = document.getElementById(i).value; 
+					} 
 				}
 			} 
-			alert(selectedId); 
-			alert(slecetedValue)
+		window.location.href = "http://localhost/project/delete.php?selectedId=" + selectedId + "&selectedOption=" + selectedOption;
+	} 
+	
+		function edit(){  
+			var Id = document.getElementById("consultFacts");
+			var selectedOption = Id.options[Id.selectedIndex].value;
+			var length = document.getElementById("Options").length; 
+			var newName = document.getElementById("inputNewName").value; 
+			alert(newName); 
+			alert(selectedOption);
+			for(var i = 0;  i < length - 1; i++){ 
+				if(document.getElementById(i) != null){
+					if(document.getElementById(i).checked){
+						var selectedId = i; 
+						var selectedValue = document.getElementById(i).value; 
+					} 
+				}
+			}  
+			alert(selectedId);
+		window.location.href = "http://localhost/project/Edit.php?selectedId=" + selectedId + "&selectedOption=" + selectedOption +  "&newName" + newName;
 	}
   </script>   
-  <!--Function to update info--> 
+
   
   <!-- Modal  To Delete--> 
-   <form enctype="multipart/form-data" action="Delete.php" method="POST" class="settings-form" id="settings-form">
+   <form enctype="multipart/form-data" action="javascript:checked();" method="POST" class="delete-form" id="delete-form">
   <div id="deleteButton" class="modal fade">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content" id = "deleteResult">
         <div class="row">
           <div class="col-sm-6 login">
             <h4>Are you sure you want to delete ?</h4>
             <form class="" role="form">
               <div class="form-group">
               </div>
-			  <input type="submit" value="Sure" class="boton">
+			  <input type="submit" value="Yes, I do !" class="boton">
             </form>
           </div>
         </div>
@@ -179,19 +187,18 @@
   </form>
   <!-- /.modal To Delete -->  
     
-
-  <!-- Modal --> 
-   <form enctype="multipart/form-data" action="Edit.php" method="POST" class="settings-form" id="settings-form">
+  <!-- Modal  To Edit--> 
+   <form enctype="multipart/form-data" action="javascript:edit();" method="POST" class="edit-form" id="edit-form">
   <div id="editCategory" class="modal fade">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content" id = "editResult">
         <div class="row">
           <div class="col-sm-6 login">
             <h4>Edit</h4>
             <form class="" role="form">
               <div class="form-group">
                 <label class="sr-only" for="inputUsername">Category</label>
-                <input type="text" class="form-control" id="inputNewName" placeholder="Enter new name">
+                <input id="inputNewName" type="text" class="form-control"  name = "inputNewName" placeholder= "Enter new name" required> 
               </div>
 			  <input type="submit" value="Edit Name" class="boton">
             </form>
@@ -201,10 +208,11 @@
     </div>
   </div>  
   </form>
-  <!-- /.modal -->  
+  <!-- /.modal To Edit -->  
   
+  
+   <!-- Modal to create new options to register --> 
   <form enctype="multipart/form-data" action="settings.php" method="POST" class="settings-form" id="settings-form">
-    <!-- Modal -->
   <div id="create_button" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -250,5 +258,5 @@
     </div>
   </div> 
   </form>
-  <!-- /.modal -->
+ <!-- Modal to create new options to register --> 
   <?php include'footer.php';?>

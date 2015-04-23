@@ -1,6 +1,5 @@
 <?php include'header.php';?>
 <!-- banner -->
-<script src="javascript/findInputs.js"></script>
 <div class="inside-banner">
   <div class="container">
     <span class="pull-right"><a href="#">Home</a> / Register Pet</span>

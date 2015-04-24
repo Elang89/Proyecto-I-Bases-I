@@ -41,7 +41,6 @@ function sendUserDetails(){
 				serverResponse = xmlhttp.responseText
 				console.log(serverResponse);
 				var code = parseInt(serverResponse);
-				console.log(code);
 				if(code == 2){
 					alert("Admin login succesful.")
 					window.location = "index.php";

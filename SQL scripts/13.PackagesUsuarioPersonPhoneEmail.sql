@@ -121,19 +121,19 @@ CREATE OR REPLACE PACKAGE BODY person_package AS
            RETURN null;
        END;
        
-       FUNCTION find_users(p_search_data VARCHAR2)
+   FUNCTION find_users(p_search_data VARCHAR2)
        RETURN SYS_REFCURSOR
        IS 
           c_users SYS_REFCURSOR;
        BEGIN 
          OPEN c_users FOR SELECT username, person_id, person_name, first_last_name, second_last_name 
          FROM person 
-         WHERE  p_search_data = username;
+         WHERE  username LIKE p_search_data || '%';
          RETURN c_users;
       EXCEPTION 
         WHEN NO_DATA_FOUND THEN 
           RETURN null;
-      END;   
+      END;
 END person_package;
 /*----------------------------------------------------------------------------------------*/
 /*PACKAGE FOR PHONE */

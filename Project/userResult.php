@@ -71,18 +71,20 @@
 			if($searchData == "" || $resultArray == null){
 				echo "<h2>No results found<h2>";
 			} else {
-				$finalResult = $finalResult.'<div class="col-lg-4 col-sm-6"> 
-												<div class="properties">
-													<form action="user-detail.php" method="POST">
-														<input class="form-control" type="text" readonly name="username" value="'.$resultArray[0]['USERNAME'].'"/>
-														<input class="form-control" type="text" style="display: none" readonly name="p_id" value="'.$resultArray[0]['PERSON_ID'].'"/>
-														<input class="form-control" type="text" readonly name="name" value="'.$resultArray[0]['PERSON_NAME'].'"/>
-														<input class="form-control" type="text" readonly name="last_name" value="'.$resultArray[0]['FIRST_LAST_NAME'].'"/>
-														<input class="form-control" type="text" readonly name="second_last_name" value="'.$resultArray[0]['SECOND_LAST_NAME'].'"/>
-														<input type="submit" class="btn btn-primary" value="View Details"
-													<form/>
-												</div>
-											   </div>'; 
+				foreach($resultArray as $iterator){
+					$finalResult = $finalResult.'<div class="col-lg-4 col-sm-6"> 
+													<div class="properties">
+														<form action="user-detail.php" method="POST">
+															<input class="form-control" type="text" readonly name="username" value="'.$iterator['USERNAME'].'"/>
+															<input class="form-control" type="text" style="display: none" readonly name="p_id" value="'.$iterator['PERSON_ID'].'"/>
+															<input class="form-control" type="text" readonly name="name" value="'.$iterator['PERSON_NAME'].'"/>
+															<input class="form-control" type="text" readonly name="last_name" value="'.$iterator['FIRST_LAST_NAME'].'"/>
+															<input class="form-control" type="text" readonly name="second_last_name" value="'.$iterator['SECOND_LAST_NAME'].'"/>
+															<input type="submit" class="btn btn-primary" value="View Details"
+														<form/>
+													</div>
+												   </div>'; 
+				}
 			    echo $finalResult;
 			}
 		?>

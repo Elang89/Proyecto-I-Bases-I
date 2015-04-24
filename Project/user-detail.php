@@ -21,6 +21,8 @@
 	$phoneResult;
 	$emailArray;
 	$phoneArray;
+	$path;
+	$image; 
 	
 	if(!$db_connection){                                    /* checks if connection with the database works */
 		exit ("Server could not connect to database");
@@ -30,20 +32,25 @@
 	
 	$sqlVariableGetEmails = 'BEGIN :email_result := email_package.retrieve_user_emails(:p_id);END;';
 	$sqlVariableGetPhones = 'BEGIN :phone_result := phone_package.retrieve_user_phones(:p_id);END;';
+	$sqlVariableGetImage = 'BEGIN :image_result := image_package.return_image(:p_id);END;';
 	$emailResult = oci_new_cursor($db_connection);
 	$phoneResult = oci_new_cursor($db_connection);
 	
 	$dataToReceiveUserEmails = oci_parse($db_connection, $sqlVariableGetEmails);
 	$dataToReceiveUserPhones = oci_parse($db_connection, $sqlVariableGetPhones);
+	$dataToReceiveImage = oci_parse($db_connection, $sqlVariableGetImage);
 	oci_bind_by_name($dataToReceiveUserEmails, ':email_result', $emailResult, -1, OCI_B_CURSOR);
 	oci_bind_by_name($dataToReceiveUserEmails, ':p_id', $id);
 	oci_bind_by_name($dataToReceiveUserPhones, ':phone_result', $phoneResult, -1, OCI_B_CURSOR);
 	oci_bind_by_name($dataToReceiveUserPhones, ':p_id', $id);
+	oci_bind_by_name($dataToReceiveImage,':p_id', $id);
+	oci_bind_by_name($dataToReceiveImage,':image_result', $image,2000);
 	
 	oci_execute($dataToReceiveUserEmails);
 	oci_execute($emailResult, OCI_DEFAULT);
 	oci_execute($dataToReceiveUserPhones);
 	oci_execute($phoneResult, OCI_DEFAULT);
+	oci_execute($dataToReceiveImage);
 	
 	oci_fetch_all($emailResult, $emailArray, null, null, OCI_FETCHSTATEMENT_BY_ROW);
 	oci_fetch_all($phoneResult, $phoneArray, null, null, OCI_FETCHSTATEMENT_BY_ROW);
@@ -51,6 +58,11 @@
 	$primaryEmail = $emailArray[0]['EMAIL'];
 	$primaryPhone = $phoneArray[0]['PHONE_NUMBER'];
 	
+	if($image == null){
+		$path = "images/Users/user_without_photo.png";
+	} else {
+		$path = $image;
+	}
 	oci_close($db_connection);
 
 ?>
@@ -136,19 +148,30 @@
 			<div class="spacer"><h4><span class="glyphicon glyphicon-star"></span>Username</h4>
 				<div class="col-lg-6 col-sm-6">
 					<legend>Profile Picture</legend>
-					<img src="images/Users/user_without_photo.png" class="img-responsive img-circle" alt="properties"/>
+					<img src="<?php echo $path ?>" class="img-responsive img-circle" alt="properties"/>
 				</div>
-				<input id="username" type="text" class="form-control" name="form_name" maxlength="20" readonly value="<?php echo $username?>">
+					<input id="username" type="text" class="form-control" name="form_name" maxlength="20" readonly value="<?php echo $username?>">
 			</div>
-			<div class="spacer"><h4><span class="glyphicon glyphicon-asterisk"></span>Contact Details</h4>
-				<input id="user_first_name" type="text" class="form-control" name="form_name" maxlength="20" readonly value="<?php echo $firstName;?>">
-				<input id="user_first_lastname" type="text" class="form-control" name="form_name" maxlength="16" readonly value="<?php echo $lastName;?>">
-				<input id="user_second_lastname" type="text" class="form-control" name="form_name" maxlength="16" readonly value="<?php echo $secondLastName;?>">
-				<input id="user_email" type="text" class="form-control" name="form_email" maxlength="30" readonly value="<?php echo $primaryEmail;?>">
-				<input id="user_phone" type="text" class="form-control" name="form_email" maxlength="8" readonly value="<?php echo $primaryPhone;?>">
+			<div class="col-lg-6 col-sm-6">
+				<div class="spacer"><h4><span class="glyphicon glyphicon-asterisk"></span>Contact Details</h4>
+					<input id="user_first_name" type="text" class="form-control" name="form_name" maxlength="20" readonly value="<?php echo $firstName;?>">
+					<input id="user_first_lastname" type="text" class="form-control" name="form_name" maxlength="16" readonly value="<?php echo $lastName;?>">
+					<input id="user_second_lastname" type="text" class="form-control" name="form_name" maxlength="16" readonly value="<?php echo $secondLastName;?>">
+					<input id="user_email" type="text" class="form-control" name="form_email" maxlength="30" readonly value="<?php echo $primaryEmail;?>">
+					<input id="user_phone" type="text" class="form-control" name="form_email" maxlength="8" readonly value="<?php echo $primaryPhone;?>">
+				</div>
 			</div>
-			<div class="spacer"><h4><span class="glyphicon glyphicon-th"></span>Rate User</h4>
-			</div>
+			<div class="col-lg-6 col-sm-6">
+				<div class="spacer"><h4><span class="glyphicon glyphicon-th"></span>Rate User</h4>
+					<select class="form-control">
+						<option>5</option>
+						<option>4</option>
+						<option>3</option>
+						<option>2</option>
+						<option>1</option>
+					</select>
+				</div>
+		 </div>
     </div>
   </div>
 </div>

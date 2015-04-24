@@ -1,5 +1,6 @@
 <?php include'header.php';?>
 <!-- banner -->
+<script src="javascript/getImages.js"></script>
 <div class="inside-banner">
   <div class="container">
     <span class="pull-right"><a href="index.php">Home</a> / User Profile</span>
@@ -25,6 +26,8 @@
 	$dataArray;
 	$emailArray;
 	$phoneArray;
+	$path;
+	$image; 
 
 	
 	if(!$db_connection){                                    /* checks if connection with the database works */
@@ -34,6 +37,7 @@
 	$sqlVariableGetUserDetails = 'BEGIN :result := person_package.retrieve_user_details(:p_id);END;';
 	$sqlVariableGetEmails = 'BEGIN :email_result := email_package.retrieve_user_emails(:p_id);END;';
 	$sqlVariableGetPhones = 'BEGIN :phone_result := phone_package.retrieve_user_phones(:p_id);END;';
+	$sqlVariableGetImage = 'BEGIN :image_result := image_package.return_image(:p_id);END;';
 	$result = oci_new_cursor($db_connection);
 	$emailResult = oci_new_cursor($db_connection);
 	$phoneResult = oci_new_cursor($db_connection);
@@ -41,6 +45,7 @@
 	$dataToReceiveUserDetails = oci_parse($db_connection, $sqlVariableGetUserDetails);
 	$dataToReceiveUserEmails = oci_parse($db_connection, $sqlVariableGetEmails);
 	$dataToReceiveUserPhones = oci_parse($db_connection, $sqlVariableGetPhones);
+	$dataToReceiveImage = oci_parse($db_connection, $sqlVariableGetImage);
 	
 	oci_bind_by_name($dataToReceiveUserDetails, ':result', $result, -1,  OCI_B_CURSOR);
 	oci_bind_by_name($dataToReceiveUserDetails, ':p_id', $id);
@@ -48,6 +53,8 @@
 	oci_bind_by_name($dataToReceiveUserEmails, ':p_id', $id);
 	oci_bind_by_name($dataToReceiveUserPhones, ':phone_result', $phoneResult, -1, OCI_B_CURSOR);
 	oci_bind_by_name($dataToReceiveUserPhones, ':p_id', $id);
+	oci_bind_by_name($dataToReceiveImage,':p_id', $id);
+	oci_bind_by_name($dataToReceiveImage,':image_result', $image,2000);
 	
 	oci_execute($dataToReceiveUserDetails);
 	oci_execute($result, OCI_DEFAULT);
@@ -55,6 +62,7 @@
 	oci_execute($emailResult, OCI_DEFAULT);
 	oci_execute($dataToReceiveUserPhones);
 	oci_execute($phoneResult, OCI_DEFAULT);
+	oci_execute($dataToReceiveImage);
 	
 	oci_fetch_all($result, $dataArray, null, null, OCI_FETCHSTATEMENT_BY_ROW);
 	oci_fetch_all($emailResult, $emailArray, null, null, OCI_FETCHSTATEMENT_BY_ROW);
@@ -67,6 +75,12 @@
 	$primaryEmail = $emailArray[0]['EMAIL'];
 	$primaryPhone = $phoneArray[0]['PHONE_NUMBER'];
 	
+	if($image == null){
+		$path = "images/Users/user_without_photo.png";
+	} else {
+		$path = $image;
+	}
+
 	oci_close($db_connection);
 
 ?>
@@ -75,8 +89,8 @@
     <div class="row contact">
       <div class="col-lg-6 col-sm-6">
         <legend>Profile Picture</legend>
-        <img src="images/Users/user_without_photo.png" class="img-responsive img-circle" alt="properties"/>
-        <input type="file" name="photo" title="Photo"/>
+        <img id="image" src="<?php echo $path?>" class="img-responsive img-circle" alt="properties"/>
+        <input id="image_name" type="text" class="form-control name="photo" title="Photo"  placeholder="Image URL goes here">
         <input id="user_username" type="text" class="form-control" placeholder="Username" name="form_name" maxlength="12" value="<?php echo $_SESSION['name']?>" readonly>
 		<div class="col-lg-6">
 			<button id="upload_image" type="button" class="btn btn-success">Upload</button>

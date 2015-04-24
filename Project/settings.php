@@ -8,16 +8,17 @@ if (!$conn) {
     trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
 }   
 		// Takes the values selected value in the combobox (a select named 'category' in manage-categories.php) 
-		// Also takes in the new name written by the user that wants to be inserted (from an input named 'new name'.php)
-		$var1 =  $_POST['category'];  
-		$var2 = $_POST['new_name'];   
+		// Also takes in the new name written by the user that wants to be inserted (from an input named 'new name'.php) 
+		$var1 = $_GET['selectedOption'];  
+		$var2 = $_GET['newNameText'];  
+		$var3 = $_GET['selectedType'];
 		
 		if($var1 == "Pet Type"){  
 			$stid = ociparse($conn, "BEGIN  setting_package.SET_Type(:p1); END;");
         } 
 		
-		else if ($var1 == "Pet breed"){ 
-			 $stid = ociparse($conn, "BEGIN  setting_package.SET_BREED(:p1); END;");
+		else if ($var1 == "Pet breed"){     
+			 $stid = ociparse($conn, "BEGIN  setting_package.SET_BREED(:p1, :p2); END;");
 		}  
 		
 		else if ($var1 == "Size"){ 
@@ -60,13 +61,26 @@ if (!$conn) {
 			$stid = ociparse($conn, "BEGIN  setting_package.SET_Space(:p1); END;");
 		} 
 		
+		// Is there a way to reload the page? 
 		
-		oci_bind_by_name($stid, ':p1', $var2);
+		oci_bind_by_name($stid, ':p1', $var2);   
+		
+		if($var1 == "Pet breed"){
+			oci_bind_by_name($stid, ':p2', $var3);
+		}
 		oci_execute($stid); 
-		oci_close($conn);
-        ?>		
 		
-		<script>
-		alert("Congratulation, the insertion was successful !  :)");
-		</script>
+		$query= 'select * from pettype order by PET_TYPE_CODE';
+			$stmt = oci_parse($conn, $query);
+			oci_execute($stmt); 
+			echo $var1 ." Options  <br />";
+			while($row=oci_fetch_assoc($stmt)) { 				
+				echo "<label>{$row['PET_TYPE_NAME']}</label><input  type = 'radio'  name = 'radio' id = '{$row['PET_TYPE_CODE']}'  value = '{$row['PET_TYPE_NAME']}'/><br /> "  ; 		 
+			} 	
+		
+		//echo "Congratulation, the insertion was successful !  :)";  
+		
+        ?> 
+		
+
 	

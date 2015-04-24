@@ -130,18 +130,21 @@
 	}
 
 	
-	function checked(){  
+	function checked(){   
+	    /*Function to delete  to the option selected 
+          calls delete.php and sends the text of the selected option as text as selectedOption*/
 			var Id = document.getElementById("consultFacts");
 			var selectedOption = Id.options[Id.selectedIndex].value;
 			var length = document.getElementById("Options").length; 
-			for(var i = 0;  i < length - 1; i++){ 
+			for(var i = 0;  i < 1000 ; i++){ 
 				if(document.getElementById(i) != null){
 					if(document.getElementById(i).checked){
 						var selectedId = i; 
 						var selectedValue = document.getElementById(i).value; 
 					} 
 				}
-			} 
+			}  
+		alert(selectedId); 
 		window.location.href = "http://localhost/project/delete.php?selectedId=" + selectedId + "&selectedOption=" + selectedOption;
 	} 
 	
@@ -152,9 +155,9 @@
 			var newName = document.getElementById("inputNewName").value; 
 			alert(newName); 
 			alert(selectedOption);
-			for(var i = 0;  i < length - 1; i++){ 
+			for(var i = 0;  i < 1000; i++){ 
 				if(document.getElementById(i) != null){
-					if(document.getElementById(i).checked){
+					if(document.getElementById(i).checked){           //Este ciclo no funciona porque los id pueden ser mayores q el len
 						var selectedId = i; 
 						var selectedValue = document.getElementById(i).value; 
 					} 
@@ -162,7 +165,65 @@
 			}  
 			alert(selectedId);
 		window.location.href = "http://localhost/project/Edit.php?selectedId=" + selectedId + "&selectedOption=" + selectedOption +  "&newName" + newName;
-	}
+	} 
+	
+		function newBreedSelected(){  
+		var Id = document.getElementById("newCategories");
+        var selectedOption = Id.options[Id.selectedIndex].value;  
+		  if (window.XMLHttpRequest)
+		  {// code for IE7+, Firefox, Chrome, Opera, Safari
+		  xmlhttp=new XMLHttpRequest();
+		  }
+		else
+		  {// code for IE6, IE5
+		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		  }
+		 xmlhttp.onreadystatechange=function()
+		  {
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+			document.getElementById("NuevoCampoType").innerHTML=xmlhttp.responseText;
+			}
+		  }
+		xmlhttp.open("GET","new_pet_Breed.php?selectedOption=" + selectedOption ,true);
+		xmlhttp.send();
+		}    
+		
+	    function newName(){  
+	
+		var Id = document.getElementById("newCategories");
+        var selectedOption = Id.options[Id.selectedIndex].value;   
+		var newNameText = document.getElementById("new_name").value; 
+		var selectedType = 'none'; 
+	
+		//alert(selectedOption); 
+		//alert(newNameText);
+		
+		  if (window.XMLHttpRequest)
+		  {// code for IE7+, Firefox, Chrome, Opera, Safari
+		  xmlhttp=new XMLHttpRequest();
+		  }
+		else
+		  {// code for IE6, IE5
+		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		  }
+		 xmlhttp.onreadystatechange=function()
+		  {
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+			document.getElementById("Options").innerHTML=xmlhttp.responseText;
+			}
+		  }  
+		  
+		if(selectedOption == "Pet breed"){ 
+		    var selectedType = document.getElementById("pet_breed_type").value; 
+			//alert(selectedType); 
+		} 
+			
+		xmlhttp.open("GET","settings.php?selectedOption=" + selectedOption + "&newNameText=" + newNameText + "&selectedType=" +selectedType ,true);
+		xmlhttp.send();
+	    alert("Congratulation, the insertion was successful !  :)");
+		} 
   </script>   
 
   
@@ -212,17 +273,17 @@
   
   
    <!-- Modal to create new options to register --> 
-  <form enctype="multipart/form-data" action="settings.php" method="POST" class="settings-form" id="settings-form">
+  <form enctype="multipart/form-data" action="javascript:newName();" method="POST" class="settings-form" id="settings-form">
   <div id="create_button" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="row">
-          <div class="col-sm-8 login">
+          <div class="col-sm-8 login" id = "AllNew">
             <h4>Create</h4>
             <form class="" role="form">
               <div class="row">
-                  <div class="col-lg-12">
-                    <select name="category">
+                  <div class="col-lg-12" id= "newOptions">
+                    <select name="newCategories" id = "newCategories" onchange= "newBreedSelected();">
                       <optgroup label="Categories">
                         <optgroup label="Pet">
                           <option>Pet Type</option>
@@ -246,7 +307,9 @@
                     </select>
                   </div>
                 </div>
-              <div class="form-group">
+              <div class="form-group">  
+				<div class="form-group" id = "NuevoCampoType">   
+				</div>
                 <label class="sr-only" for="inputPassword">Name</label>
                 <input id="new_name" type="text" class="form-control" name = "new_name" placeholder="Enter new name" required >
               </div>

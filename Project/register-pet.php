@@ -11,9 +11,10 @@
   <div class="spacer">
     <div class="row register">
       <div class="col-lg-6"> 
-	   
-	   <!-- Pet type -->
-		<select name="pet_type" style="width: 400px"  >
+		
+	  <form enctype="multipart/form-data" action="REGISTER_PET.php" method="POST" class="register-pet-form" id="register-pet-form">
+	   <!-- Pet type --> 
+		<select name="pet_type_combo" style="width: 400px"  onchange = "updateBreed();" id = "pet_type_combo">
 		<option value = "-1">Select Type:</option> 
 		<?php  
 		$conn = oci_connect('DBadmin', 'dbadmin', 'PETLOVERSDB');
@@ -32,8 +33,9 @@
 		 <!-- Pet type -->
    
         
-        <!-- Breed of animal -->
-        <select name="pet_breed" style="width: 400px" >
+        <!-- Breed of animal --> 
+		<div class="breed" id = "breeds">
+        <select name="pet_breed_combo" style="width: 400px"  id = "pet_breed_combo">
 		<option value = "-1">Select Breed:</option> 
 		<?php  
 		
@@ -44,11 +46,12 @@
 					 echo '<option>' . $row['PET_RACE_NAME'] . '</option>';
 				}
 		?>  
-		</select>  
+		</select>   
+		</div>
         <!-- Breed of animal -->
 
         <!-- Color -->
-        <select name="pet_color" style="width: 400px"  >
+        <select name="pet_color" style="width: 400px"  id = "pet_color">
 		<option value = "-1">Select Color:</option> 
 		<?php  
 		
@@ -108,8 +111,8 @@
 		<!-- Veterinary -->     
 		
 	   <!-- Treatments -->
-         <select multiple name="pet_treatment" style="width: 400px" size = 4>
-		<optgroup label="Select Treatments">
+         <select name="pet_treatment" style="width: 400px" > 
+		 <option value = "-1">Select Treatments:</option> 
 		<?php  
 		
 			$query= 'select PET_TREATMENT from pettreatments';
@@ -123,8 +126,8 @@
 		<!-- Treatments --> 
 		
 		<!-- Disease -->
-		<select multiple name="pet_diseases" style="width: 400px" size = 4>
-		<optgroup label="Select diseases ">
+		<select  name="pet_diseases" style="width: 400px"> 
+		<option value = "-1">Select disease:</option> 
 		<?php  
 		
 			$query= 'select PET_SICKNESS_NAME from petsickness';
@@ -138,8 +141,8 @@
 		<!-- Disease --> 
 		
 		<!-- Medicine -->
-		<select multiple name="pet_medicines" style="width: 400px" size = 4>
-		<optgroup label="Select  medicines ">
+		<select name="pet_medicines" style="width: 400px" > 
+		<option value = "-1">Select medicine:</option> 
 		<?php  
 		
 			$query= 'select PET_MED_NAME from petmedicine';
@@ -157,7 +160,7 @@
       <div class="col-lg-6">   
 	  
 	  <!-- Energy --> 
-		<select  name="pet_medicines" style="width: 400px" >
+		<select  name="pet_energy" style="width: 400px" >
 		<option value = "-1">Select Energy Level:</option>
 		<?php  
 		
@@ -201,10 +204,10 @@
 		</select>
 		<!-- Condition -->  
 		
-		<input id="name" type="text" class="form-control" placeholder="Animal's name (or specify unknown)" name="form_name" maxlength="30">
-        <input id="address" type="text" class="form-control" placeholder="Animal's Last Known Location" name="form_name" maxlength="100">
-        <input id="Abandon" type="text" class="form-control" placeholder="Describe how the animal was abandoned*" name="form_name" maxlength="100">  
-		<input id="Notes" type="text" class="form-control" placeholder="More information about the animal" name="form_name" maxlength="100">
+		<input id="name" type="text" class="form-control" placeholder="Animal's name (or specify unknown)" name="name" maxlength="30">
+        <input id="address" type="text" class="form-control" placeholder="Animal's Last Known Location" name="address" maxlength="100">
+        <input id="Abandon" type="text" class="form-control" placeholder="Describe how the animal was abandoned*" name="abandoned" maxlength="100">  
+		<input id="Notes" type="text" class="form-control" placeholder="More information about the animal" name="notes" maxlength="100">
 		
         <label>Please upload a photo of the pet:</label>
         <input type="file" name="photo" title="Photo"/>
@@ -213,9 +216,65 @@
     </div>
     <div class="row register">
       <div class="pull-right">
-        <button id="Submit_User" type="button" class="btn btn-success" name="Submit">Register</button>
+		<input type="submit" value="Register Pet"  class="btn btn-success">
       </div>
     </div>
   </div>
-</div>
-<?php include'footer.php';?>
+</div> 
+<?php oci_close($conn); ?>
+<?php include'footer.php';?>  
+	</form>
+
+<script type="text/javascript"> 
+
+function updateBreed(){
+		var xmlhttp;
+		var Id = document.getElementById( "pet_type_combo");
+        var selectedOption = Id.options[Id.selectedIndex].value;    
+		
+		if (window.XMLHttpRequest)
+		  {// code for IE7+, Firefox, Chrome, Opera, Safari
+		  xmlhttp=new XMLHttpRequest();
+		  }
+		else
+		  {// code for IE6, IE5
+		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		  }
+		 xmlhttp.onreadystatechange=function()
+		  {
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+			document.getElementById("breeds").innerHTML=xmlhttp.responseText;
+			}
+		  }
+		xmlhttp.open("GET","pet_breed_combo.php?selectedOption=" + selectedOption ,true);
+		xmlhttp.send();  
+} 
+
+function registerPet(){  
+		var xmlhttp;
+		var Id = document.getElementById( "pet_type_combo");
+        var selectedOption = Id.options[Id.selectedIndex].value;    
+		
+		if (window.XMLHttpRequest)
+		  {// code for IE7+, Firefox, Chrome, Opera, Safari
+		  xmlhttp=new XMLHttpRequest();
+		  }
+		else
+		  {// code for IE6, IE5
+		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		  }
+		 xmlhttp.onreadystatechange=function()
+		  {
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+			document.getElementById("breeds").innerHTML=xmlhttp.responseText;
+			}
+		  }
+		xmlhttp.open("GET","pet_breed_combo.php?selectedOption=" + selectedOption ,true);
+		xmlhttp.send();  
+		alert(selectedOption);
+
+}
+
+  </script> 

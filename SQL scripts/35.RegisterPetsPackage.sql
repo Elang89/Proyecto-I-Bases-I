@@ -51,7 +51,7 @@ CREATE OR REPLACE PACKAGE BODY pet_package AS
 PROCEDURE CREATE_NEW_PET
   (pet_type in VARCHAR2, breed in VARCHAR2, color in VARCHAR2, pet_size_param in VARCHAR2, TrainningSkills in VARCHAR2, vet in VARCHAR2, treatment in VARCHAR2,
     sickness in VARCHAR2, medicine in VARCHAR2, energy in VARCHAR2, space in VARCHAR2, pet_condition in VARCHAR2, petName in VARCHAR2, address in VARCHAR2,
-    reasonAbandoned in VARCHAR2, notes in VARCHAR2, username in NUMBER) IS 
+    reasonAbandoned in VARCHAR2, notes in VARCHAR2, username in NUMBER) IS
 
     type_id NUMBER;
     breed_id NUMBER;
@@ -64,8 +64,8 @@ PROCEDURE CREATE_NEW_PET
     medicine_id NUMBER;
     energy_id NUMBER;
     space_id NUMBER;
-    condition_id NUMBER; 
-    
+    condition_id NUMBER;
+
   BEGIN
      select TP.pet_type_code into type_id
      from dbadmin.petType TP
@@ -118,16 +118,16 @@ PROCEDURE CREATE_NEW_PET
 
     INSERT INTO PET(PET_NAME, PET_CODE, PET_TYPE_CODE, PET_RACE_CODE, PET_COND_CODE, PET_SIZE_CODE, PET_ENERGY_CODE, PET_LEARN_CODE, VET_CODE, OWNER_ID, PETLOCATION, PETNOTES, PETABANDONDESCRIPTION, PETSPACE_ID, PETTREATMENTS_ID)
     VALUES(petName, pet_id_generator.nextval, type_id, breed_id, condition_id, size_id, energy_id, TS_id, vet_id, username, address, notes, reasonAbandoned, space_id, treatment_id);
-    
-    INSERT INTO COLORSXPET(pet_code_fk, color_code_fk) 
+
+    INSERT INTO COLORSXPET(pet_code_fk, color_code_fk)
     VALUES(pet_id_generator.currval, color_id);
 
-    INSERT INTO SICKNESSXPET(PET_CODE, SICKNESS_CODE) 
+    INSERT INTO SICKNESSXPET(PET_CODE, SICKNESS_CODE)
     VALUES(pet_id_generator.currval, sickness_id);
 
-    INSERT INTO MEDICINESXPET(PET_CODE_FK, MEDICINE_CODE_FK) 
-    VALUES(pet_id_generator.currval, medicine_id); 
-    
-    COMMIT;
+    INSERT INTO MEDICINESXPET(PET_CODE_FK, MEDICINE_CODE_FK)
+    VALUES(pet_id_generator.currval, medicine_id);
 
-END CREATE_NEW_PET;
+    COMMIT;
+  END CREATE_NEW_PET;
+END pet_package;

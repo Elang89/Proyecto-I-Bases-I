@@ -40,8 +40,25 @@ ALTER TABLE Pet
 ADD vet_code NUMBER(10);
 
 ALTER TABLE Pet
-ADD owner_id NUMBER(10);
+ADD owner_id NUMBER(10);  
 
+ALTER TABLE PET
+ADD PetLocation VARCHAR2(100); 
+
+ALTER TABLE PET
+ADD PetNotes VARCHAR2(300);  
+
+ALTER TABLE PET
+ADD PetAbandonDescription VARCHAR2(300); 
+
+ALTER TABLE PET 
+ADD PetSpace_ID Number(10); 
+
+ALTER TABLE PET 
+ADD PetTreatments_ID Number(10);  
+
+ALTER TABLE PET 
+ADD adoption_id NUMBER(20); 
 
 
 /*
@@ -69,6 +86,16 @@ ALTER TABLE Pet
       ADD CONSTRAINT fk_pet_learn_code FOREIGN KEY (pet_learn_code) REFERENCES PetLearningSkill(pet_learn_code);                        
 
 ALTER TABLE Pet
-      ADD CONSTRAINT fk_owner_id FOREIGN KEY (owner_id) REFERENCES Person(Person_id);
+      ADD CONSTRAINT fk_owner_id FOREIGN KEY (owner_id) REFERENCES Person(Person_id);  
+
+
+ALTER TABLE Pet
+      ADD CONSTRAINT fk_pet_Space_code FOREIGN KEY (PetSpace_ID) REFERENCES PetSpace(pet_space_code); 
+      
+ALTER TABLE Pet
+      ADD CONSTRAINT fk_pet_Treatment_code FOREIGN KEY (PetTreatments_ID) REFERENCES petTreatments(pet_treatment_code);
+
+ALTER TABLE Pet
+      ADD CONSTRAINT fk_adoption_id FOREIGN KEY (adoption_id) REFERENCES Petadoption(ADOPTION_CODE);
 
 

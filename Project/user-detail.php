@@ -1,5 +1,6 @@
 <?php include'header.php';?>
 <!-- banner -->
+<script src="javascript/submitRating.js"></script>
 <div class="inside-banner">
   <div class="container">
     <span class="pull-right"><a href="userIndex.php">Home</a> / User Profile</span>
@@ -15,6 +16,7 @@
 	$firstName = $_POST['name'];
 	$lastName = $_POST['last_name'];
 	$secondLastName = $_POST['second_last_name'];
+	$blackList = $_POST['b_value'];
 	$primaryEmail;
 	$primaryPhone;
 	$emailResult;
@@ -23,6 +25,7 @@
 	$phoneArray;
 	$path;
 	$image; 
+	$currentBlackListValue;
 	
 	if(!$db_connection){                                    /* checks if connection with the database works */
 		exit ("Server could not connect to database");
@@ -63,6 +66,12 @@
 	} else {
 		$path = $image;
 	}
+	
+	if($blackList <= -8){
+		$currentBlackListValue = "Blacklist: Yes";
+	} else {
+		$currentBlackListValue = "Blacklist: No";
+	}
 	oci_close($db_connection);
 
 ?>
@@ -82,14 +91,14 @@
           <div class="row">
             <div class="col-lg-4 col-sm-5"><img src="images/properties/1.jpg" class="img-responsive img-circle" alt="properties"/></div>
             <div class="col-lg-8 col-sm-7">
-              <h5>Golden Retriever</h5>
+              <h5>White German Shepherd</h5>
               <p class="text"></p>
             </div>
           </div>
           <div class="row">
             <div class="col-lg-4 col-sm-5"><img src="images/properties/3.jpg" class="img-responsive img-circle" alt="properties"/></div>
             <div class="col-lg-8 col-sm-7">
-              <h5>White German Shepherd</h5>
+              <h5>Golden Retriever</h5>
               <p class="text"></p>
             </div>
           </div>
@@ -163,13 +172,21 @@
 			</div>
 			<div class="col-lg-6 col-sm-6">
 				<div class="spacer"><h4><span class="glyphicon glyphicon-th"></span>Rate User</h4>
-					<select class="form-control">
+					<select id="rating" class="form-control">
 						<option>5</option>
 						<option>4</option>
 						<option>3</option>
 						<option>2</option>
 						<option>1</option>
+						<option>0</option>
+						<option>-1</option>
+						<option>-2</option>
+						<option>-3</option>
+						<option>-4</option>
+						<option>-5</option>
 					</select>
+					<input id="blacklist" type="text" class="form-control" name="form_email" maxlength="8" readonly value="<?php echo $currentBlackListValue?>">
+					<button id="submit_rating" type="button" class="btn btn-success">Submit Rating</button>
 				</div>
 		 </div>
     </div>

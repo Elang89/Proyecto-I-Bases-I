@@ -85,7 +85,7 @@ if(curPageURL() == 'http://localhost/PetLovers/Project/manage-categories.php'){
               <li><button type="button" class="btn btn-info" onclick="window.location.href='search-users.php'">Users</button></li>
               <li><button type="button" class="btn btn-info" onclick="window.location.href='manage-categories.php'">Categories</button></li>
               <li><button type="button" class="btn btn-info" onclick="window.location.href='#'">Forms</button></li>
-              <li><button type="button" class="btn btn-info" onclick="window.location.href='#'">Blacklist</button></li>
+              <li><button type="button" class="btn btn-info" onclick="window.location.href='blacklist.php'">Blacklist</button></li>
             <?php else: ?>
               <!-- Normal user buttons -->
               <li><button type="submit" class="btn btn-info" onclick="window.location.href='edit-user.php'">My account</button></li>

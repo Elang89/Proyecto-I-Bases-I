@@ -106,6 +106,28 @@ CREATE OR REPLACE PACKAGE BODY person_package AS
           WHEN NO_DATA_FOUND THEN 
             RETURN 0;
         END;
+        
+       PROCEDURE add_blacklist_value(p_value person.blacklist%type, p_uname person.username%type) 
+       IS 
+         b_value NUMBER := p_value;
+         b_column_value NUMBER;
+       BEGIN 
+         b_value := b_value - 3;
+         SELECT blacklist INTO b_column_value
+         FROM person 
+         WHERE p_uname = username;
+         
+         IF b_column_value IS NULL THEN 
+           UPDATE person
+           SET blacklist = b_value
+           WHERE p_uname = username;
+         ELSE 
+           UPDATE person
+           SET blacklist = blacklist + b_value
+           WHERE p_uname = username;
+         END IF;
+       END;
+            
           
        FUNCTION retrieve_user_details(p_id person.person_id%type)
        RETURN SYS_REFCURSOR
@@ -114,26 +136,40 @@ CREATE OR REPLACE PACKAGE BODY person_package AS
        BEGIN 
           OPEN c_details FOR SELECT username, person_name, first_last_name, second_last_name, blacklist
           FROM person 
-          WHERE p_id = person_id;
+          WHERE P_id = person_id;
           RETURN c_details;
        EXCEPTION 
          WHEN NO_DATA_FOUND THEN 
            RETURN null;
        END;
        
-   FUNCTION find_users(p_search_data VARCHAR2)
+       FUNCTION find_users(p_search_data VARCHAR2)
        RETURN SYS_REFCURSOR
        IS 
           c_users SYS_REFCURSOR;
        BEGIN 
-         OPEN c_users FOR SELECT username, person_id, person_name, first_last_name, second_last_name 
+         OPEN c_users FOR SELECT username, person_id, person_name, first_last_name, second_last_name, blacklist 
          FROM person 
          WHERE  username LIKE p_search_data || '%';
          RETURN c_users;
       EXCEPTION 
         WHEN NO_DATA_FOUND THEN 
           RETURN null;
-      END;
+      END;   
+      
+       FUNCTION return_blacklisted_users
+       RETURN SYS_REFCURSOR
+       IS 
+         c_users_blacklist SYS_REFCURSOR;
+       BEGIN 
+         OPEN c_users_blacklist FOR SELECT username, person_id, person_name, first_last_name, second_last_name, blacklist
+         FROM person 
+         WHERE blacklist <= -8;
+         RETURN c_users_blacklist;
+       EXCEPTION 
+         WHEN NO_DATA_FOUND THEN
+           RETURN null;
+       END;
 END person_package;
 /*----------------------------------------------------------------------------------------*/
 /*PACKAGE FOR PHONE */

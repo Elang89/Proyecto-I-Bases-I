@@ -3,7 +3,7 @@
 <div class="inside-banner">
   <div class="container">
     <span class="pull-right"><a href="index.php">Home</a> / User Results</span>
-    <h2>User Results</h2>
+    <h2>Blacklist</h2>
   </div>
 </div>
 <!-- banner -->
@@ -11,7 +11,6 @@
 <?php 
 	$db_connection = oci_connect('DBadmin', 'dbadmin', 'localhost/petloversdbXDB');
 
-    $searchData = $_POST['search_data'];
 	$result;
 	$resultArray;
 	$finalResult = '';
@@ -20,13 +19,12 @@
 		exit ("Server could not connect to database");
 	}
 	
-	$sqlVariableFindUsers = 'BEGIN :user_cursor := person_package.find_users(:p_search_data);END;';
+	$sqlVariableBlackListResults = 'BEGIN :user_cursor := person_package.return_blacklisted_users;END;';
 	$result = oci_new_cursor($db_connection);
 	
-	$dataToReceive = oci_parse($db_connection, $sqlVariableFindUsers);
+	$dataToReceive = oci_parse($db_connection, $sqlVariableBlackListResults);
 	
 	oci_bind_by_name($dataToReceive, ':user_cursor', $result, -1, OCI_B_CURSOR);
-	oci_bind_by_name($dataToReceive, ':p_search_data', $searchData);
 	oci_execute($dataToReceive);
 	oci_execute($result, OCI_DEFAULT);
 	oci_fetch_all($result, $resultArray, null, null, OCI_FETCHSTATEMENT_BY_ROW);
@@ -68,7 +66,7 @@
       <div class="col-lg-9 col-sm-8">
         <div class="row">
 		<?php 
-			if($searchData == "" || $resultArray == null){
+			if($resultArray == null){
 				echo "<h2>No results found<h2>";
 			} else {
 				foreach($resultArray as $iterator){
@@ -86,7 +84,7 @@
 													</div>
 												   </div>'; 
 				}
-			    echo $finalResult;
+				echo $finalResult;
 			}
 		?>
         </div>

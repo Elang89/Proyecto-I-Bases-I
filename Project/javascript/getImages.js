@@ -31,6 +31,7 @@ function sendImage(){
 		  if (xmlhttp.readyState==4 && xmlhttp.status==200){
 				serverResponse = xmlhttp.responseText;
 				var code = parseInt(serverResponse);
+				console.log(code);
 				if(code == 1){
 					alert("Image uploaded succesfully.");
 					location.reload();

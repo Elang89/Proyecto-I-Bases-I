@@ -20,6 +20,9 @@
 	oci_execute($dataToInsert);
 	
 	oci_close($db_connection);
-	exit('1');
-
+	if (oci_error()){
+		exit('0');
+	} else {
+		exit('1');
+	}
 ?>

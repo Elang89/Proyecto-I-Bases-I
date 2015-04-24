@@ -33,14 +33,14 @@ CREATE SEQUENCE pet_id_generator
 
 /* -----------------------------------------------PACKAGE FOR PETS----------------------------------*/
 
-CREATE OR REPLACE PACKAGE pet_package AS 
+CREATE OR REPLACE PACKAGE pet_package AS
 
 PROCEDURE CREATE_NEW_PET
-  (pet_type in VARCHAR2, breed in VARCHAR2, color in VARCHAR2, pet_size in VARCHAR2, TrainningSkills in VARCHAR2, vet in VARCHAR2, treatment in VARCHAR2,
+  (pet_type in VARCHAR2, breed in VARCHAR2, color in VARCHAR2, pet_size_param in VARCHAR2, TrainningSkills in VARCHAR2, vet in VARCHAR2, treatment in VARCHAR2,
     sickness in VARCHAR2, medicine in VARCHAR2, energy in VARCHAR2, space in VARCHAR2, pet_condition in VARCHAR2, petName in VARCHAR2, address in VARCHAR2,
-    reasonAbandoned in VARCHAR2, notes in VARCHAR2, username in NUMBER); 
+    reasonAbandoned in VARCHAR2, notes in VARCHAR2, username in NUMBER);
 
-END pet_package; 
+END pet_package;
 
 
 
@@ -49,7 +49,7 @@ END pet_package;
 CREATE OR REPLACE PACKAGE BODY pet_package AS
 
 PROCEDURE CREATE_NEW_PET
-  (pet_type in VARCHAR2, breed in VARCHAR2, color in VARCHAR2, pet_size in VARCHAR2, TrainningSkills in VARCHAR2, vet in VARCHAR2, treatment in VARCHAR2,
+  (pet_type in VARCHAR2, breed in VARCHAR2, color in VARCHAR2, pet_size_param in VARCHAR2, TrainningSkills in VARCHAR2, vet in VARCHAR2, treatment in VARCHAR2,
     sickness in VARCHAR2, medicine in VARCHAR2, energy in VARCHAR2, space in VARCHAR2, pet_condition in VARCHAR2, petName in VARCHAR2, address in VARCHAR2,
     reasonAbandoned in VARCHAR2, notes in VARCHAR2, username in NUMBER) IS 
 
@@ -81,7 +81,7 @@ PROCEDURE CREATE_NEW_PET
 
     select PS.pet_size_code into size_id
     from dbadmin.PetSize PS
-    where PS.pet_size = pet_size;
+    where PS.pet_size = pet_size_param;
 
     select LS.pet_learn_code into TS_id
     from dbadmin.petlearningskill LS
@@ -128,8 +128,6 @@ PROCEDURE CREATE_NEW_PET
     INSERT INTO MEDICINESXPET(PET_CODE_FK, MEDICINE_CODE_FK) 
     VALUES(pet_id_generator.currval, medicine_id); 
     
-    COMMIT; 
+    COMMIT;
 
-END CREATE_NEW_PET;  
-
-END pet_package;
+END CREATE_NEW_PET;

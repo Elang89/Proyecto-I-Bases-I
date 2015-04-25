@@ -210,6 +210,7 @@
 		<input id="Notes" type="text" class="form-control" placeholder="More information about the animal" name="notes" maxlength="100">
 		
         <label>Please copy a URL with a photo of the pet:</label>
+        <input type="URL" class="form-control" name="photo" title="Photo" placeholder="URL goes here" required/>
 
       </div>
     </div>

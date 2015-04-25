@@ -27,6 +27,8 @@ function serverInteraction() {
   var userId;
   var serverResponse;
   var phoneNumber;
+  var normalUserType; 
+  
   if (window.XMLHttpRequest){
 	  xmlhttp = new XMLHttpRequest();        /* Used for IE7+,FireFox, Opera, Chrome, Safari */
   } else if (window.ActiveXObject) {
@@ -57,8 +59,14 @@ function serverInteraction() {
 	  }
 		finalArray[i] = inputArray[i].value;
   }
-    JSONArray = JSON.stringify({finalArray: finalArray}); 
+	if(document.getElementById("rescuer").checked){
+		normalUserType = document.getElementById("rescuer").value;
+	} else if (document.getElementById("other").checked) {
+		normalUserType = document.getElementById("other").value;
+	}
 	
+	finalArray[8] = normalUserType;
+	JSONArray = JSON.stringify({finalArray: finalArray});
 	xmlhttp.onreadystatechange=function()
 	  {
 		  if (xmlhttp.readyState==4 && xmlhttp.status==200){

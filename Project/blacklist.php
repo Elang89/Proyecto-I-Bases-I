@@ -73,11 +73,15 @@
 					$finalResult = $finalResult.'<div class="col-lg-4 col-sm-6"> 
 													<div class="properties">
 														<form action="user-detail.php" method="POST">
-															<input class="form-control" type="text" readonly name="username" value="'.$iterator['USERNAME'].'"/>
+															<h4>'.$iterator['USERNAME'].' </h4>
+															<h5>'.$iterator['PERSON_NAME'].'</h5>
+															<h5>'.$iterator['FIRST_LAST_NAME'].'</h5>
+															<h5>'.$iterator['SECOND_LAST_NAME'].'</h5>
+															<input class="form-control" type="text" style="display: none" readonly name="username" value="'.$iterator['USERNAME'].'"/>
 															<input class="form-control" type="text" style="display: none" readonly name="p_id" value="'.$iterator['PERSON_ID'].'"/>
-															<input class="form-control" type="text" readonly name="name" value="'.$iterator['PERSON_NAME'].'"/>
-															<input class="form-control" type="text" readonly name="last_name" value="'.$iterator['FIRST_LAST_NAME'].'"/>
-															<input class="form-control" type="text" readonly name="second_last_name" value="'.$iterator['SECOND_LAST_NAME'].'"/>
+															<input class="form-control" type="text" style="display: none" readonly name="name" value="'.$iterator['PERSON_NAME'].'"/>
+															<input class="form-control" type="text" style="display: none" readonly name="last_name" value="'.$iterator['FIRST_LAST_NAME'].'"/>
+															<input class="form-control" type="text" style="display: none" readonly name="second_last_name" value="'.$iterator['SECOND_LAST_NAME'].'"/>
 															<input class="form-control" type="text" style="display: none" readonly name="b_value" value="'.$iterator['BLACKLIST'].'"/>
 															<input type="submit" class="btn btn-primary" value="View Details"
 														<form/>

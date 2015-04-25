@@ -86,12 +86,28 @@ CREATE OR REPLACE PACKAGE BODY person_package AS
          (p_name person.person_name%type,
          p_first_ln person.first_last_name%type,
          p_second_ln person.second_last_name%type,
-         p_username person.username%type)
+         p_username person.username%type,
+         p_user_type person.normal_user_type%type)
         IS
         BEGIN
-          INSERT INTO person(person_id, person_name,first_last_name,second_last_name,username)
-          VALUES (person_id_generator.nextval,p_name, p_first_ln, p_second_ln, p_username);
+          INSERT INTO person(person_id, person_name,first_last_name,second_last_name,username,normal_user_type)
+          VALUES (person_id_generator.nextval,p_name, p_first_ln, p_second_ln, p_username,p_user_type);
         END add_person;
+        
+        FUNCTION return_user_type(p_uname person.username%type)
+        RETURN NUMBER
+        IS 
+          u_type NUMBER;
+        BEGIN 
+          SELECT normal_user_type INTO u_type
+          FROM person 
+          WHERE p_uname = username;
+          RETURN u_type;
+        EXCEPTION 
+          WHEN NO_DATA_FOUND THEN 
+            RETURN null;
+        END; 
+            
         
         FUNCTION find_person_id(u_name person.username%type)
         RETURN NUMBER

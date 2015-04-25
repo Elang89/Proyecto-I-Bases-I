@@ -16,6 +16,7 @@
 	$secondLastName = $finalArray['finalArray'][5];
 	$email = $finalArray['finalArray'][6];
 	$phone = $finalArray['finalArray'][7];
+	$normalUserType = $finalArray['finalArray'][8];
 	
 	if(!$db_connection){                                    /* checks if connection with the database works */
 		exit ("Server could not connect to database");
@@ -23,7 +24,7 @@
 	
 	$sqlVariableUsuarioCheck = 'BEGIN :result := usuario_package.findUsers(:username, :password);END;';
 	$sqlVariableUsuarioTable = 'CALL usuario_package.add_user(:username, :password)';  /* SQL statement to send */
-	$sqlVariablePersonTable = 'CALL person_package.add_person(:name, :first_ln, :second_ln, :username_person)';
+	$sqlVariablePersonTable = 'CALL person_package.add_person(:name, :first_ln, :second_ln, :username_person, :user_type)';
 	$sqlVariableEmailTable = 'CALL email_package.add_email(:email, :username)';
 	$sqlVariablePhoneTable = 'CALL phone_package.add_phone(:phone, :username)';
 	$dataToReceiveUsuario = oci_parse($db_connection, $sqlVariableUsuarioCheck);
@@ -41,6 +42,7 @@
 	oci_bind_by_name($dataToInsertPerson, ':first_ln', $firstLastName);
 	oci_bind_by_name($dataToInsertPerson, ':second_ln', $secondLastName);
 	oci_bind_by_name($dataToInsertPerson, ':username_person', $username);
+	oci_bind_by_name($dataToInsertPerson, ':user_type', $normalUserType);
 	oci_bind_by_name($dataToInsertEmail, ':email', $email);
 	oci_bind_by_name($dataToInsertEmail, ':username',$username);
 	oci_bind_by_name($dataToInsertPhone, ':phone', $phone);

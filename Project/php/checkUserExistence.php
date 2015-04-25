@@ -6,6 +6,7 @@
 	$result;
 	$result_admin;
 	$result_id;
+	$userResult;
 	$dataToReceive = file_get_contents('php://input');
 	$dataToReceive = json_decode($dataToReceive,true);
 	$username = $dataToReceive['dataToSend'][0];
@@ -18,11 +19,12 @@
 	$sqlVariableCheckUser = 'BEGIN :result := usuario_package.findUsers(:username, :password);END;';
 	$sqlVariableCheckAdmin = 'BEGIN :result_admin := usuario_package.findAdminUsers(:username);END;';
 	$sqlVariableCheckPersonId = 'BEGIN :result_id := person_package.find_person_id(:username);END;';
-	
+	$sqlVariableCheckUserType = 'BEGIN :user_type := person_package.return_user_type(:p_uname);END;';	
 
 	$dataToReceiveCheckUser = oci_parse($db_connection, $sqlVariableCheckUser);
 	$dataToReceiveCheckAdmin = oci_parse($db_connection, $sqlVariableCheckAdmin);
 	$dataToReceivePersonId = oci_parse($db_connection, $sqlVariableCheckPersonId);
+	$dataToReceiveUserType = oci_parse($db_connection, $sqlVariableCheckUserType);
 
 	oci_bind_by_name($dataToReceiveCheckUser,':username', $username);
 	oci_bind_by_name($dataToReceiveCheckUser,':password', $password);
@@ -31,13 +33,17 @@
 	oci_bind_by_name($dataToReceiveCheckAdmin,':result_admin', $result_admin);
 	oci_bind_by_name($dataToReceivePersonId, ':username', $username);
 	oci_bind_by_name($dataToReceivePersonId, ':result_id', $result_id, 200);
+	oci_bind_by_name($dataToReceiveUserType, ':p_uname', $username);
+	oci_bind_by_name($dataToReceiveUserType, ':user_type', $userResult);
 	
 	oci_execute($dataToReceiveCheckUser);
 	oci_execute($dataToReceiveCheckAdmin);
 	oci_execute($dataToReceivePersonId);
+	oci_execute($dataToReceiveUserType);
 	$result = (int)$result;
 	$result_admin = (int)$result_admin;
 	$result_id = (int)$result_id;
+	$userResult = (int)$userResult;
 
 	if($result == 1 && $result_admin == 1){
 		session_start();
@@ -50,6 +56,7 @@
 		$_SESSION['name'] = $username;
 		$_SESSION['usertype'] = 0;
 	    $_SESSION['id'] = $result_id;
+		$_SESSION['normal_type'] = $userResult;
 		exit ('1');
 	} else {
 		exit('0');

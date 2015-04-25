@@ -25,9 +25,13 @@
 		$color = $_POST['pet_color']; 
 		$sickness = $_POST['pet_sickness']; 
 		$med = $_POST['pet_med']; 
+		$image = $_POST['image'];
 		
-		$path = "images/logo2.png"; 
-		
+		if($image != null){
+			$path = $image;
+		} else {
+			$path = "images/logo2.png"; 
+		}
 		?> 
 <!-- banner -->
 <div class="container">

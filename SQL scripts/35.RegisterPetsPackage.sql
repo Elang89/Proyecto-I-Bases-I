@@ -11,7 +11,23 @@ CREATE SEQUENCE pet_id_generator
   MINVALUE 0
   MAXVALUE 1000000000
   NOCACHE
-  NOCYCLE;	
+  NOCYCLE;	 
+
+ CREATE SEQUENCE Adopt_id_generator 
+  START WITH 0
+  INCREMENT BY 1
+  MINVALUE 0
+  MAXVALUE 1000000000
+  NOCACHE
+  NOCYCLE;   
+
+ CREATE SEQUENCE Return_id_generator 
+  START WITH 0
+  INCREMENT BY 1
+  MINVALUE 0
+  MAXVALUE 1000000000
+  NOCACHE
+  NOCYCLE;  
 
 
 /* -----------------------------------------------PACKAGE FOR PETS----------------------------------*/

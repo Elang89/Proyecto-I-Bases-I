@@ -89,10 +89,10 @@ if(curPageURL() == 'http://localhost/PetLovers/Project/manage-categories.php'){
             <?php else: ?>
               <!-- Normal user buttons -->
               <li><button type="submit" class="btn btn-info" onclick="window.location.href='edit-user.php'">My account</button></li>
-              <li><button type="submit" class="btn btn-info" onclick="window.location.href='#'">My pets</button></li>
+              <li><button type="submit" class="btn btn-info" onclick="window.location.href='myPets.php'">My pets</button></li> 
+			  <li><button type="button" class="btn btn-info" onclick="window.location.href='register-pet.php'">Add A Pet</button></li>
 			  <li><button type="button" class="btn btn-info" onclick="window.location.href='search-users.php'">Find A User</button></li>
-              <li><button type="button" class="btn btn-info" onclick="window.location.href='register-pet.php'">Add A Pet</button></li>
-              <li><button type="button" class="btn btn-info" onclick="window.location.href='search-pets'">Find A Pet</button></li>
+              <li><button type="button" class="btn btn-info" onclick="window.location.href='search-pets.php'">Find A Pet</button></li>
               <li><button type="button" class="btn btn-info" onclick="window.location.href='#'">My requests</button></li>
               <li><button type="button" class="btn btn-info" onclick="window.location.href='#'">My records</button></li>
             <?php endif ?>

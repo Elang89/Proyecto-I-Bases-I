@@ -13,9 +13,9 @@
 		if (!$db_connection) {
 			$e = oci_error();
 			trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
-		}  
+		}   
 		
-		$searchData = 2; 
+		$searchData = $_SESSION['id'];  
 		$result;
 		$resultArray;
 		$finalResult = ' '; 
@@ -77,14 +77,18 @@
 				foreach($resultArray as $iterator){
 					$finalResult = $finalResult.'<div class="col-lg-4 col-sm-6"> 
 													<div class="properties">
-														<form action="user-detail.php" method="POST"> 
-															<input class="form-control" type="text" readonly name="username" value="'.$iterator['PET_TYPE_NAME'].'"/>
+														<form action="pet-detail.php" method="POST">
+															<h4>'.$iterator['PET_TYPE_NAME'].' </h4>
+															<div class="image-holder"><img src="images/logo2.png" class="img-responsive" alt="properties"/></div>
+															<h5>'.$iterator['PET_RACE_NAME'].' </h5>
+															<h5>'.$iterator['PET_COND_NAME'].'</h5>
+															<input class="form-control" type="text" style="display: none" readonly name="username" value="'.$iterator['PET_TYPE_NAME'].'"/>
 															<input class="form-control" type="text" style="display: none" readonly name="p_id" value="'.$iterator['PET_RACE_NAME'].'"/> 
-															<input class="form-control" type="text" readonly name="second_last_name" value="'.$iterator['PET_COLOR'].'"/>  
-															<input class="form-control" type="text" readonly name="name" value="'.$iterator['PET_COND_NAME'].'"/>
-															<input class="form-control" type="text" readonly name="second_last_name" value="'.$iterator['PETLOCATION'].'"/>
-															<input class="form-control" type="text" readonly name="last_name" value="'.$iterator['PET_ENERGY_LEVEL'].'"/>
-															<input class="form-control" type="text" readonly name="second_last_name" value="'.$iterator['PET_SPACE'].'"/> 
+															<input class="form-control" type="text" style="display: none" readonly name="second_last_name" value="'.$iterator['PET_COLOR'].'"/>  
+															<input class="form-control" type="text" style="display: none" readonly name="name" value="'.$iterator['PET_COND_NAME'].'"/>
+															<input class="form-control" type="text" style="display: none" readonly name="second_last_name" value="'.$iterator['PETLOCATION'].'"/>
+															<input class="form-control" type="text" style="display: none" readonly name="last_name" value="'.$iterator['PET_ENERGY_LEVEL'].'"/>
+															<input class="form-control" type="text" style="display: none" readonly name="second_last_name" value="'.$iterator['PET_SPACE'].'"/> 
 															<input type="submit" class="btn btn-primary" value="View Details" />
 														<form/>
 													</div>

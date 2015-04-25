@@ -12,9 +12,10 @@
     <div class="row">
       <div class="col-lg-3 col-sm-4 ">
         <div class="search-form"><h4><span class=glyphicon glyphicon-search"></span>Search for a pet</h4>
-		
+	
+	<form enctype="multipart/form-data" action="javascript:searchPet();" method="POST" class="pet-search-form" id="pet-search-form">
 	   <!-- Pet type --> 
-		<select name="pet_type_combo" onchange = "updateBreed();" id = "pet_type_combo" class="form-control">
+		<select name="pet_type_combo" id = "pet_type_combo" class="form-control" onChange = "updateBreed();"updateBreed()">
 		<option value = "-1">Select Type:</option> 
 		<?php  
 		$conn = oci_connect('DBadmin', 'dbadmin', 'PETLOVERSDB');
@@ -65,7 +66,7 @@
         <!-- Color -->
        
         <!-- Size -->
-        <select name="pet_size" class="form-control" >
+        <select name="pet_size" id ="pet_size" class="form-control" >
 		<option value = "-1">Select Size:</option> 
 		<?php  
 		
@@ -80,7 +81,7 @@
         <!-- Size -->
 	
         <!-- Training -->
-        <select name="pet_trainning" class="form-control">
+        <select name="pet_trainning"   id="pet_trainning" class="form-control">
 		<option value = "-1">Select Training Level:</option> 
 		<?php  
 		
@@ -95,7 +96,7 @@
         <!-- Training -->
 
  	  <!-- Energy --> 
-		<select  name="pet_energy" class="form-control">
+		<select  name="pet_energy"  id="pet_energy" class="form-control">
 		<option value = "-1">Select Energy Level:</option>
 		<?php  
 		
@@ -110,7 +111,7 @@
 		<!-- Energy -->   
 
 		<!-- Space -->
-		<select  name="pet_space" class="form-control">
+		<select  name="pet_space" id="pet_space" class="form-control">
 		<option value = "-1">Select Space Necessity:</option>
 		<?php  
 		
@@ -123,9 +124,11 @@
 			oci_close($conn);  
 		?>   
 		</select>
-		<!-- Space --> 		
+		<!-- Space --> 
+		
         <button class="btn btn-primary">Find Now</button>
-      </div>
+      </div> 
+	  </form>	
       <div class="hot-properties hidden-xs">
         <h4>Waiting for you</h4>
 
@@ -152,22 +155,9 @@
           </select>
         </div>
       </div>
-      <div class="row">
-       <!-- Basic container for showing animals in the pet search page -->
-       <!--  
-       <div class="col-lg-4 col-sm-6">
-          <div class="properties">
-            <div class="image-holder"><img src="images/pets/<?php echo $picture_id; ?>" class="img-responsive" alt="properties">
-              <div class="status <?php echo $pet_status; ?>"><?php echo $pet_status; ?></div>
-            </div>
-            <h4><a href="pet-detail.php?pet=<?php echo $pet_id; ?>">Size: <?php echo $pet_size; ?></a></h4>
-            <p class="text">Breed: <?php echo $pet_breed; ?></p>
-            <a class="btn btn-primary" href="pet-detail.php?pet=<?php echo $pet_id; ?>">View Details</a>
-          </div>
-        </div> 
-        -->
-        <!-- properties --> 
-		
+	  
+<!-- pets --> 
+		<form  id = "PetSearch">  
 		<?php  
 		$db_connection = oci_connect('DBadmin', 'dbadmin', 'PETLOVERSDB');
 		if (!$db_connection) {
@@ -216,13 +206,81 @@
 			    echo $finalResult;
 			}
 
-		?> 
-        <!-- properties -->
-        
- 
-      </div>
+		?>  
+		</form>
+<!-- pets -->      
     </div>
   </div>
 </div>
 </div>
+
+<script type="text/javascript">  
+    /*Function to update the  pets  according to the options chosen 
+	  AJAX function that calls pet_search_result.php */
+	function searchPet()
+	{     
+		var Id1 = document.getElementById("pet_type_combo");  
+		var type = Id1.options[Id1.selectedIndex].value; 
+
+		var Id2 = document.getElementById('pet_breed_combo'); 
+		var breed = Id2.options[Id2.selectedIndex].value; 
+		
+		var Id3= document.getElementById('pet_color'); 
+		var color = Id3.options[Id3.selectedIndex].value;   
+		
+		var Id4 = document.getElementById('pet_size'); 
+		var size = Id4.options[Id4.selectedIndex].value;  
+		
+		var Id5 = document.getElementById('pet_trainning');
+		var trainning = Id5.options[Id5.selectedIndex].value;   
+		
+		var Id6 = document.getElementById('pet_energy');
+		var energy = Id6.options[Id6.selectedIndex].value;   
+		
+		var Id7 = document.getElementById('pet_space'); 
+		var space = Id7.options[Id7.selectedIndex].value;  
+		
+		var xmlhttp;
+		if (window.XMLHttpRequest)
+		  {// code for IE7+, Firefox, Chrome, Opera, Safari
+		  xmlhttp=new XMLHttpRequest();
+		  }
+		else
+		  {// code for IE6, IE5
+		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		  }
+		 xmlhttp.onreadystatechange=function()
+		  {
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+			document.getElementById("PetSearch").innerHTML=xmlhttp.responseText;
+			}
+		  }
+		xmlhttp.open("GET","pet_search_result.php?type=" + type + "&breed=" + breed + "&color=" + color + "&size=" + size + "&trainning=" + trainning + "&energy=" + energy + "&space=" + space, true);
+		xmlhttp.send();
+	} 
+function updateBreed(){
+		var xmlhttp;
+		var Id = document.getElementById( "pet_type_combo");
+        var selectedOption = Id.options[Id.selectedIndex].value;    
+		
+		if (window.XMLHttpRequest)
+		  {// code for IE7+, Firefox, Chrome, Opera, Safari
+		  xmlhttp=new XMLHttpRequest();
+		  }
+		else
+		  {// code for IE6, IE5
+		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		  }
+		 xmlhttp.onreadystatechange=function()
+		  {
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+			document.getElementById("breeds").innerHTML=xmlhttp.responseText;
+			}
+		  }
+		xmlhttp.open("GET","pet_breed_combo_search.php?selectedOption=" + selectedOption ,true);
+		xmlhttp.send();  
+} 	
+</script>
 <?php include'footer.php';?>

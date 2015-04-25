@@ -4,14 +4,11 @@ if (!$conn) {
     $e = oci_error();
     trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
 }  
-		$deleteOption = $_GET['selectedId'];     
+		$editOption = $_GET['selectedId'];     
 		$CategorySelected = $_GET['selectedOption']; 
 		$newName = $_GET['newName']; 
-		echo $deleteOption; 
-		echo $CategorySelected; 
-		echo $newName;   
-		/*
-			    if($CategorySelected == "Pet Type"){  
+		
+		if($CategorySelected == "Pet Type"){  
 			$stid = ociparse($conn, "BEGIN  setting_package.EDIT_Type(:p2, :p1); END;");
         } 
 		
@@ -60,10 +57,20 @@ if (!$conn) {
 		} 
 		
 		
-		oci_bind_by_name($stid, ':p1', $deleteOption); 
-		oci_bind_by_name($stid, 'p2', $newname)
-		oci_execute($stid); 
-		oci_close($conn);*/
+		oci_bind_by_name($stid, ':p1', $editOption); 
+		oci_bind_by_name($stid, ':p2', $newName);
+		oci_execute($stid);   
+							
+							?><div class="col-" class="text">Type Options</div><?php
+							$query= 'select * from pettype order by PET_TYPE_CODE';
+							$stmt = oci_parse($conn, $query);
+							oci_execute($stmt); 
+
+								while($row=oci_fetch_assoc($stmt)) { 				
+									 echo "<label>{$row['PET_TYPE_NAME']}</label><input  type = 'radio'  name = 'radio' id = '{$row['PET_TYPE_CODE']}'  value = '{$row['PET_TYPE_NAME']}'/><br /> "  ; 		 
+								} 	 
+								
+		oci_close($conn); 
 		
 ?>
   

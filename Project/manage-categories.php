@@ -148,13 +148,11 @@
 		window.location.href = "http://localhost/project/delete.php?selectedId=" + selectedId + "&selectedOption=" + selectedOption;
 	} 
 	
-		function edit(){  
+		function edit(){   
 			var Id = document.getElementById("consultFacts");
 			var selectedOption = Id.options[Id.selectedIndex].value;
 			var length = document.getElementById("Options").length; 
 			var newName = document.getElementById("inputNewName").value; 
-			alert(newName); 
-			alert(selectedOption);
 			for(var i = 0;  i < 1000; i++){ 
 				if(document.getElementById(i) != null){
 					if(document.getElementById(i).checked){           //Este ciclo no funciona porque los id pueden ser mayores q el len
@@ -162,10 +160,25 @@
 						var selectedValue = document.getElementById(i).value; 
 					} 
 				}
-			}  
-			alert(selectedId);
-		window.location.href = "http://localhost/project/Edit.php?selectedId=" + selectedId + "&selectedOption=" + selectedOption +  "&newName" + newName;
-	} 
+			}   
+		  if (window.XMLHttpRequest)
+		  {// code for IE7+, Firefox, Chrome, Opera, Safari
+		  xmlhttp=new XMLHttpRequest();
+		  }
+		else
+		  {// code for IE6, IE5
+		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		  }
+		 xmlhttp.onreadystatechange=function()
+		  {
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+			document.getElementById("categoryList").innerHTML=xmlhttp.responseText;
+			}
+		  }
+		xmlhttp.open("GET","Edit.php?selectedId=" + selectedId + "&selectedOption=" + selectedOption +  "&newName=" + newName ,true);
+		xmlhttp.send();
+		} 
 	
 		function newBreedSelected(){  
 		var Id = document.getElementById("newCategories");

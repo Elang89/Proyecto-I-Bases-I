@@ -26,7 +26,7 @@
 		while ($row = oci_fetch_array($stid, OCI_RETURN_NULLS+OCI_ASSOC))
         {
             echo "<option value=\"unit1\">" . $row['QUESTION'] . "</option>";  
-		    echo '<input required  type = "text" name = "subject1" maxlength="100" id="' . $row['QUESTIONID']  . '" />'	;	} 
+		    echo '<input required  class="form-control"  type = "text" name = "subject1" maxlength="100" id="' . $row['QUESTIONID']  . '" />'	;	} 
 	?>
 
       </div>

@@ -60,6 +60,14 @@ ADD PetTreatments_ID Number(10);
 ALTER TABLE PET 
 ADD adoption_id NUMBER(20); 
 
+ALTER TABLE PET 
+ADD Pet_Color_code NUMBER(10); 
+
+ALTER TABLE PET 
+ADD Pet_Sickness_code NUMBER(10);  
+
+ALTER TABLE PET 
+ADD Pet_Medicine_code NUMBER(10);  
 
 /*
 Add Foreign Key constraints to TABLE Pet
@@ -98,4 +106,11 @@ ALTER TABLE Pet
 ALTER TABLE Pet
       ADD CONSTRAINT fk_adoption_id FOREIGN KEY (adoption_id) REFERENCES Petadoption(ADOPTION_CODE);
 
-
+ALTER TABLE Pet
+      ADD CONSTRAINT fk_Color_id FOREIGN KEY (Pet_Color_code) REFERENCES PetColor(PET_COLOR_CODE); 
+      
+ALTER TABLE Pet
+      ADD CONSTRAINT fk_Sickness_id FOREIGN KEY (Pet_Sickness_code) REFERENCES PetSickness(Pet_Sickness_code); 
+      
+      ALTER TABLE Pet
+      ADD CONSTRAINT fk_medicine_id FOREIGN KEY (Pet_medicine_code) REFERENCES PetMedicine(Pet_Med_code);

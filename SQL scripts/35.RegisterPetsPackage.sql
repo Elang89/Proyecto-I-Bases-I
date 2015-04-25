@@ -1,6 +1,6 @@
 /* Made by Miuyin Yong Wong 11/4/2015 */  
 /* PACKAGE FOR PETS*/
-/* This package contains the procedure to insert a new pet  
+/* This package contains the procedure to insert, adopt and return pet  
 
 /*------------------------------------------------------------------------------------------------------------*/
 /*SEQUENCES */
@@ -12,23 +12,6 @@ CREATE SEQUENCE pet_id_generator
   MAXVALUE 1000000000
   NOCACHE
   NOCYCLE;	
-
- CREATE SEQUENCE Adopt_id_generator 
-  START WITH 0
-  INCREMENT BY 1
-  MINVALUE 0
-  MAXVALUE 1000000000
-  NOCACHE
-  NOCYCLE;	 
-
- CREATE SEQUENCE Return_id_generator 
-  START WITH 0
-  INCREMENT BY 1
-  MINVALUE 0
-  MAXVALUE 1000000000
-  NOCACHE
-  NOCYCLE;	
-
 
 
 /* -----------------------------------------------PACKAGE FOR PETS----------------------------------*/
@@ -56,7 +39,6 @@ END pet_package;
 
 
 /* ------------------------------------------------PACKAGE BODY FOR PETS ----------------------------*/
-
 CREATE OR REPLACE PACKAGE BODY pet_package AS
 
 PROCEDURE CREATE_NEW_PET
@@ -127,17 +109,8 @@ PROCEDURE CREATE_NEW_PET
      WHERE PC.pet_Cond_name = pet_condition;
 
 
-    INSERT INTO PET(PET_NAME, PET_CODE, PET_TYPE_CODE, PET_RACE_CODE, PET_COND_CODE, PET_SIZE_CODE, PET_ENERGY_CODE, PET_LEARN_CODE, VET_CODE, OWNER_ID, PETLOCATION, PETNOTES, PETABANDONDESCRIPTION, PETSPACE_ID, PETTREATMENTS_ID)
-    VALUES(petName, pet_id_generator.nextval, type_id, breed_id, condition_id, size_id, energy_id, TS_id, vet_id, username, address, notes, reasonAbandoned, space_id, treatment_id);
-    
-    INSERT INTO COLORSXPET(pet_code_fk, color_code_fk) 
-    VALUES(pet_id_generator.currval, color_id);
-
-    INSERT INTO SICKNESSXPET(PET_CODE, SICKNESS_CODE) 
-    VALUES(pet_id_generator.currval, sickness_id);
-
-    INSERT INTO MEDICINESXPET(PET_CODE_FK, MEDICINE_CODE_FK) 
-    VALUES(pet_id_generator.currval, medicine_id); 
+    INSERT INTO PET(PET_NAME, PET_CODE, PET_TYPE_CODE, PET_RACE_CODE, PET_COND_CODE, PET_SIZE_CODE, PET_ENERGY_CODE, PET_LEARN_CODE, VET_CODE, OWNER_ID, PETLOCATION, PETNOTES, PETABANDONDESCRIPTION, PETSPACE_ID, PETTREATMENTS_ID, PET_COLOR_CODE, PET_SICKNESS_CODE, PET_MEDICINE_CODE)
+    VALUES(petName, pet_id_generator.nextval, type_id, breed_id, condition_id, size_id, energy_id, TS_id, vet_id, username, address, notes, reasonAbandoned, space_id, treatment_id, color_id, sickness_id, medicine_id);
     
     COMMIT;
 
@@ -240,12 +213,11 @@ PROCEDURE RETURN_PET
 
       UPDATE PET
       SET ADOPTION_ID = null
-      WHERE PET_CODE = r_pet_id;    
-
-      INSERT INTO PETRETURN(RETURN_CODE, RETURN_DATE, ADOPTION_CODE, REASON_CODE) 
-        VALUES(Return_id_generator.nextval, sysdate, adoption_id, reason_id)
+      WHERE PET_CODE = r_pet_id;   
 
 
 END RETURN_PET;  
 
 END pet_package;
+
+

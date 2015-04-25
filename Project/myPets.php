@@ -6,7 +6,35 @@
     <h2>My Pets</h2> 
   </div>
 </div>
-<!-- banner -->
+<!-- banner -->  
+
+		<?php  
+		$db_connection = oci_connect('DBadmin', 'dbadmin', 'PETLOVERSDB');
+		if (!$db_connection) {
+			$e = oci_error();
+			trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+		}  
+		
+		$searchData = 2; 
+		$result;
+		$resultArray;
+		$finalResult = ' '; 
+		
+		$sqlVariableFindMyPets = 'BEGIN :pet_variable := pet_search_package.find_myPets(:p_search_data);END;';   
+		
+		$result = oci_new_cursor($db_connection);	 
+		$dataToReceive = oci_parse($db_connection, $sqlVariableFindMyPets);		 
+		
+		oci_bind_by_name($dataToReceive, ':pet_variable', $result, -1, OCI_B_CURSOR); 
+		oci_bind_by_name($dataToReceive, ':p_search_data', $searchData);  
+		oci_execute($dataToReceive); 
+		oci_execute($result, OCI_DEFAULT); 
+		oci_fetch_all($result, $resultArray, null, null, OCI_FETCHSTATEMENT_BY_ROW);
+		oci_close($db_connection); 
+			
+		?> 
+		
+
 
 <div class="container">
   <div class="properties-listing spacer">
@@ -40,11 +68,35 @@
         </div>
       </div>
       <div class="col-lg-9 col-sm-8">
-        <div class="row">
+        <div class="row">  
+		
+				<?php
+			if($searchData == "" || $resultArray == null){
+				echo "<h2>No results found<h2>";
+			} else { 
+				foreach($resultArray as $iterator){
+					$finalResult = $finalResult.'<div class="col-lg-4 col-sm-6"> 
+													<div class="properties">
+														<form action="user-detail.php" method="POST"> 
+															<input class="form-control" type="text" readonly name="username" value="'.$iterator['PET_TYPE_NAME'].'"/>
+															<input class="form-control" type="text" style="display: none" readonly name="p_id" value="'.$iterator['PET_RACE_NAME'].'"/> 
+															<input class="form-control" type="text" readonly name="second_last_name" value="'.$iterator['PET_COLOR'].'"/>  
+															<input class="form-control" type="text" readonly name="name" value="'.$iterator['PET_COND_NAME'].'"/>
+															<input class="form-control" type="text" readonly name="second_last_name" value="'.$iterator['PETLOCATION'].'"/>
+															<input class="form-control" type="text" readonly name="last_name" value="'.$iterator['PET_ENERGY_LEVEL'].'"/>
+															<input class="form-control" type="text" readonly name="second_last_name" value="'.$iterator['PET_SPACE'].'"/> 
+															<input type="submit" class="btn btn-primary" value="View Details" />
+														<form/>
+													</div>
+												   </div>'; 
+				}
+			    echo $finalResult;
+			}
 
+		?>
         </div>
       </div>
     </div>
   </div>
-</div>
+</div> 
 <?php include'footer.php';?>

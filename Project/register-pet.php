@@ -14,7 +14,7 @@
 		
 	  <form enctype="multipart/form-data" action="REGISTER_PET.php" method="POST" class="register-pet-form" id="register-pet-form">
 	   <!-- Pet type --> 
-		<select name="pet_type_combo" style="width: 400px"  onchange = "updateBreed();" id = "pet_type_combo">
+		<select name="pet_type_combo" style="width: 400px"  onchange = "updateBreed();" id = "pet_type_combo" class="form-control">
 		<option value = "-1">Select Type:</option> 
 		<?php  
 		$conn = oci_connect('DBadmin', 'dbadmin', 'PETLOVERSDB');
@@ -35,7 +35,7 @@
         
         <!-- Breed of animal --> 
 		<div class="breed" id = "breeds">
-        <select name="pet_breed_combo" style="width: 400px"  id = "pet_breed_combo">
+        <select name="pet_breed_combo" style="width: 400px"  id = "pet_breed_combo" class="form-control">
 		<option value = "-1">Select Breed:</option> 
 		<?php  
 		
@@ -51,7 +51,7 @@
         <!-- Breed of animal -->
 
         <!-- Color -->
-        <select name="pet_color" style="width: 400px"  id = "pet_color">
+        <select name="pet_color" style="width: 400px"  id = "pet_color" class="form-control">
 		<option value = "-1">Select Color:</option> 
 		<?php  
 		
@@ -66,7 +66,7 @@
         <!-- Color -->
 
         <!-- Size -->
-        <select name="pet_size" style="width: 400px"  >
+        <select name="pet_size" style="width: 400px" class="form-control" >
 		<option value = "-1">Select Size:</option> 
 		<?php  
 		
@@ -81,7 +81,7 @@
         <!-- Size -->
 
         <!-- Training -->
-        <select name="pet_trainning" style="width: 400px">
+        <select name="pet_trainning" style="width: 400px" class="form-control">
 		<option value = "-1">Select Training Level:</option> 
 		<?php  
 		
@@ -96,7 +96,7 @@
         <!-- Training -->
        
 	   <!-- Veterinary -->
-		<select name="pet_vet" style="width: 400px">
+		<select name="pet_vet" style="width: 400px" class="form-control">
 		<option value = "-1">Select Veterinary:</option> 
 		<?php  
 		
@@ -111,7 +111,7 @@
 		<!-- Veterinary -->     
 		
 	   <!-- Treatments -->
-         <select name="pet_treatment" style="width: 400px" > 
+         <select name="pet_treatment" style="width: 400px" class="form-control" > 
 		 <option value = "-1">Select Treatments:</option> 
 		<?php  
 		
@@ -126,7 +126,7 @@
 		<!-- Treatments --> 
 		
 		<!-- Disease -->
-		<select  name="pet_diseases" style="width: 400px"> 
+		<select  name="pet_diseases" style="width: 400px" class="form-control"> 
 		<option value = "-1">Select disease:</option> 
 		<?php  
 		
@@ -141,7 +141,7 @@
 		<!-- Disease --> 
 		
 		<!-- Medicine -->
-		<select name="pet_medicines" style="width: 400px" > 
+		<select name="pet_medicines" style="width: 400px" class="form-control"> 
 		<option value = "-1">Select medicine:</option> 
 		<?php  
 		
@@ -160,7 +160,7 @@
       <div class="col-lg-6">   
 	  
 	  <!-- Energy --> 
-		<select  name="pet_energy" style="width: 400px" >
+		<select  name="pet_energy" style="width: 400px" class="form-control">
 		<option value = "-1">Select Energy Level:</option>
 		<?php  
 		
@@ -175,7 +175,7 @@
 		<!-- Energy -->  
 		
 		<!-- Space -->
-		<select  name="pet_space" style="width: 400px" >
+		<select  name="pet_space" style="width: 400px" class="form-control">
 		<option value = "-1">Select Space Necessity:</option>
 		<?php  
 		
@@ -190,7 +190,7 @@
 		<!-- Space --> 
 		
 		<!-- Condition-->
-		<select  name="pet_condition" style="width: 400px" >
+		<select  name="pet_condition" style="width: 400px" class="form-control">
 		<option value = "-1">Select Condition:</option>
 		<?php  
 		

@@ -21,7 +21,7 @@ CREATE OR REPLACE PACKAGE BODY pet_search_package AS
        IS
           my_pets SYS_REFCURSOR;
        BEGIN
-        OPEN my_pets FOR select pet_name, pet_type_name, pet_race_name, pet_cond_name, pet_energy_level, pet_learn_skill, vet_name, person_name, petlocation, petnotes, petabandondescription, pet_space, pet_treatment, pet_color, pet_sickness_name, pet_med_name
+        OPEN my_pets FOR select pet_code, pet_name, pet_type_name, pet_race_name, pet_cond_name, pet_energy_level, pet_learn_skill, vet_name, person_name, petlocation, petnotes, petabandondescription, pet_space, pet_treatment, pet_color, pet_sickness_name, pet_med_name
     from pet, pettype, petrace, petCondition, petSize,petEnergy, petlearningskill, veterinary, person, petSpace, pettreatments, petcolor, petsickness, petmedicine
     where owner_id = user_id
     AND pettype.pet_type_code = pet.pet_type_code
@@ -119,38 +119,38 @@ CREATE OR REPLACE PACKAGE BODY pet_search_package AS
        where TP.pet_type_name = TYPE;
 
        select B.pet_race_code into breed_id
-	     from dbadmin.petRace B
-	     where B.pet_race_name = BREED;
+       from dbadmin.petRace B
+       where B.pet_race_name = BREED;
 
-	    select PC.pet_color_code into color_id
-	    from dbadmin.PetColor PC
-	    where PC.pet_color = COLOR;
+      select PC.pet_color_code into color_id
+      from dbadmin.PetColor PC
+      where PC.pet_color = COLOR;
 
-	    select PS.pet_size_code into size_id
-	    from dbadmin.PetSize PS
-	    where PS.pet_size = PETSIZE;  
+      select PS.pet_size_code into size_id
+      from dbadmin.PetSize PS
+      where PS.pet_size = PETSIZE;  
 
-	    select LS.pet_learn_code into TS_id
-    	from dbadmin.petlearningskill LS
-    	where LS.pet_learn_skill = TS;
+      select LS.pet_learn_code into TS_id
+      from dbadmin.petlearningskill LS
+      where LS.pet_learn_skill = TS;
 
-    	select EN.pet_energy_code into energy_id
-     	from dbadmin.petEnergy EN
-     	where EN.pet_energy_level = ENERGY;
+      select EN.pet_energy_code into energy_id
+       from dbadmin.petEnergy EN
+       where EN.pet_energy_level = ENERGY;
 
-     	select SP.pet_space_code into space_id
-     	from dbadmin.petSpace SP
-     	where SP.pet_space = SPACE; 
+       select SP.pet_space_code into space_id
+       from dbadmin.petSpace SP
+       where SP.pet_space = SPACE; 
 
     OPEN pet_search_result FOR select pet_type_name, pet_race_name, pet_cond_name, pet_energy_level, pet_learn_skill, vet_name, person_name, petlocation, petnotes, petabandondescription, pet_space, pet_treatment, pet_color, pet_sickness_name, pet_med_name
-		from pet, pettype, petrace, petCondition, petSize,petEnergy, petlearningskill, veterinary, person, petSpace, pettreatments, petcolor, petsickness, petmedicine
-		WHERE pettype.pet_type_code = type_id
-		AND petrace.pet_race_code = breed_id  
-		AND pet.pet_color_code = color_id
-		AND pet.pet_size_code = size_id  
-		AND pet.pet_learn_code = TS_id 
-		AND pet.pet_energy_code = energy_id 
-		AND pet.petspace_id = space_id;
+    from pet, pettype, petrace, petCondition, petSize,petEnergy, petlearningskill, veterinary, person, petSpace, pettreatments, petcolor, petsickness, petmedicine
+    WHERE pettype.pet_type_code = type_id
+    AND petrace.pet_race_code = breed_id  
+    AND pet.pet_color_code = color_id
+    AND pet.pet_size_code = size_id  
+    AND pet.pet_learn_code = TS_id 
+    AND pet.pet_energy_code = energy_id 
+    AND pet.petspace_id = space_id;
         RETURN pet_search_result; 
 
       EXCEPTION 
@@ -159,12 +159,3 @@ CREATE OR REPLACE PACKAGE BODY pet_search_package AS
       END; 
 
 END pet_search_package;
-
-
-
-
-DECLARE 
-	test_variable SYS_REFCURSOR;
-BEGIN 
-	test_variable := pet_search_package.find_myPets(2);
-END;

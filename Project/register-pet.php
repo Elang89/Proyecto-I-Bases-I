@@ -209,8 +209,7 @@
         <input id="Abandon" type="text" class="form-control" placeholder="Describe how the animal was abandoned*" name="abandoned" maxlength="100">  
 		<input id="Notes" type="text" class="form-control" placeholder="More information about the animal" name="notes" maxlength="100">
 		
-        <label>Please upload a photo of the pet:</label>
-        <input type="file" name="photo" title="Photo"/>
+        <label>Please copy a URL with a photo of the pet:</label>
 
       </div>
     </div>

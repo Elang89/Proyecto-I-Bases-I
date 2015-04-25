@@ -25,8 +25,7 @@ END image_package;
 
 CREATE OR REPLACE PACKAGE BODY image_package AS
         PROCEDURE add_user_image
-         (p_photo_name photo_storage.photo_name%type,
-          p_id photo_storage.person_id%type,
+         (p_id photo_storage.person_id%type,
           p_image photo_storage.image%type)
          IS
           check_result NUMBER;
@@ -36,8 +35,8 @@ CREATE OR REPLACE PACKAGE BODY image_package AS
            WHERE p_id = person_id;
 
            IF check_result = 0 THEN
-             INSERT INTO photo_storage (photo_id,photo_name,person_id,image)
-             VALUES(image_id_generator.nextval, p_photo_name, p_id, p_image);
+             INSERT INTO photo_storage (person_id,image)
+             VALUES(image_id_generator.nextval, p_id, p_image);
            ELSIF check_result <= 1 THEN
              UPDATE photo_storage
              SET image = p_image

@@ -25,7 +25,9 @@
 		$color = $_POST['pet_color']; 
 		$sickness = $_POST['pet_sickness']; 
 		$med = $_POST['pet_med']; 
-			
+		
+		$path = "images/logo2.png"; 
+		
 		?> 
 <!-- banner -->
 <div class="container">
@@ -106,7 +108,7 @@
               </div>
               <!-- #Slider Ends -->
             </div>
-			<div class="spacer"><h4><span class="glyphicon glyphicon-star"></span>Name</h4>
+			<div class="spacer"><h4><span class="glyphicon glyphicon-star"></span><?php echo $petName?></h4>
 				<div class="col-lg-6 col-sm-6">
 					<legend>Profile Picture</legend>
 					<img src="<?php echo $path ?>" class="img-responsive img-circle" alt="properties"/>
@@ -114,23 +116,46 @@
 					<input id="username" type="text" class="form-control" name="form_name" maxlength="20" readonly value="<?php echo $petName?>">
 			</div>
 			<div class="col-lg-6 col-sm-6">
-				<div class="spacer"><h4><span class="glyphicon glyphicon-asterisk"></span>More Information</h4>
+				<div class="spacer"><h4><span class="glyphicon glyphicon-asterisk"></span>More Information</h4> 
+					<h5>Pet Name</h5>
+					<input id="pet_space" type="text" class="form-control" name="type" maxlength="16" readonly value="<?php echo $petName;?>">				
+					<h5>Pet Type</h5>
 					<input id="pet_space" type="text" class="form-control" name="type" maxlength="16" readonly value="<?php echo $pet_type;?>">
-					<input id="pet_breed" type="text" class="form-control" name="breed" maxlength="16" readonly value="<?php echo $pet_breed;?>">
-					<input id="pet_cond" type="text" class="form-control" name="cond" maxlength="30" readonly value="<?php echo $pet_cond;?>">
-					<input id="pet_energy" type="text" class="form-control" name="energy" maxlength="8" readonly value="<?php echo $pet_energy;?>"> 
-					<input id="pet_learn" type="text" class="form-control" name="learn" maxlength="30" readonly value="<?php echo $pet_learn;?>">
-					<input id="pet_vet" type="text" class="form-control" name="vet" maxlength="8" readonly value="<?php echo $pet_vet;?>">
+					<h5>Pet Breed</h5>
+					<input id="pet_breed" type="text" class="form-control" name="breed" maxlength="16" readonly value="<?php echo $pet_breed;?>"> 
+					<h5>Pet State</h5>
+					<input id="pet_cond" type="text" class="form-control" name="cond" maxlength="30" readonly value="<?php echo $pet_cond;?>"> 
+					<h5>Pet Energy</h5>
+					<input id="pet_energy" type="text" class="form-control" name="energy" maxlength="8" readonly value="<?php echo $pet_energy;?>">  
+					<h5>Pet Training Facility</h5>
+					<input id="pet_learn" type="text" class="form-control" name="learn" maxlength="30" readonly value="<?php echo $pet_learn;?>"> 
+					<h5>Pet Owners Name</h5>
 					<input id="person_name" type="text" class="form-control" name="Pname" maxlength="30" readonly value="<?php echo $person_name;?>">
-					<input id="pet_location" type="text" class="form-control" name="location" maxlength="8" readonly value="<?php echo $location;?>"> 
-					<input id="pet_space" type="text" class="form-control" name="space" maxlength="30" readonly value="<?php echo $space;?>">
-					<input id="pet_treatment" type="text" class="form-control" name="treatment" maxlength="8" readonly value="<?php echo $treatment;?>">
-					<input id="pet_color" type="text" class="form-control" name="color" maxlength="30" readonly value="<?php echo $color;?>">
-					<input id="pet_sickness" type="text" class="form-control" name="sickness" maxlength="8" readonly value="<?php echo $sickness;?>">
-					<input id="pet_med" type="text" class="form-control" name="med" maxlength="8" readonly value="<?php echo $med;?>">
+					<h5>More Notes</h5>
+					<input id="pet_location" type="text" class="form-control" name="location" maxlength="100" readonly value="<?php echo $notes;?>">
+					<input id="ADOPT" type="button" class="btn btn-success" onClick = "window.location.href='applicationForm.php'" value = "Adopt" />  <!-- If its not owner -->
+					<!--  <input id="EDIT" type="button" class="btn btn-success" onClick = "" value = "Edit" /> If its OWNER OF THE PET -->
 				</div>
-			</div>
-
+			</div> 
+			
+			<div class="col-lg-6 col-sm-6">
+				<div class="spacer"><h4><span ></span></h4>
+					<h5>Pets Color</h5>
+					<input id="pet_color" type="text" class="form-control" name="color" maxlength="30" readonly value="<?php echo $color;?>">
+					<h5>Pets Space Necessity</h5>					
+					<input id="pet_space" type="text" class="form-control" name="space" maxlength="30" readonly value="<?php echo $space;?>">
+					<h5>Pets Treatment</h5>	
+					<input id="pet_treatment" type="text" class="form-control" name="treatment" maxlength="8" readonly value="<?php echo $treatment;?>">
+					<h5>Pet Veterinary</h5>
+					<input id="pet_vet" type="text" class="form-control" name="vet" maxlength="8" readonly value="<?php echo $pet_vet;?>">
+					<h5>Pets Sickness</h5>
+					<input id="pet_sickness" type="text" class="form-control" name="sickness" maxlength="8" readonly value="<?php echo $sickness;?>">
+					<h5>Pets Medicine</h5>
+					<input id="pet_med" type="text" class="form-control" name="med" maxlength="8" readonly value="<?php echo $med;?>"> 
+					<h5>Pets Last Known Location</h5>
+					<input id="pet_location" type="text" class="form-control" name="location" maxlength="8" readonly value="<?php echo $location;?>"> 
+				</div>
+		 </div>
     </div>
   </div>
 </div>

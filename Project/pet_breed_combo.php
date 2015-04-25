@@ -1,3 +1,7 @@
+<!-- To change the combobox when the type is changed in register pet--> 
+
+<select name="pet_breed_combo" style="width: 400px"  id = "pet_breed_combo" class="form-control">
+<option value = "-1">Select Breed:</option> 
 <?php   
 $conn = oci_connect('DBadmin', 'dbadmin', 'PETLOVERSDB');
 if (!$conn) {
@@ -6,8 +10,6 @@ if (!$conn) {
 }     
 			$selectedType = $_GET['selectedOption'];   
 			
-			echo '<select name="pet_breed_combo" style="width: 400px" id = "pet_breed_combo">';
-			echo '<option value = "-1">Select Breed:</option>';
 			$query= 'SELECT PET_RACE_NAME FROM PETRACE WHERE PET_TYPE = (SELECT PET_TYPE_CODE from pettype WHERE pet_type_name = :p1)';
 			$stmt = oci_parse($conn, $query); 
 			
@@ -17,9 +19,8 @@ if (!$conn) {
 				while($row=oci_fetch_assoc($stmt)) {
 					 echo '<option>' . $row['PET_RACE_NAME'] . '</option>';
 				} 
-			 echo '</select>';   
-			 
 
 			
-?> 
+?>  
+</select>   
 

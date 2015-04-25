@@ -1,50 +1,70 @@
 <?php include'header.php';?>
 <!-- banner -->
+<script src="javascript/submitRating.js"></script>
 <div class="inside-banner">
   <div class="container">
-    <span class="pull-right"><a href="#">Home</a> / Pet profile</span>
-    <h2>Pet profile</h2>
+    <span class="pull-right"><a href="userIndex.php">Home</a> / Pet Profile</span>
+    <h2>Pet Profile</h2>
   </div>
 </div>
+
+		<?php  		
+		$code = $_POST['pet_code'];  
+		$petName = $_POST['pet_name']; 
+		$pet_type = $_POST['pet_type']; 
+		$pet_breed = $_POST['pet_race']; 
+		$pet_cond = $_POST['pet_cond']; 
+		$pet_energy = $_POST['pet_energy']; 
+		$pet_learn = $_POST['pet_learn']; 
+		$pet_vet = $_POST['pet_vet']; 
+		$person_name = $_POST['pet_p_name']; 
+		$location = $_POST['pet_location'];  
+		$notes = $_POST['pet_notes']; 
+		$space = $_POST['pet_space']; 
+		$treatment = $_POST['pet_treatment']; 
+		$color = $_POST['pet_color']; 
+		$sickness = $_POST['pet_sickness']; 
+		$med = $_POST['pet_med']; 
+			
+		?> 
 <!-- banner -->
 <div class="container">
   <div class="properties-listing spacer">
     <div class="row">
       <div class="col-lg-3 col-sm-4 hidden-xs">
         <div class="hot-properties hidden-xs">
-          <h4>Pet info</h4>
           <div class="row">
             <div class="col-lg-4 col-sm-5"><img src="images/properties/4.jpg" class="img-responsive img-circle" alt="properties"/></div>
             <div class="col-lg-8 col-sm-7">
-              <h5>Pet</h5>
-              <p class="text">Dog</p>
+              <h5>Siberian Husky</h5>
+              <p class="text"></p>
             </div>
           </div>
           <div class="row">
             <div class="col-lg-4 col-sm-5"><img src="images/properties/1.jpg" class="img-responsive img-circle" alt="properties"/></div>
             <div class="col-lg-8 col-sm-7">
-              <h5>Breed</h5>
-              <p class="text">Chiwawa</p>
+              <h5>White German Shepherd</h5>
+              <p class="text"></p>
             </div>
           </div>
           <div class="row">
             <div class="col-lg-4 col-sm-5"><img src="images/properties/3.jpg" class="img-responsive img-circle" alt="properties"/></div>
             <div class="col-lg-8 col-sm-7">
-              <h5>Size</h5>
-              <p class="text">Cup</p>
+              <h5>Golden Retriever</h5>
+              <p class="text"></p>
             </div>
           </div>
           <div class="row">
             <div class="col-lg-4 col-sm-5"><img src="images/properties/2.jpg" class="img-responsive img-circle" alt="properties"/></div>
             <div class="col-lg-8 col-sm-7">
-              <h5>Energy</h5>
-              <p class="text">Couch potato</p>
+              <h5>German Shepherd</h5>
+              <p class="text"></p>
             </div>
           </div>
         </div>
       </div>
       <div class="col-lg-9 col-sm-8 ">
-        <h2>Pet name</h2>
+        <h2>Pet Details</h2>
         <div class="row">
           <div class="col-lg-8">
             <div class="property-images">
@@ -65,18 +85,18 @@
                   <!-- #Item 1 -->
                   <!-- Item 2 -->
                   <div class="item">
-                    <img src="images/properties/6.jpg" class="properties" alt="properties" />
+                    <img src="images/properties/2.jpg" class="properties" alt="properties" />
                     
                   </div>
                   <!-- #Item 2 -->
                   <!-- Item 3 -->
                   <div class="item">
-                    <img src="images/properties/7.jpg" class="properties" alt="properties" />
+                    <img src="images/properties/1.jpg" class="properties" alt="properties" />
                   </div>
                   <!-- #Item 3 -->
                   <!-- Item 4 -->
                   <div class="item ">
-                    <img src="images/properties/8.jpg" class="properties" alt="properties" />
+                    <img src="images/properties/3.jpg" class="properties" alt="properties" />
                     
                   </div>
                   <!-- # Item 4 -->
@@ -86,44 +106,31 @@
               </div>
               <!-- #Slider Ends -->
             </div>
-            
-            <div class="spacer"><h4><span class="glyphicon glyphicon-star"></span>Pet situation</h4>
-            <p>Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar solutions without functional solutions.</p>
-          </div>
-          <div class="spacer"><h4><span class="glyphicon glyphicon-asterisk"></span>Illnesses</h4>
-          <p>Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar solutions without functional solutions.</p>
-        </div>
-        <div class="spacer"><h4><span class="glyphicon glyphicon-th"></span>Current medications</h4>
-        <p>Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar solutions without functional solutions.</p>
-      </div>
-    </div>
-    <div class="col-lg-4">
-      <div class="col-lg-12  col-sm-6">
-        <div class="property-info">
-          <p class="text">$ 200,000,000</p>
-          <p class="area"><span class="glyphicon glyphicon-map-marker"></span> 344 Villa, Syndey, Australia</p>
-          <div class="profile">
-            <span class="glyphicon glyphicon-user"></span> Current Owner Details
-            <p>John Parker</p>
-          </div>
-          <div class="profile">
-            <span class="glyphicon glyphicon-home"></span> Availabilty
-            <p>Adopted</p>
-          </div>
-        </div>
-        <div class="col-lg-12 col-sm-6 ">
-          <div class="enquiry">
-            <h6><span class="glyphicon glyphicon-envelope"></span>Contact current owner</h6>
-            <form role="form">
-              <input type="text" class="form-control" placeholder="Full Name"/>
-              <input type="text" class="form-control" placeholder="you@yourdomain.com"/>
-              <input type="text" class="form-control" placeholder="your number"/>
-              <textarea rows="6" class="form-control" placeholder="Whats on your mind?"></textarea>
-              <button type="submit" class="btn btn-primary" name="Submit">Send Message</button>
-            </form>
-          </div>
-        </div>
-      </div>
+			<div class="spacer"><h4><span class="glyphicon glyphicon-star"></span>Name</h4>
+				<div class="col-lg-6 col-sm-6">
+					<legend>Profile Picture</legend>
+					<img src="<?php echo $path ?>" class="img-responsive img-circle" alt="properties"/>
+				</div>
+					<input id="username" type="text" class="form-control" name="form_name" maxlength="20" readonly value="<?php echo $petName?>">
+			</div>
+			<div class="col-lg-6 col-sm-6">
+				<div class="spacer"><h4><span class="glyphicon glyphicon-asterisk"></span>More Information</h4>
+					<input id="pet_space" type="text" class="form-control" name="type" maxlength="16" readonly value="<?php echo $pet_type;?>">
+					<input id="pet_breed" type="text" class="form-control" name="breed" maxlength="16" readonly value="<?php echo $pet_breed;?>">
+					<input id="pet_cond" type="text" class="form-control" name="cond" maxlength="30" readonly value="<?php echo $pet_cond;?>">
+					<input id="pet_energy" type="text" class="form-control" name="energy" maxlength="8" readonly value="<?php echo $pet_energy;?>"> 
+					<input id="pet_learn" type="text" class="form-control" name="learn" maxlength="30" readonly value="<?php echo $pet_learn;?>">
+					<input id="pet_vet" type="text" class="form-control" name="vet" maxlength="8" readonly value="<?php echo $pet_vet;?>">
+					<input id="person_name" type="text" class="form-control" name="Pname" maxlength="30" readonly value="<?php echo $person_name;?>">
+					<input id="pet_location" type="text" class="form-control" name="location" maxlength="8" readonly value="<?php echo $location;?>"> 
+					<input id="pet_space" type="text" class="form-control" name="space" maxlength="30" readonly value="<?php echo $space;?>">
+					<input id="pet_treatment" type="text" class="form-control" name="treatment" maxlength="8" readonly value="<?php echo $treatment;?>">
+					<input id="pet_color" type="text" class="form-control" name="color" maxlength="30" readonly value="<?php echo $color;?>">
+					<input id="pet_sickness" type="text" class="form-control" name="sickness" maxlength="8" readonly value="<?php echo $sickness;?>">
+					<input id="pet_med" type="text" class="form-control" name="med" maxlength="8" readonly value="<?php echo $med;?>">
+				</div>
+			</div>
+
     </div>
   </div>
 </div>

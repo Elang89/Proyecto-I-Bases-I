@@ -179,11 +179,6 @@
 						<option>2</option>
 						<option>1</option>
 						<option>0</option>
-						<option>-1</option>
-						<option>-2</option>
-						<option>-3</option>
-						<option>-4</option>
-						<option>-5</option>
 					</select>
 					<input id="blacklist" type="text" class="form-control" name="form_email" maxlength="8" readonly value="<?php echo $currentBlackListValue?>">
 					<button id="submit_rating" type="button" class="btn btn-success">Submit Rating</button>

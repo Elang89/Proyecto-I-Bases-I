@@ -71,15 +71,20 @@ CREATE OR REPLACE PACKAGE person_package AS
          (p_name person.person_name%type,
          p_first_ln person.first_last_name%type,
          p_second_ln person.second_last_name%type,
-         p_username person.username%type);  
+         p_username person.username%type,
+         p_user_type person.normal_user_type%type);  
+       PROCEDURE add_blacklist_value(p_value person.blacklist%type, p_uname person.username%type);
+       FUNCTION return_user_type(p_uname person.username%type)
+       RETURN NUMBER;
        FUNCTION find_person_id(u_name person.username%type)
        RETURN NUMBER;
        FUNCTION retrieve_user_details(p_id person.person_id%type)
        RETURN SYS_REFCURSOR;
        FUNCTION find_users(p_search_data  VARCHAR2)
        RETURN SYS_REFCURSOR; 
+       FUNCTION return_blacklisted_users
+       RETURN SYS_REFCURSOR;
 END person_package;
-
 
 CREATE OR REPLACE PACKAGE BODY person_package AS
        PROCEDURE add_person

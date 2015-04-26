@@ -1,19 +1,3 @@
-
-/* -----------------------------------------------PACKAGE FOR PET_SEARCH----------------------------------*/
-
-CREATE OR REPLACE PACKAGE pet_search_package AS
-    FUNCTION find_myPets(user_id person.person_id%type)
-         RETURN SYS_REFCURSOR;  
-    FUNCTION all_pets
-       RETURN SYS_REFCURSOR;
-    FUNCTION pet_detail(pet_id pet.pet_code%type)
-         RETURN SYS_REFCURSOR; 
-    FUNCTION pet_search(TYPE in VARCHAR2, BREED in VARCHAR2, COLOR in VARCHAR2, PETSIZE in VARCHAR2, TS in VARCHAR2, ENERGY in VARCHAR2, SPACE in VARCHAR2)
-       	RETURN SYS_REFCURSOR;
-END pet_search_package;
-
-/* -----------------------------------------------PACKAGE BODY FOR PET_SEARCH----------------------------------*/
-
 CREATE OR REPLACE PACKAGE BODY pet_search_package AS
 
        FUNCTION find_myPets(user_id person.person_id%type)
@@ -21,8 +5,8 @@ CREATE OR REPLACE PACKAGE BODY pet_search_package AS
        IS
           my_pets SYS_REFCURSOR;
        BEGIN
-        OPEN my_pets FOR select pet_code, pet_name, pet_type_name, pet_race_name, pet_cond_name, pet_energy_level, pet_learn_skill, vet_name, person_name, petlocation, petnotes, petabandondescription, pet_space, pet_treatment, pet_color, pet_sickness_name, pet_med_name
-    from pet, pettype, petrace, petCondition, petSize,petEnergy, petlearningskill, veterinary, person, petSpace, pettreatments, petcolor, petsickness, petmedicine
+        OPEN my_pets FOR select pet.pet_code, pet_name, pet_type_name, pet_race_name, pet_cond_name, pet_energy_level, pet_learn_skill, vet_name, person_name, petlocation, petnotes, petabandondescription, pet_space, pet_treatment, pet_color, pet_sickness_name, pet_med_name, image
+    from pet, pettype, petrace, petCondition, petSize,petEnergy, petlearningskill, veterinary, person, petSpace, pettreatments, petcolor, petsickness, petmedicine, pet_photo_storage
     where owner_id = user_id
     AND pettype.pet_type_code = pet.pet_type_code
     AND petrace.pet_race_code = pet.pet_race_code
@@ -49,8 +33,8 @@ CREATE OR REPLACE PACKAGE BODY pet_search_package AS
        IS
           allPets SYS_REFCURSOR;
        BEGIN
-        OPEN allPets FOR select pet_name, pet_type_name, pet_race_name, pet_cond_name, pet_energy_level, pet_learn_skill, vet_name, person_name, petlocation, petnotes, petabandondescription, pet_space, pet_treatment, pet_color, pet_sickness_name, pet_med_name
-    from pet, pettype, petrace, petCondition, petSize,petEnergy, petlearningskill, veterinary, person, petSpace, pettreatments, petcolor, petsickness, petmedicine
+        OPEN allPets FOR select pet.pet_code,pet_name, pet_type_name, pet_race_name, pet_cond_name, pet_energy_level, pet_learn_skill, vet_name, person_name, petlocation, petnotes, petabandondescription, pet_space, pet_treatment, pet_color, pet_sickness_name, pet_med_name, image
+    from pet, pettype, petrace, petCondition, petSize,petEnergy, petlearningskill, veterinary, person, petSpace, pettreatments, petcolor, petsickness, petmedicine, pet_photo_storage
     where pettype.pet_type_code = pet.pet_type_code
     AND petrace.pet_race_code = pet.pet_race_code
     AND pet.pet_cond_code = petcondition.pet_cond_code
@@ -77,8 +61,8 @@ CREATE OR REPLACE PACKAGE BODY pet_search_package AS
        IS 
           pet_detail SYS_REFCURSOR;
        BEGIN 
-        OPEN pet_detail FOR select pet_name, pet_type_name, pet_race_name, pet_cond_name, pet_energy_level, pet_learn_skill, vet_name, person_name, petlocation, petnotes, petabandondescription, pet_space, pet_treatment, pet_color, pet_sickness_name, pet_med_name
-    from pet, pettype, petrace, petCondition, petSize,petEnergy, petlearningskill, veterinary, person, petSpace, pettreatments, petcolor, petsickness, petmedicine
+        OPEN pet_detail FOR select pet.pet_code,pet_name, pet_type_name, pet_race_name, pet_cond_name, pet_energy_level, pet_learn_skill, vet_name, person_name, petlocation, petnotes, petabandondescription, pet_space, pet_treatment, pet_color, pet_sickness_name, pet_med_name,image
+    from pet, pettype, petrace, petCondition, petSize,petEnergy, petlearningskill, veterinary, person, petSpace, pettreatments, petcolor, petsickness, petmedicine, pet_photo_storage
     where pet.pet_code = pet_id 
     AND pettype.pet_type_code = pet.pet_type_code 
     AND petrace.pet_race_code = pet.pet_race_code 

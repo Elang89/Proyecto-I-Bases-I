@@ -9,8 +9,8 @@
 		if(!isset($_SESSION['name'])){
 			header('location: index.php');
 		}
-	}
-	if($_SESSION['normal_type'] == 0){
+	} 
+	if($_SESSION['normal_type'] == 0 || $_SESSION['normal_type'] == null){
 		$display = "display: none";
 	} else {
 		$display = "display: inline";
@@ -86,10 +86,9 @@
           <?php if(isset($_SESSION['name'])): ?>
             <?php if(isset($_SESSION['name']) && $_SESSION['usertype'] == 1): ?>
               <!-- Admin user buttons -->
-              <li><button type="button" class="btn btn-info" onclick="window.location.href='search-pets.php'">Pets</button></li>
-              <li><button type="button" class="btn btn-info" onclick="window.location.href='search-users.php'">Users</button></li>
-              <li><button type="button" class="btn btn-info" onclick="window.location.href='manage-categories.php'">Categories</button></li>
-              <li><button type="button" class="btn btn-info" onclick="window.location.href='#'">Forms</button></li>
+              <li><button type="button" class="btn btn-info" onclick="window.location.href='manage-categories.php'">Manage Categories</button></li>
+              <li><button type="button" class="btn btn-info" onclick="window.location.href='manage-applicationForm.php'">Manage Form</button></li>
+              <li><button type="button" class="btn btn-info" onclick="window.location.href='+'"> Stadistics</button></li>
               <li><button type="button" class="btn btn-info" onclick="window.location.href='blacklist.php'">Blacklist</button></li>
             <?php else: ?>
               <!-- Normal user buttons -->
@@ -99,7 +98,7 @@
 			  <li><button type="button" class="btn btn-info" onclick="window.location.href='search-users.php'">Find A User</button></li>
               <li><button type="button" class="btn btn-info" onclick="window.location.href='search-pets.php'">Find A Pet</button></li>
               <li><button type="button" class="btn btn-info" onclick="window.location.href='#'">My requests</button></li>
-              <li><button type="button" class="btn btn-info" onclick="window.location.href='#'">My records</button></li>
+              <li><button type="button" class="btn btn-info" onclick="window.location.href='test.php'">Test</button></li>
 			  <li><button type="button" class="btn btn-info" onclick="window.location.href='blacklist.php'">Blacklist</button></li>
             <?php endif ?>
             <!-- Logout button -->

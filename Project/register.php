@@ -16,10 +16,10 @@
         <input id="register" type="password" class="form-control" placeholder="Password" name="form_phone" maxlength="16">
         <input id="register" type="password" class="form-control" placeholder="Confirm Password" name="form_phone" maxlength="16">
         <legend>Which type of user would you want to be?</legend>
-          <input id="rescuer" type="radio" name="animal" value="1" style="height: 20px">
-          <label>Rescuer</label><br/>
-		  <input id="other" type="radio" name="animal" value="0" style="height: 20px" checked>
-          <label>Other</label><br/>
+          <input type="checkbox" name="animal" value="Adopter" style="height: 20px">
+          <label>Adopter</label> <br />
+          <input type="checkbox" name="animal" value="Rescuer" style="height: 20px">
+          <label>Rescuer</label> <br />
       </div>
 
       <div class="col-lg-6">

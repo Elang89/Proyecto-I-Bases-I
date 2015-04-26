@@ -129,17 +129,6 @@
         <button class="btn btn-primary">Find Now</button>
       </div> 
 	  </form>	
-      <div class="hot-properties hidden-xs">
-        <h4>Waiting for you</h4>
-
-        <div class="row">
-          <div class="col-lg-4 col-sm-5"><img src="images/properties/9.jpg" class="img-responsive img-circle" alt="properties"></div>
-          <div class="col-lg-8 col-sm-7">
-            <h5><a href="pet-detail.php">Ruffo</a></h5>
-            <p class="text">Golden Retriever</p>
-          </div>
-        </div>
-      </div>
     </div>
     <div class="col-lg-9 col-sm-8">
       <div class="sortby clearfix">
@@ -157,7 +146,6 @@
       </div>
 	  
 <!-- pets --> 
-		<form  id = "PetSearch">  
 		<?php  
 		$db_connection = oci_connect('DBadmin', 'dbadmin', 'PETLOVERSDB');
 		if (!$db_connection) {
@@ -218,7 +206,6 @@
 			}
 
 		?>  
-		</form>
 <!-- pets -->      
     </div>
   </div>

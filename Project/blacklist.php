@@ -83,8 +83,8 @@
 															<input class="form-control" type="text" style="display: none" readonly name="last_name" value="'.$iterator['FIRST_LAST_NAME'].'"/>
 															<input class="form-control" type="text" style="display: none" readonly name="second_last_name" value="'.$iterator['SECOND_LAST_NAME'].'"/>
 															<input class="form-control" type="text" style="display: none" readonly name="b_value" value="'.$iterator['BLACKLIST'].'"/>
-															<input type="submit" class="btn btn-primary" value="View Details"
-														<form/>
+															<input type="submit" class="btn btn-primary" value="View Details"/>
+														</form>
 													</div>
 												   </div>'; 
 				}

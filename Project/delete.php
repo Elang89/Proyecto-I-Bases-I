@@ -61,6 +61,8 @@ if (!$conn) {
 		oci_close($conn);
 	
 ?>  
-		<script>
-		alert("Congratulation, the selected option successfully deleted  :)");
+
+		<script type="text/javascript">  
+		alert("Congratulation, the selected option successfully deleted  :)"); 
+		window.location = "manage-categories.php";
 		</script>

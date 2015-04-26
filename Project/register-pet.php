@@ -209,8 +209,8 @@
         <input id="Abandon" type="text" class="form-control" placeholder="Describe how the animal was abandoned*" name="abandoned" maxlength="100">  
 		<input id="Notes" type="text" class="form-control" placeholder="More information about the animal" name="notes" maxlength="100">
 		
-        <label>Please copy a URL with a photo of the pet:</label>
-        <input type="URL" class="form-control" name="photo" title="Photo" placeholder="URL goes here" required/>
+        <label>Please upload a photo of the pet:</label>
+        <input type="file" name="photo" title="Photo"/>
 
       </div>
     </div>
@@ -251,30 +251,5 @@ function updateBreed(){
 		xmlhttp.send();  
 } 
 
-function registerPet(){  
-		var xmlhttp;
-		var Id = document.getElementById( "pet_type_combo");
-        var selectedOption = Id.options[Id.selectedIndex].value;    
-		
-		if (window.XMLHttpRequest)
-		  {// code for IE7+, Firefox, Chrome, Opera, Safari
-		  xmlhttp=new XMLHttpRequest();
-		  }
-		else
-		  {// code for IE6, IE5
-		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		  }
-		 xmlhttp.onreadystatechange=function()
-		  {
-		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-			{
-			document.getElementById("breeds").innerHTML=xmlhttp.responseText;
-			}
-		  }
-		xmlhttp.open("GET","pet_breed_combo.php?selectedOption=" + selectedOption ,true);
-		xmlhttp.send();  
-		alert(selectedOption);
-
-}
 
   </script> 

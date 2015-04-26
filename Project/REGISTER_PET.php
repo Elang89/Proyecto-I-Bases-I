@@ -23,12 +23,10 @@ if (!$conn) {
 		$address = $_POST['address']; 
 		$reasonAbandon = $_POST['abandoned']; 
 		$notes = $_POST['notes'];  
-		$usuario = $_SESSION['id']; 
-		$image = $_POST['photo'];
+		$usuario = $_SESSION['id'];  
 			
 		
 		$stid = ociparse($conn, "BEGIN  pet_package.CREATE_NEW_PET(:p1, :p2, :p3, :p4, :p5, :p6, :p7, :p8, :p9, :p10, :p11, :p12, :p13, :p14, :p15, :p16, :p17); END;");
-		$getImage = oci_parse($conn, 'BEGIN pet_image_package.add_pet_image(:p_image);END;');
 		
 		oci_bind_by_name($stid, ':p1', $type); 
 		oci_bind_by_name($stid, ':p2', $breed); 
@@ -47,16 +45,12 @@ if (!$conn) {
 		oci_bind_by_name($stid, ':p15', $reasonAbandon); 
 		oci_bind_by_name($stid, ':p16', $notes); 
 		oci_bind_by_name($stid, ':p17', $usuario);
-		oci_bind_by_name($getImage, ':p_image', $image);
-		
+
 		oci_execute($stid);  
-		oci_execute($getImage);
-		
-		if(oci_error()){
-			echo "Failed to register pet.";
-			oci_close($conn);
-		} else {
-			oci_close($conn);
-			header('Location: index.php');
-		}
-?>
+		oci_close($conn);
+?> 
+
+		<script type="text/javascript">  
+		alert("Congratulation, your pet has been registered and put for adoption  :)"); 
+		window.location = "register-pet.php";
+		</script>

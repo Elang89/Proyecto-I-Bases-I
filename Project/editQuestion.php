@@ -16,7 +16,8 @@ if (!$conn) {
 	
 ?>    
 
-		<script>
-		alert("Congratulation, the selected question successfully edited  :)");
+		<script type="text/javascript">  
+		alert("Congratulation, the selected question successfully edited  :)"); 
+		window.location = "manage-applicationForm.php";
 		</script>
 

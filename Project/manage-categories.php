@@ -144,8 +144,7 @@
 					} 
 				}
 			}  
-		alert(selectedId); 
-		window.location.href = "http://localhost/project/delete.php?selectedId=" + selectedId + "&selectedOption=" + selectedOption;
+		window.location.href = "http://localhost/Proyecto-I-Bases-I/Project/delete.php?selectedId="+ selectedId + "&selectedOption=" + selectedOption; 
 	} 
 	
 		function edit(){   
@@ -177,7 +176,9 @@
 			}
 		  }
 		xmlhttp.open("GET","Edit.php?selectedId=" + selectedId + "&selectedOption=" + selectedOption +  "&newName=" + newName ,true);
-		xmlhttp.send();
+		xmlhttp.send();  
+		alert("Congratulation, the edit was successful !  :)");
+		window.location = "manage-categories.php"; 
 		} 
 	
 		function newBreedSelected(){  
@@ -235,8 +236,10 @@
 			
 		xmlhttp.open("GET","settings.php?selectedOption=" + selectedOption + "&newNameText=" + newNameText + "&selectedType=" +selectedType ,true);
 		xmlhttp.send();
-	    alert("Congratulation, the insertion was successful !  :)");
-		} 
+	    alert("Congratulation, the insertion was successful !  :)"); 
+		window.location = "manage-categories.php";
+		}  
+	
   </script>   
 
   

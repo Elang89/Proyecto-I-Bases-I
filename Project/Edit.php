@@ -60,16 +60,6 @@ if (!$conn) {
 		oci_bind_by_name($stid, ':p1', $editOption); 
 		oci_bind_by_name($stid, ':p2', $newName);
 		oci_execute($stid);   
-							
-							?><div class="col-" class="text">Type Options</div><?php
-							$query= 'select * from pettype order by PET_TYPE_CODE';
-							$stmt = oci_parse($conn, $query);
-							oci_execute($stmt); 
-
-								while($row=oci_fetch_assoc($stmt)) { 				
-									 echo "<label>{$row['PET_TYPE_NAME']}</label><input  type = 'radio'  name = 'radio' id = '{$row['PET_TYPE_CODE']}'  value = '{$row['PET_TYPE_NAME']}'/><br /> "  ; 		 
-								} 	 
-								
 		oci_close($conn); 
 		
 ?>

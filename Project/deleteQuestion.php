@@ -14,6 +14,8 @@ if (!$conn) {
 	
 ?>   
 
-		<script>
-		alert("Congratulation, the selected question successfully deleted  :)");
+
+		<script type="text/javascript">  
+		alert("Congratulation, the selected question successfully deleted  :)"); 
+		window.location = "manage-applicationForm.php";
 		</script>

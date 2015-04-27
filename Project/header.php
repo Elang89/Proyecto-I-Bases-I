@@ -10,10 +10,14 @@
 			header('location: index.php');
 		}
 	} 
-	if($_SESSION['normal_type'] == 0 || $_SESSION['normal_type'] == null){
-		$display = "display: none";
-	} else {
-		$display = "display: inline";
+	
+	if(isset($_SESSION['normal_type'])){
+		$normalType = $_SESSION['normal_type'];
+		if($normalType == 0){
+			$display = "display: none";
+		} else {
+			$display = "display: inline";
+		}
 	}
 ?>
 <html lang="en">

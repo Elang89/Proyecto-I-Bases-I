@@ -19,4 +19,4 @@ ALTER TABLE ANSWER_GROUP
 	STORAGE (initial 10k next 10k pctincrease 0);
 
 ALTER TABLE ANSWER_GROUP
-	ADD CONSTRAINT fk_question_group_id  
+	ADD CONSTRAINT fk_question_group_id FOREIGN KEY (question_group_id) REFERENCES question_group(question_group_id);

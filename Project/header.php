@@ -101,7 +101,7 @@
 			  <li><button type="button" style="<?php echo $display ?>" class="btn btn-info" onclick="window.location.href='register-pet.php'">Add A Pet</button></li>
 			  <li><button type="button" class="btn btn-info" onclick="window.location.href='search-users.php'">Find A User</button></li>
               <li><button type="button" class="btn btn-info" onclick="window.location.href='search-pets.php'">Find A Pet</button></li>
-              <li><button type="button" style="<?php echo $display ?>" class="btn btn-info" onclick="window.location.href='#'">Request Forms</button></li>
+              <li><button type="button" style="<?php echo $display ?>" class="btn btn-info" onclick="window.location.href='requestForms.php'">Request Forms</button></li>
               <li><button type="button" class="btn btn-info" onclick="window.location.href='test.php'">Test</button></li>
 			  <li><button type="button" class="btn btn-info" onclick="window.location.href='blacklist.php'">Blacklist</button></li>
             <?php endif ?>

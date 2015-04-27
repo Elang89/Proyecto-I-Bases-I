@@ -209,21 +209,29 @@
         <input id="Abandon" type="text" class="form-control" placeholder="Describe how the animal was abandoned*" name="abandoned" maxlength="100">  
 		<input id="Notes" type="text" class="form-control" placeholder="More information about the animal" name="notes" maxlength="100">
 		
-        <label>Please upload a photo of the pet:</label>
-        <input type="file" name="photo" title="Photo"/>
+        <label>Please enter a URL with a photo of your pet:</label>
+        <input type="URL" class="form-control" name="photo" title="Photo" required/>
+		
+		<h3>Please create an adoption form for any suitable candidates<h3>
+		<input type="text" class="form-control" placeholder="Question 1" name="question_1" maxlength="100" pattern="^[a-zA-Z0-9,.!? ]*$" required>
+        <input type="text" class="form-control" placeholder="Question 2" name="question_2" maxlength="100" pattern="^[a-zA-Z0-9,.!? ]*$" required>
+        <input type="text" class="form-control" placeholder="Question 3" name="question_3" maxlength="100" pattern="^[a-zA-Z0-9,.!? ]*$" required>
+		<input type="text" class="form-control" placeholder="Question 4" name="question_4" maxlength="100" pattern="^[a-zA-Z0-9,.!? ]*$" required>
+		<input type="text" class="form-control" placeholder="Question 5" name="question_5" maxlength="100" pattern="^[a-zA-Z0-9,.!? ]*$" required>
 
       </div>
     </div>
     <div class="row register">
       <div class="pull-right">
 		<input type="submit" value="Register Pet"  class="btn btn-success">
+	</form>
       </div>
     </div>
   </div>
 </div> 
 <?php oci_close($conn); ?>
 <?php include'footer.php';?>  
-	</form>
+
 
 <script type="text/javascript"> 
 

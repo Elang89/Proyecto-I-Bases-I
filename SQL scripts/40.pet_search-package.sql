@@ -1,3 +1,15 @@
+CREATE OR REPLACE PACKAGE pet_search_package AS
+    FUNCTION find_myPets(user_id person.person_id%type)
+         RETURN SYS_REFCURSOR;  
+    FUNCTION all_pets
+       RETURN SYS_REFCURSOR;
+    FUNCTION pet_detail(pet_id pet.pet_code%type)
+         RETURN SYS_REFCURSOR; 
+    FUNCTION pet_search(TYPE in VARCHAR2, BREED in VARCHAR2, COLOR in VARCHAR2, PETSIZE in VARCHAR2, TS in VARCHAR2, ENERGY in VARCHAR2, SPACE in VARCHAR2)
+         RETURN SYS_REFCURSOR;
+END pet_search_package;
+
+
 CREATE OR REPLACE PACKAGE BODY pet_search_package AS
 
        FUNCTION find_myPets(user_id person.person_id%type)
@@ -21,6 +33,7 @@ CREATE OR REPLACE PACKAGE BODY pet_search_package AS
     AND pet.pet_color_code = petcolor.pet_color_code
     AND pet.pet_sickness_code = petsickness.pet_sickness_code
     AND pet.pet_medicine_code = petmedicine.pet_med_code;
+    AND pet.pet_code = pet_photo_storage.pet_code;
         RETURN my_pets;
 
       EXCEPTION
@@ -47,7 +60,8 @@ CREATE OR REPLACE PACKAGE BODY pet_search_package AS
     AND pet.pettreatments_id = pettreatments.pet_treatment_code
     AND pet.pet_color_code = petcolor.pet_color_code
     AND pet.pet_sickness_code = petsickness.pet_sickness_code
-    AND pet.pet_medicine_code = petmedicine.pet_med_code;
+    AND pet.pet_medicine_code = petmedicine.pet_med_code
+    AND pet.pet_code = pet_photo_storage.pet_code;
         RETURN allPets;
 
       EXCEPTION

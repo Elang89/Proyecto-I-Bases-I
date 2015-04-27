@@ -25,7 +25,7 @@
       <div id="owl-example" class="owl-carousel">
         <div class="properties">
           <div class="image-holder"><img src="images/properties/Siberian Husky.jpg" class="img-responsive" alt="properties"/></div>
-          <h4>Siberian Husky</a></h4> 
+          <h4>Siberian Husky</h4> 
         </div>
         <div class="properties">
           <div class="image-holder"><img src="images/properties/3.jpg" class="img-responsive" alt="properties"/></div>

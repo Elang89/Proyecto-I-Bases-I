@@ -25,10 +25,19 @@ if (!$conn) {
 		$notes = $_POST['notes'];  
 		$usuario = $_SESSION['id']; 
 		$image = $_POST['photo'];
-			
+		
+		$question1 = $_POST['question_1'];
+		$question2 = $_POST['question_2'];
+		$question3 = $_POST['question_3'];
+		$question4 = $_POST['question_4'];
+		$question5 = $_POST['question_5'];
 		
 		$stid = ociparse($conn, "BEGIN  pet_package.CREATE_NEW_PET(:p1, :p2, :p3, :p4, :p5, :p6, :p7, :p8, :p9, :p10, :p11, :p12, :p13, :p14, :p15, :p16, :p17); END;");
 		$getImage = oci_parse($conn, 'BEGIN pet_image_package.add_pet_image(:p_image);END;'); 
+		$sqlVariableCreateNewApplication = 'BEGIN applications_package.create_application(:p_owner_id);END;';
+		$sqlVariableCreateNewQuestionGroup = 'BEGIN applications_package.create_question_group(:p_question1,:p_question2,:p_question3,:p_question4,:p_question5);END;';
+		$dataToInsertApplication = oci_parse($conn, $sqlVariableCreateNewApplication);
+		$dataToInsertQuestionGroup = oci_parse($conn, $sqlVariableCreateNewQuestionGroup);
 		
 		oci_bind_by_name($stid, ':p1', $type); 
 		oci_bind_by_name($stid, ':p2', $breed); 
@@ -48,16 +57,24 @@ if (!$conn) {
 		oci_bind_by_name($stid, ':p16', $notes); 
 		oci_bind_by_name($stid, ':p17', $usuario); 
 		oci_bind_by_name($getImage, ':p_image', $image);
-
+		oci_bind_by_name($dataToInsertApplication, ':p_owner_id', $usuario);
+		oci_bind_by_name($dataToInsertQuestionGroup,':p_question1', $question1);
+		oci_bind_by_name($dataToInsertQuestionGroup,':p_question2', $question2);
+		oci_bind_by_name($dataToInsertQuestionGroup,':p_question3', $question3);
+		oci_bind_by_name($dataToInsertQuestionGroup,':p_question4', $question4);
+		oci_bind_by_name($dataToInsertQuestionGroup,':p_question5', $question5);
+		
 		oci_execute($stid); 
 		oci_execute($getImage);
+		oci_execute ($dataToInsertApplication);
+		oci_execute($dataToInsertQuestionGroup);
 		
 		if(oci_error()){
 			echo "Failed to register pet.";
 			oci_close($conn);
 		} else {
 			oci_close($conn);
-			header('Location: index.php');
+			
 		}
 ?> 		
 

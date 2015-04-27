@@ -97,4 +97,36 @@ CREATE OR REPLACE PACKAGE BODY applications_package AS
        WHEN NO_DATA_FOUND THEN
          RETURN null;
      END;
+     
+     FUNCTION check_adoption_form_submission(p_id answer_group.person_id%type)
+     RETURN NUMBER
+     IS 
+       a_result NUMBER;
+     BEGIN 
+       SELECT COUNT(*) INTO a_result 
+       FROM answer_group
+       WHERE p_id = person_id;
+       RETURN a_result;
+     EXCEPTION 
+       WHEN NO_DATA_FOUND THEN
+         RETURN 0;
+     END;
+     
+     FUNCTION retrieve_application(p_owner_id petadoption.owner_id%type)
+     RETURN SYS_REFCURSOR
+     IS
+       c_application SYS_REFCURSOR;
+     BEGIN
+       OPEN c_application FOR SELECT username,pet_id,answer_group.person_id,question_1,question_2,question_3,question_4,question_5,answer_1,answer_2,answer_3,answer_4,answer_5
+       FROM petadoption,question_group,answer_group,pet,person
+       WHERE petadoption.owner_id = p_owner_id
+       AND pet.pet_code = petadoption.pet_id 
+       AND petadoption.adoption_code = question_group.adoption_form_id
+       AND answer_group.person_id = person.person_id
+       AND petadoption.acceptance_state IS NULL;
+       RETURN c_application;
+     EXCEPTION 
+       WHEN NO_DATA_FOUND THEN
+         RETURN null;
+     END;      
 END applications_package;

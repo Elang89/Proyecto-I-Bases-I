@@ -144,7 +144,7 @@
           </select>
         </div>
       </div>
-	  
+<form id = "petSearch">	  
 <!-- pets --> 
 		<?php  
 		$db_connection = oci_connect('DBadmin', 'dbadmin', 'PETLOVERSDB');
@@ -199,7 +199,7 @@
 															<input class="form-control" type="text" style="display: none" readonly name="pet_sickness" value="'.$iterator['PET_SICKNESS_NAME'].'"/> 
 															<input class="form-control" type="text" style="display: none" readonly name="pet_med" value="'.$iterator['PET_MED_NAME'].'"/> 	
 															<input type="submit" class="btn btn-primary" value="View Details" />
-														<form/>
+														</ form>
 													</div>
 												   </div>'; 
 				}
@@ -207,6 +207,7 @@
 			}
 
 		?>  
+</form>		
 <!-- pets -->      
     </div>
   </div>
@@ -252,7 +253,7 @@
 		  {
 		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
-			document.getElementById("PetSearch").innerHTML=xmlhttp.responseText;
+			document.getElementById("petSearch").innerHTML=xmlhttp.responseText;
 			}
 		  }
 		xmlhttp.open("GET","pet_search_result.php?type=" + type + "&breed=" + breed + "&color=" + color + "&size=" + size + "&trainning=" + trainning + "&energy=" + energy + "&space=" + space, true);

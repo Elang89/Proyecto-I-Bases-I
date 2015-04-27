@@ -102,7 +102,7 @@
 															<input class="form-control" type="text" style="display: none" readonly name="pet_sickness" value="'.$iterator['PET_SICKNESS_NAME'].'"/> 
 															<input class="form-control" type="text" style="display: none" readonly name="pet_med" value="'.$iterator['PET_MED_NAME'].'"/> 																
 															<input type="submit" class="btn btn-primary" value="View Details" />
-														<form/>
+														</form>
 													</div>
 												   </div>'; 
 				}

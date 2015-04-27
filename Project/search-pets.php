@@ -130,7 +130,7 @@
       </div> 
 	  </form>	
     </div>
-    <div class="col-lg-9 col-sm-8">
+    <div class="col-lg-9 col-sm-8" id = "petSearch">
       <div class="sortby clearfix">
         <div class="pull-left result">Showing: </div>
         <div class="pull-right">
@@ -143,7 +143,9 @@
             </optgroup>
           </select>
         </div>
-      </div>
+      </div>  
+	  
+
 <!-- pets --> 
 		<?php  
 		$db_connection = oci_connect('DBadmin', 'dbadmin', 'PETLOVERSDB');
@@ -205,7 +207,8 @@
 			    echo $finalResult;
 			}
 
-		?>  	
+		?>   
+
 <!-- pets -->      
     </div>
   </div>

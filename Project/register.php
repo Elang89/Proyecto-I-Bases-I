@@ -21,15 +21,13 @@
           <input type="checkbox" name="animal" value="Rescuer" style="height: 20px">
           <label>Rescuer</label> <br />
       </div>
-
-      <div class="col-lg-6">
-        <input id="register" type="text" class="form-control" placeholder="First Name" name="form_name" maxlength="20">
-        <input id="register" type="text" class="form-control" placeholder="First Last Name" name="form_name" maxlength="16">
-        <input id="register" type="text" class="form-control" placeholder="Second Last Name" name="form_name" maxlength="16">
-        <input id="register" type="text" class="form-control" placeholder="Enter Email" name="form_email" maxlength="30">
-        <input id="register" type="text" class="form-control" placeholder="Enter Phone Number" name="form_email" maxlength="8">
-        
-      </div>
+		<div class="col-lg-6">
+			<input id="register" type="text" class="form-control" placeholder="First Name" name="form_name" maxlength="20">
+			<input id="register" type="text" class="form-control" placeholder="First Last Name" name="form_name" maxlength="16">
+			<input id="register" type="text" class="form-control" placeholder="Second Last Name" name="form_name" maxlength="16">
+			<input id="register" type="text" class="form-control" placeholder="Enter Email" name="form_email" maxlength="30">
+			<input id="register" type="text" class="form-control" placeholder="Enter Phone Number" name="form_email" maxlength="8">
+		</div>
     </div>
     <div class="row register">
       <div class="pull-right">

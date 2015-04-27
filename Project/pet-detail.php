@@ -1,6 +1,5 @@
 <?php include'header.php';?>
 <!-- banner -->
-<script src="javascript/submitRating.js"></script>
 <div class="inside-banner">
   <div class="container">
     <span class="pull-right"><a href="userIndex.php">Home</a> / Pet Profile</span>
@@ -137,8 +136,11 @@
 					<input id="person_name" type="text" class="form-control" name="Pname" maxlength="30" readonly value="<?php echo $person_name;?>">
 					<h5>More Notes</h5>
 					<input id="pet_location" type="text" class="form-control" name="location" maxlength="100" readonly value="<?php echo $notes;?>">
-					<input id="ADOPT" type="button" class="btn btn-success" onClick = "window.location.href='applicationForm.php'" value = "Adopt" />  <!-- If its not owner -->
-					<!--  <input id="EDIT" type="button" class="btn btn-success" onClick = "" value = "Edit" /> If its OWNER OF THE PET -->
+					<form action="applicationForm.php" method="POST">
+						<input id="pet code" name="code" type="text" style="display: none" value="<?php echo$code  ?>"/>
+						<input id="ADOPT" type="submit" class="btn btn-success"  value = "Adopt"/>  <!-- If its not owner -->
+						<!--  <input id="EDIT" type="button" class="btn btn-success" onClick = "" value = "Edit" /> If its OWNER OF THE PET -->
+				   </form>
 				</div>
 			</div> 
 			

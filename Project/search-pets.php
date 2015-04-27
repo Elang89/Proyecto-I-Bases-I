@@ -144,7 +144,6 @@
           </select>
         </div>
       </div>
-<form id = "petSearch">	  
 <!-- pets --> 
 		<?php  
 		$db_connection = oci_connect('DBadmin', 'dbadmin', 'PETLOVERSDB');
@@ -206,8 +205,7 @@
 			    echo $finalResult;
 			}
 
-		?>  
-</form>		
+		?>  	
 <!-- pets -->      
     </div>
   </div>

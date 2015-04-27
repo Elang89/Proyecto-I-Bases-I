@@ -144,7 +144,7 @@
           </select>
         </div>
       </div>
-	  
+<form id = "petSearch">	  
 <!-- pets --> 
 		<?php  
 		$db_connection = oci_connect('DBadmin', 'dbadmin', 'PETLOVERSDB');
@@ -207,6 +207,7 @@
 			}
 
 		?>  
+</form>		
 <!-- pets -->      
     </div>
   </div>
@@ -252,7 +253,7 @@
 		  {
 		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
-			document.getElementById("PetSearch").innerHTML=xmlhttp.responseText;
+			document.getElementById("petSearch").innerHTML=xmlhttp.responseText;
 			}
 		  }
 		xmlhttp.open("GET","pet_search_result.php?type=" + type + "&breed=" + breed + "&color=" + color + "&size=" + size + "&trainning=" + trainning + "&energy=" + energy + "&space=" + space, true);

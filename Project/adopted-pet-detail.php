@@ -136,7 +136,7 @@
 					<input id="person_name" type="text" class="form-control" name="Pname" maxlength="30" readonly value="<?php echo $person_name;?>">
 					<h5>More Notes</h5>
 					<input id="pet_location" type="text" class="form-control" name="location" maxlength="100" readonly value="<?php echo $notes;?>">
-					<form action="returnForm.php" method="POST">
+					<form action="returnFormApplication.php" method="POST">
 						<input id="pet code" name="code" type="text" style="display: none" value="<?php echo$code  ?>"/>
 						<input id="id" name="person_id" type="text" style="display: none" value="<?php echo $_SESSION['id'] ?>"/>
 						<input id="return" type="submit" class="btn btn-success"  value = "Return Pet"/>  <!-- If its not owner -->

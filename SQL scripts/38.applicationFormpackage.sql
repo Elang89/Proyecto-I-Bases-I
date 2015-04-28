@@ -1,39 +1,3 @@
-/* Made by Miuyin Yong Wong 23/4/2015 */  
-/* PACKAGE FOR PETS*/
-/* This package contains the procedure to insert, delete and edit quetions from the application  
-
-/*------------------------------------------------------------------------------------------------------------*/
-CREATE OR REPLACE PACKAGE applications_package AS
-       PROCEDURE evaluate_application
-         (p_application_id petadoption.adoption_code%type,
-          p_adoptant_id pet.adoptant_id%type,
-          p_pet_id pet.pet_code%type,
-          p_approval_state NUMBER);
-       PROCEDURE create_application
-         (p_owner_id petadoption.owner_id%type);
-       PROCEDURE create_question_group
-         (p_question1 IN VARCHAR2,
-          p_question2 IN VARCHAR2,
-          p_question3 IN VARCHAR2,
-          p_question4 IN VARCHAR2,
-          p_question5 IN VARCHAR2);
-       PROCEDURE create_answer_group
-         (p_id answer_group.person_id%type,
-          p_question_group answer_group.question_group_id%type,
-          p_answer1 IN VARCHAR2,
-          p_answer2 IN VARCHAR2,
-          p_answer3 IN VARCHAR2,
-          p_answer4 IN VARCHAR2,
-          p_answer5 IN VARCHAR2);
-       FUNCTION check_adoption_form_submission(p_id answer_group.person_id%type)
-       RETURN NUMBER;
-       FUNCTION retrieve_question_group(p_pet_code petadoption.pet_id%type)
-       RETURN SYS_REFCURSOR;
-       FUNCTION retrieve_application(p_owner_id petadoption.owner_id%type)
-       RETURN SYS_REFCURSOR;
-END applications_package;
-
-
 CREATE OR REPLACE PACKAGE BODY applications_package AS
        PROCEDURE evaluate_application
           (p_application_id petadoption.adoption_code%type,
@@ -42,11 +6,11 @@ CREATE OR REPLACE PACKAGE BODY applications_package AS
            p_approval_state NUMBER)
        IS
        BEGIN
-          UPDATE petadoption
-          SET acceptance_state = p_approval_state
-          WHERE p_application_id = adoption_code;
-
           IF p_approval_state = 1 THEN
+            UPDATE petadoption
+            SET acceptance_state = p_approval_state
+            WHERE p_application_id = adoption_code;
+          
             UPDATE pet
             SET adoptant_id = p_adoptant_id
             WHERE p_pet_id = pet_code;
@@ -128,10 +92,31 @@ CREATE OR REPLACE PACKAGE BODY applications_package AS
        AND petadoption.adoption_code = question_group.adoption_form_id
        AND answer_group.person_id = person.person_id
        AND answer_group.question_group_id = question_group.question_group_id
-       AND petadoption.acceptance_state IS NULL
+       AND petadoption.acceptance_state IS NULL;
        RETURN c_application;
      EXCEPTION 
        WHEN NO_DATA_FOUND THEN
          RETURN null;
-     END;      
+     END;
+     
+      PROCEDURE create_return_form
+         (p_id person.person_id%type,
+          p_pet_id pet.pet_code%type,
+          p_option petreturn.return_reason%type)
+      IS 
+      BEGIN 
+        INSERT INTO petreturn(return_code,pet_id,adoptant_id,return_reason)
+        VALUES(return_id_generator.nextval,p_pet_id,p_id,p_option);
+        
+        DELETE FROM answer_group
+        WHERE p_id = person_id;
+        
+        UPDATE pet 
+        SET adoptant_id = NULL
+        WHERE adoptant_id = p_id;
+        
+        UPDATE petadoption 
+        SET acceptance_state = NULL
+        WHERE pet_id = p_pet_id;  
+      END;    
 END applications_package;

@@ -7,8 +7,9 @@ CREATE OR REPLACE PACKAGE pet_search_package AS
          RETURN SYS_REFCURSOR; 
     FUNCTION pet_search(TYPE in VARCHAR2, BREED in VARCHAR2, COLOR in VARCHAR2, PETSIZE in VARCHAR2, TS in VARCHAR2, ENERGY in VARCHAR2, SPACE in VARCHAR2)
          RETURN SYS_REFCURSOR;
+     FUNCTION find_myAdoptedPets(user_id person.person_id%type)
+         RETURN SYS_REFCURSOR;  
 END pet_search_package;
-
 
 CREATE OR REPLACE PACKAGE BODY pet_search_package AS
 

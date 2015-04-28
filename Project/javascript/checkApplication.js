@@ -46,9 +46,9 @@ function sendUserDetails(){
 				var code = parseInt(serverResponse);
 				if (code == 1){
 					alert("Response sent.")
-					clearInputs(inputArray);
+					window.location = "index.php";
 				} else{
-					alert("There was a problem with the submission");
+					window.location = "index.php";
 				}
 		  }
 	  }

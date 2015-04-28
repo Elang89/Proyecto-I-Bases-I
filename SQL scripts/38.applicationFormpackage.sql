@@ -1,3 +1,47 @@
+
+CREATE OR REPLACE PACKAGE applications_package AS
+       PROCEDURE evaluate_application
+          (p_application_id petadoption.adoption_code%type,
+           p_adoptant_id pet.adoptant_id%type,
+           p_pet_id pet.pet_code%type,
+           p_approval_state NUMBER)
+
+       PROCEDURE create_application
+         (p_owner_id petadoption.owner_id%type)
+
+      PROCEDURE create_question_group
+         (p_question1 IN VARCHAR2,
+          p_question2 IN VARCHAR2,
+          p_question3 IN VARCHAR2,
+          p_question4 IN VARCHAR2,
+          p_question5 IN VARCHAR2)
+
+     PROCEDURE create_answer_group
+         (p_id answer_group.person_id%type,
+          p_question_group answer_group.question_group_id%type,
+          p_answer1 IN VARCHAR2,
+          p_answer2 IN VARCHAR2,
+          p_answer3 IN VARCHAR2,
+          p_answer4 IN VARCHAR2,
+          p_answer5 IN VARCHAR2)
+
+     FUNCTION retrieve_question_group(p_pet_code petadoption.pet_id%type)
+     RETURN SYS_REFCURSOR 
+
+     FUNCTION check_adoption_form_submission(p_id answer_group.person_id%type)
+     RETURN NUMBER
+
+     FUNCTION retrieve_application(p_owner_id petadoption.owner_id%type)
+     RETURN SYS_REFCURSOR
+
+     PROCEDURE create_return_form
+         (p_id person.person_id%type,
+          p_pet_id pet.pet_code%type,
+          p_option petreturn.return_reason%type);
+
+END applications_package; 
+
+-----------------------------------
 CREATE OR REPLACE PACKAGE BODY applications_package AS
        PROCEDURE evaluate_application
           (p_application_id petadoption.adoption_code%type,

@@ -204,10 +204,10 @@
 		</select>
 		<!-- Condition -->  
 		
-		<input id="name" type="text" class="form-control" placeholder="Animal's name (or specify unknown)" name="name" maxlength="30">
-        <input id="address" type="text" class="form-control" placeholder="Animal's Last Known Location" name="address" maxlength="100">
-        <input id="Abandon" type="text" class="form-control" placeholder="Describe how the animal was abandoned*" name="abandoned" maxlength="100">  
-		<input id="Notes" type="text" class="form-control" placeholder="More information about the animal" name="notes" maxlength="100">
+		<input id="name" type="text" class="form-control" placeholder="Animal's name (or specify unknown)" name="name" maxlength="30" required>
+        <input id="address" type="text" class="form-control" placeholder="Animal's Last Known Location" name="address" maxlength="100" required>
+        <input id="Abandon" type="text" class="form-control" placeholder="Describe how the animal was abandoned*" name="abandoned" maxlength="100" required>  
+		<input id="Notes" type="text" class="form-control" placeholder="More information about the animal" name="notes" maxlength="100" required>
 		
         <label>Please enter a URL with a photo of your pet:</label>
         <input type="URL" class="form-control" name="photo" title="Photo" required/>

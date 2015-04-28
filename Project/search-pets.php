@@ -131,20 +131,6 @@
 	  </form>	
     </div>
     <div class="col-lg-9 col-sm-8" id = "petSearch">
-      <div class="sortby clearfix">
-        <div class="pull-left result">Showing: </div>
-        <div class="pull-right">
-          <select class="form-control">
-            <optgroup label="Sort by">
-              <option>Recency: Old to New</option>
-              <option>Recency: New to Old</option>
-              <option>Alphabetical order</option>
-              <option>Reverse alphabetical order</option>
-            </optgroup>
-          </select>
-        </div>
-      </div>  
-	  
 
 <!-- pets --> 
 		<?php  
@@ -198,7 +184,8 @@
 															<input class="form-control" type="text" style="display: none" readonly name="pet_treatment" value="'.$iterator['PET_TREATMENT'].'"/> 
 															<input class="form-control" type="text" style="display: none" readonly name="pet_color" value="'.$iterator['PET_COLOR'].'"/> 
 															<input class="form-control" type="text" style="display: none" readonly name="pet_sickness" value="'.$iterator['PET_SICKNESS_NAME'].'"/> 
-															<input class="form-control" type="text" style="display: none" readonly name="pet_med" value="'.$iterator['PET_MED_NAME'].'"/> 	
+															<input class="form-control" type="text" style="display: none" readonly name="pet_med" value="'.$iterator['PET_MED_NAME'].'"/> 
+															<input class="form-control" type="text" style="display: none" readonly name="pet_abandon" value="'.$iterator['PETABANDONDESCRIPTION'].'"/> 
 															<input type="submit" class="btn btn-primary" value="View Details"/>
 														</form>
 													</div>

@@ -24,7 +24,8 @@
 		$color = $_POST['pet_color']; 
 		$sickness = $_POST['pet_sickness']; 
 		$med = $_POST['pet_med']; 
-		$image = $_POST['image'];
+		$image = $_POST['image']; 
+		$abandon = $_POST['pet_abandon'];
 		
 		if($image != null){
 			$path = $image;
@@ -160,6 +161,8 @@
 					<input id="pet_med" type="text" class="form-control" name="med" maxlength="8" readonly value="<?php echo $med;?>"> 
 					<h5>Pets Last Known Location</h5>
 					<input id="pet_location" type="text" class="form-control" name="location" maxlength="8" readonly value="<?php echo $location;?>"> 
+					<h5>Pets Abandon Description</h5> 
+					<input id="pet_abandon" type="text" class="form-control" name="location" maxlength="8" readonly value="<?php echo $abandon;?>"> 
 				</div>
 		 </div>
     </div>

@@ -91,7 +91,6 @@
             <?php if(isset($_SESSION['name']) && $_SESSION['usertype'] == 1): ?>
               <!-- Admin user buttons -->
               <li><button type="button" class="btn btn-info" onclick="window.location.href='manage-categories.php'">Manage Categories</button></li>
-              <li><button type="button" class="btn btn-info" onclick="window.location.href='manage-applicationForm.php'">Manage Form</button></li>
 			  <li><button type="button" class="btn btn-info" onclick="window.location.href='search-users.php'">Find A User</button></li>
 			  <li><button type="button" class="btn btn-info" onclick="window.location.href='search-pets.php'">Find A Pet</button></li>
               <li><button type="button" class="btn btn-info" onclick="window.location.href='+'"> Statistics</button></li>
@@ -100,7 +99,8 @@
               <!-- Normal user buttons -->
               <li><button type="submit" class="btn btn-info" onclick="window.location.href='edit-user.php'">My account</button></li>
               <li><button type="submit" style="<?php echo $display ?>" class="btn btn-info" onclick="window.location.href='myPets.php'">My Registered Pets</button></li> 
-			  <li><button type="button" class="btn btn-info" onclick="window.location.href='myAdoptedPets.php'">My Adopted Pets</button></li>
+			  <li><button type="button" class="btn btn-info" onclick="window.location.href='myAdoptedPets.php'">My Adopted Pets</button></li> 
+			  <li><button type="button" class="btn btn-info" onclick="window.location.href='edit-myPets.php'">Edit My Pets</button></li>
 			  <li><button type="button" style="<?php echo $display ?>" class="btn btn-info" onclick="window.location.href='register-pet.php'">Add A Pet</button></li>
 			  <li><button type="button" class="btn btn-info" onclick="window.location.href='search-users.php'">Find A User</button></li>
               <li><button type="button" class="btn btn-info" onclick="window.location.href='search-pets.php'">Find A Pet</button></li>

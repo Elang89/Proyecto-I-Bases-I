@@ -44,7 +44,8 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> 
+	  <form enctype="multipart/form-data" action="testResult.php" method="POST" class="register-pet-form" id="register-pet-form"> 
       <div class="col-lg-9 col-sm-8 ">
         <h2>Which Pet is Right For You ?</h2>
         <div class="row">
@@ -92,7 +93,7 @@
 			<div class="spacer"><h4><span class="glyphicon glyphicon-star"></span>Test</h4>
 			
 			</div>
-		<form enctype="multipart/form-data" action="testResult.php" method="POST" class="register-pet-form" id="register-pet-form"> 
+
 		
 		<h5>Which type of pet do you prefer ?</h5>
 	   <!-- Pet type --> 

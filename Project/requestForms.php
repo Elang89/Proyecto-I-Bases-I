@@ -32,8 +32,6 @@
 	oci_fetch_all($result, $resultArray, null, null, OCI_FETCHSTATEMENT_BY_ROW);
 	
 	oci_close($db_connection);
-	var_dump($resultArray);
-	
 ?>
 <div class="container">
   <div class="properties-listing spacer">
@@ -69,21 +67,29 @@
       <div class="col-lg-9 col-sm-8">
         <div class="row">
 <?php 
-			if($searchData == "" || $resultArray == null){
+			if($resultArray == null){
 				echo "<h2>No results found<h2>";
 			} else {
 				foreach($resultArray as $iterator){
 					$finalResult = $finalResult.'<div class="col-lg-4 col-sm-6"> 
 													<div class="properties">
-														<form action="user-detail.php"method="POST">
+														<form action="formResults.php"method="POST">
 															<h4>'.$iterator['USERNAME'].' </h4>
 															<h5>Pet Id:'.$iterator['PET_ID'].'</h5>
+															<input class="form-control" type="text" style="display: none" readonly name="adoption_id" value="'.$iterator['ADOPTION_CODE'].'"/>
 															<input class="form-control" type="text" style="display: none" readonly name="username" value="'.$iterator['USERNAME'].'"/>
 															<input class="form-control" type="text" style="display: none" readonly name="p_id" value="'.$iterator['PERSON_ID'].'"/>
-															<input class="form-control" type="text" style="display: none"  readonly name="name" value="'.$iterator['PERSON_NAME'].'"/>
-															<input class="form-control" type="text" style="display: none"  readonly name="last_name" value="'.$iterator['FIRST_LAST_NAME'].'"/>
-															<input class="form-control" type="text" style="display: none"readonly name="second_last_name" value="'.$iterator['SECOND_LAST_NAME'].'"/>
-															<input class="form-control" type="text" style="display: none" readonly name="b_value" value="'.$iterator['BLACKLIST'].'"/>
+															<input class="form-control" type="text" style="display: none" readonly name="pet_id" value="'.$iterator['PET_ID'].'"/>
+															<input class="form-control" type="text" style="display: none" readonly name="question1" value="'.$iterator['QUESTION_1'].'"/>
+															<input class="form-control" type="text" style="display: none" readonly name="question2" value="'.$iterator['QUESTION_2'].'"/>
+															<input class="form-control" type="text" style="display: none" readonly name="question3" value="'.$iterator['QUESTION_3'].'"/>
+															<input class="form-control" type="text" style="display: none" readonly name="question4" value="'.$iterator['QUESTION_4'].'"/>
+															<input class="form-control" type="text" style="display: none" readonly name="question5" value="'.$iterator['QUESTION_5'].'"/>
+															<input class="form-control" type="text" style="display: none" readonly name="answer1" value="'.$iterator['ANSWER_1'].'"/>
+															<input class="form-control" type="text" style="display: none" readonly name="answer2" value="'.$iterator['ANSWER_2'].'"/>
+															<input class="form-control" type="text" style="display: none" readonly name="answer3" value="'.$iterator['ANSWER_3'].'"/>
+															<input class="form-control" type="text" style="display: none" readonly name="answer4" value="'.$iterator['ANSWER_4'].'"/>
+															<input class="form-control" type="text" style="display: none" readonly name="answer5" value="'.$iterator['ANSWER_5'].'"/>
 															<input type="submit" class="btn btn-primary" value="View Details"/>
 														</form>
 													</div>

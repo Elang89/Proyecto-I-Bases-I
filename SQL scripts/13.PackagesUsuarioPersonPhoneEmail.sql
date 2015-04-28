@@ -238,6 +238,8 @@ CREATE OR REPLACE PACKAGE email_package AS
           p_username person.username%type);
        FUNCTION retrieve_user_emails(p_id email.person_id%type)
        RETURN SYS_REFCURSOR;
+       FUNCTION return_email (p_id email.person_id%type)
+       RETURN VARCHAR2;
 END email_package;
 
 CREATE OR REPLACE PACKAGE BODY email_package AS
@@ -266,5 +268,18 @@ CREATE OR REPLACE PACKAGE BODY email_package AS
           WHEN NO_DATA_FOUND THEN 
            RETURN null;
         END;
+        
+       FUNCTION return_email (p_id email.person_id%type)
+       RETURN VARCHAR2
+       IS 
+         result_email VARCHAR2(40);
+       BEGIN 
+         SELECT email INTO result_email
+         FROM email 
+         WHERE p_id = person_id;
+         RETURN result_email;
+       EXCEPTION 
+         WHEN NO_DATA_FOUND THEN
+           RETURN NULL;
+       END;
 END email_package;
-  

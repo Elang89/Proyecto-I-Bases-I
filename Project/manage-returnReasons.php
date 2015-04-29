@@ -116,7 +116,7 @@
       <div class="modal-content" id = "deleteResult">
         <div class="row">
           <div class="col-sm-6 login">
-            <h4>Are you sure you want to delete this question?</h4>
+            <h4>Are you sure you want to delete this return reason?</h4>
             <form class="" role="form">
               <div class="form-group">
               </div>
@@ -141,7 +141,7 @@
             <form class="" role="form">
               <div class="form-group">
                 <label class="sr-only" for="inputUsername">Category</label>
-                <input id="inputNewName" type="text" class="form-control"  name = "inputNewName" placeholder= "Enter the question" required> 
+                <input id="inputNewName" type="text" class="form-control"  name = "inputNewName" placeholder= "Enter the reason" required> 
               </div>
 			  <input type="submit" value="Edit Name" class="boton">
             </form>
@@ -167,7 +167,7 @@
                 </div>
               <div class="form-group">  
                 <label class="sr-only" for="inputPassword">Name</label>
-                <input id="new_question" type="text" class="form-control" name = "new_question" placeholder="Enter new question" required >
+                <input id="new_question" type="text" class="form-control" name = "new_question" placeholder="Enter new reason" required >
               </div>
               <input type="submit" value="Create New" class="boton"> 
             </form>

@@ -16,6 +16,7 @@ if (!$conn) {
 	
 ?>    
 
-		<script>
-		alert("Congratulation, the selected reason successfully edited  :)");
+		<script type="text/javascript">  
+		alert("Congratulation, the return reason successfully edited :)"); 
+		window.location = "manage-returnReasons.php";
 		</script>

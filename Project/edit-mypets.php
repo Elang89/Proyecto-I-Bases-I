@@ -20,7 +20,7 @@
 		$resultArray;
 		$finalResult = ' '; 
 		
-		$sqlVariableFindMyPets = 'BEGIN :pet_variable := pet_search_package.find_myPets(:p_search_data);END;';   
+		$sqlVariableFindMyPets = 'BEGIN :pet_variable := pet_search_package.edit_myPets(:p_search_data);END;';   
 		
 		$result = oci_new_cursor($db_connection);	 
 		$dataToReceive = oci_parse($db_connection, $sqlVariableFindMyPets);		 

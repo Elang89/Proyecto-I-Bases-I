@@ -15,4 +15,9 @@ if (!$conn) {
 		oci_bind_by_name($stid, ':p1', $var1);  
 		oci_execute($stid); 
 
-?>
+?> 
+
+		<script type="text/javascript">  
+		alert("Congratulation, the return reason successfully created :)"); 
+		window.location = "manage-returnReasons.php";
+		</script>

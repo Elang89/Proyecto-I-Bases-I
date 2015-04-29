@@ -14,6 +14,7 @@ if (!$conn) {
 	
 ?>   
 
-		<script>
-		alert("Congratulation, the selected reason successfully deleted  :)");
+		<script type="text/javascript">  
+		alert("Congratulation, the selected return reason successfully deleted :)"); 
+		window.location = "manage-returnReasons.php";
 		</script>

@@ -116,15 +116,17 @@
 				<div class="col-lg-6 col-sm-6">
 					<legend>Profile Picture</legend>
 					<img src="<?php echo $path ?>" class="img-responsive img-circle" alt="properties"/>
-				</div>
-					<input id="username" type="text" class="form-control" name="form_name" maxlength="20" value="<?php echo $petName?>">
+				</div> 
+					<h5>Pet name</h5> 
+					 <input type="URL" class="form-control" name="photo" title="Photo" value = "Please enter URL of your pets photo"required/>
 			</div>
 			<div class="col-lg-6 col-sm-6">
 				<div class="spacer"><h4><span class="glyphicon glyphicon-asterisk"></span>More Information</h4> 
 
 				</div>
 					  <form enctype="multipart/form-data" action="REGISTER_PET.php" method="POST" class="register-pet-form" id="register-pet-form">
-	   <!-- Pet type --> 
+	   <!-- Pet type -->  
+	   <h5>Pet Type</h5>
 		<select name="pet_type_combo" style="width: 400px"  onchange = "updateBreed();" id = "pet_type_combo" class="form-control">
 		<option value = "-1">Select Type:</option> 
 		<?php  
@@ -143,7 +145,7 @@
 		</select>  
 		 <!-- Pet type -->
    
-        
+        <h5>Pet Breed</h5>
         <!-- Breed of animal --> 
 		<div class="breed" id = "breeds">
         <select name="pet_breed_combo" style="width: 400px"  id = "pet_breed_combo" class="form-control">
@@ -159,8 +161,9 @@
 		?>  
 		</select>   
 		</div>
-        <!-- Breed of animal -->
-
+        <!-- Breed of animal --> 
+		
+		<h5>Pet Color</h5>
         <!-- Color -->
         <select name="pet_color" style="width: 400px"  id = "pet_color" class="form-control">
 		<option value = "-1">Select Color:</option> 
@@ -175,7 +178,8 @@
 		?>   
 		</select> 
         <!-- Color -->
-
+	
+		<h5>Pet Size</h5>
         <!-- Size -->
         <select name="pet_size" style="width: 400px" class="form-control" >
 		<option value = "-1">Select Size:</option> 
@@ -190,7 +194,8 @@
 		?>   
 		</select>		
         <!-- Size -->
-
+		
+		<h5>Pet Trainning Level</h5>
         <!-- Training -->
         <select name="pet_trainning" style="width: 400px" class="form-control">
 		<option value = "-1">Select Training Level:</option> 
@@ -204,8 +209,9 @@
 				}
 		?>   
 		</select>
-        <!-- Training -->
-       
+        <!-- Training --> 
+		
+       <h5>Pet Veterinary</h5>
 	   <!-- Veterinary -->
 		<select name="pet_vet" style="width: 400px" class="form-control">
 		<option value = "-1">Select Veterinary:</option> 
@@ -219,8 +225,9 @@
 				}
 		?>   
 		</select> 
-		<!-- Veterinary -->     
+		<!-- Veterinary --> 
 		
+		<h5>Pet treatment</h5>
 	   <!-- Treatments -->
          <select name="pet_treatment" style="width: 400px" class="form-control" > 
 		 <option value = "-1">Select Treatments:</option> 
@@ -236,6 +243,7 @@
 		</select>  
 		<!-- Treatments --> 
 		
+		<h5>Pet disease</h5>
 		<!-- Disease -->
 		<select  name="pet_diseases" style="width: 400px" class="form-control"> 
 		<option value = "-1">Select disease:</option> 
@@ -251,6 +259,7 @@
 		</select>   
 		<!-- Disease --> 
 		
+		<h5>Pet Medicine</h5>
 		<!-- Medicine -->
 		<select name="pet_medicines" style="width: 400px" class="form-control"> 
 		<option value = "-1">Select medicine:</option> 
@@ -266,7 +275,7 @@
 		</select>  
 		<!-- Medicine -->  
 
-	  
+	  <h5>Pet energy</h5>
 	  <!-- Energy --> 
 		<select  name="pet_energy" style="width: 400px" class="form-control">
 		<option value = "-1">Select Energy Level:</option>
@@ -282,6 +291,7 @@
 		</select>  
 		<!-- Energy -->  
 		
+		<h5>Pet Space</h5>
 		<!-- Space -->
 		<select  name="pet_space" style="width: 400px" class="form-control">
 		<option value = "-1">Select Space Necessity:</option>
@@ -297,6 +307,7 @@
 		</select>
 		<!-- Space --> 
 		
+		<h5>Pet condition</h5>
 		<!-- Condition-->
 		<select  name="pet_condition" style="width: 400px" class="form-control">
 		<option value = "-1">Select Condition:</option>
@@ -311,14 +322,15 @@
 		?>   
 		</select>
 		<!-- Condition -->  
-		
-		<input id="name" type="text" class="form-control" value="<?php echo $petName?>" name="name" maxlength="30" required>
+		<h5>Pet name</h5>
+		<input id="name" type="text" class="form-control" value="<?php echo $petName?>" name="name" maxlength="30" required> 
+		<h5>Pet location</h5>
         <input id="address" type="text" class="form-control" value="<?php echo $location?>" name="address" maxlength="100" required>
+		<h5>Pet Abandon Description</h5>
         <input id="Abandon" type="text" class="form-control" value="<?php echo $abandon?>" name="abandoned" maxlength="100" required>  
+		<h5>Pet Notes</h5>
 		<input id="Notes" type="text" class="form-control" value="<?php echo $notes?>" name="notes" maxlength="100" required>
 		
-        <label>Please enter a URL with a photo of your pet:</label>
-        <input type="URL" class="form-control" name="photo" title="Photo" required/>
 		<input type="submit" value="Edit"  class="btn btn-success">
 
       </div>

@@ -49,7 +49,12 @@ PROCEDURE ACEPT_ADOPTION
 
 
 PROCEDURE RETURN_PET 
-  (adoption_id in NUMBER);   
+  (adoption_id in NUMBER);  
+
+PROCEDURE EDIT_PET
+  (pet_id in NUMBER, pet_type in VARCHAR2, breed in VARCHAR2, color in VARCHAR2, pet_size_param in VARCHAR2, TrainningSkills in VARCHAR2, vet in VARCHAR2, treatment in VARCHAR2,
+    sickness in VARCHAR2, medicine in VARCHAR2, energy in VARCHAR2, space in VARCHAR2, pet_condition in VARCHAR2, petName in VARCHAR2, address in VARCHAR2,
+    reasonAbandoned in VARCHAR2, notes in VARCHAR2); 
   
 END pet_package;
 
@@ -232,7 +237,98 @@ PROCEDURE RETURN_PET
       WHERE PET_CODE = r_pet_id;   
 
 
-END RETURN_PET;  
+END RETURN_PET;   
+
+PROCEDURE EDIT_PET
+  (pet_id in NUMBER, pet_type in VARCHAR2, breed in VARCHAR2, color in VARCHAR2, pet_size_param in VARCHAR2, TrainningSkills in VARCHAR2, vet in VARCHAR2, treatment in VARCHAR2,
+    sickness in VARCHAR2, medicine in VARCHAR2, energy in VARCHAR2, space in VARCHAR2, pet_condition in VARCHAR2, petName in VARCHAR2, address in VARCHAR2,
+    reasonAbandoned in VARCHAR2, notes in VARCHAR2) IS 
+
+    type_id NUMBER;
+    breed_id NUMBER;
+    color_id NUMBER;
+    size_id NUMBER;
+    TS_id NUMBER;
+    vet_id NUMBER;
+    treatment_id NUMBER;
+    sickness_id NUMBER;
+    medicine_id NUMBER;
+    energy_id NUMBER;
+    space_id NUMBER;
+    condition_id NUMBER; 
+    
+  BEGIN
+     select TP.pet_type_code into type_id
+     from dbadmin.petType TP
+     where TP.pet_type_name = pet_type;
+
+     select B.pet_race_code into breed_id
+     from dbadmin.petRace B
+     where B.pet_race_name = breed;
+
+    select PC.pet_color_code into color_id
+    from dbadmin.PetColor PC
+    where PC.pet_color = color;
+
+    select PS.pet_size_code into size_id
+    from dbadmin.PetSize PS
+    where PS.pet_size = pet_size_param;
+
+    select LS.pet_learn_code into TS_id
+    from dbadmin.petlearningskill LS
+    where LS.pet_learn_skill = TrainningSkills;
+
+    select VT.vet_code into vet_id
+     from dbadmin.veterinary VT
+     where VT.vet_name = vet;
+
+    select TM.pet_treatment_code into treatment_id
+     from dbadmin.pettreatments TM
+     where TM.pet_treatment = treatment;
+
+     select SK.pet_sickness_code into sickness_id
+     from dbadmin.petsickness SK
+     where SK.pet_sickness_name = sickness;
+
+    select MD.pet_med_code into medicine_id
+    from dbadmin.Petmedicine MD
+    where MD.pet_med_name = medicine;
+
+     select EN.pet_energy_code into energy_id
+     from dbadmin.petEnergy EN
+     where EN.pet_energy_level = energy;
+
+     select SP.pet_space_code into space_id
+     from dbadmin.petSpace SP
+     where SP.pet_space = space;
+
+     SELECT PC.pet_cond_code into condition_id
+     FROM dbadmin.petCondition PC
+     WHERE PC.pet_Cond_name = pet_condition;
+
+
+      UPDATE PET
+      SET PET_NAME = petName, 
+          PET_TYPE_CODE = type_id, 
+          PET_RACE_CODE = breed_id, 
+          PET_COND_CODE = condition_id, 
+          PET_SIZE_CODE = size_id, 
+          PET_ENERGY_CODE = energy_id, 
+          PET_LEARN_CODE = TS_id, 
+          VET_CODE = vet_id,  
+          PETLOCATION = address, 
+          PETNOTES = notes, 
+          PETABANDONDESCRIPTION = reasonAbandoned, 
+          PETSPACE_ID = space_id,
+          PETTREATMENTS_ID = treatment_id,
+          PET_COLOR_CODE = color_id, 
+          PET_SICKNESS_CODE = sickness_id,
+          PET_MEDICINE_CODE = medicine_id
+      WHERE PET_CODE = pet_id;  
+    
+    COMMIT;
+
+END EDIT_PET;
 
 END pet_package;
 

@@ -2,8 +2,8 @@
 <!-- banner -->
 <div class="inside-banner">
   <div class="container">
-    <span class="pull-right"><a href="userIndex.php">Home</a> / Pet Profile</span>
-    <h2>Pet Profile</h2>
+    <span class="pull-right"><a href="userIndex.php">Home</a> / Edit Pet</span>
+    <h2>Edit Pet</h2>
   </div>
 </div>
 
@@ -117,14 +117,13 @@
 					<legend>Profile Picture</legend>
 					<img src="<?php echo $path ?>" class="img-responsive img-circle" alt="properties"/>
 				</div> 
-					<h5>Pet name</h5> 
 					 <input type="URL" class="form-control" name="photo" title="Photo" value = "Please enter URL of your pets photo"required/>
 			</div>
 			<div class="col-lg-6 col-sm-6">
 				<div class="spacer"><h4><span class="glyphicon glyphicon-asterisk"></span>More Information</h4> 
 
 				</div>
-					  <form enctype="multipart/form-data" action="REGISTER_PET.php" method="POST" class="register-pet-form" id="register-pet-form">
+	<form enctype="multipart/form-data" action="EDIT_PET.php" method="POST" class="register-pet-form" id="register-pet-form">  
 	   <!-- Pet type -->  
 	   <h5>Pet Type</h5>
 		<select name="pet_type_combo" style="width: 400px"  onchange = "updateBreed();" id = "pet_type_combo" class="form-control">
@@ -329,27 +328,49 @@
 		<h5>Pet Abandon Description</h5>
         <input id="Abandon" type="text" class="form-control" value="<?php echo $abandon?>" name="abandoned" maxlength="100" required>  
 		<h5>Pet Notes</h5>
-		<input id="Notes" type="text" class="form-control" value="<?php echo $notes?>" name="notes" maxlength="100" required>
+		<input id="Notes" type="text" class="form-control" value="<?php echo $notes?>" name="notes" maxlength="100" required> 
+		<input class="form-control" type="text" style="display: none" readonly name="pet_code" value="<?php echo $code?>"/>
 		
 		<input type="submit" value="Edit"  class="btn btn-success">
 
       </div>
     </div>
-    <div class="row register">
-      <div class="pull-right">
-
 	</form>
-      </div>
-    </div>
+
+
   </div>
 </div> 
-<?php oci_close($conn); ?>
-			</div>
+</div>
+</div>
+ </div>
 
-    </div>
-  </div>
-</div>
-</div>
-</div>
-</div>
-<?php include'footer.php';?>
+<?php include'footer.php';?> 
+
+<script type="text/javascript"> 
+
+function updateBreed(){
+		var xmlhttp;
+		var Id = document.getElementById( "pet_type_combo");
+        var selectedOption = Id.options[Id.selectedIndex].value;    
+		
+		if (window.XMLHttpRequest)
+		  {// code for IE7+, Firefox, Chrome, Opera, Safari
+		  xmlhttp=new XMLHttpRequest();
+		  }
+		else
+		  {// code for IE6, IE5
+		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		  }
+		 xmlhttp.onreadystatechange=function()
+		  {
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+			document.getElementById("breeds").innerHTML=xmlhttp.responseText;
+			}
+		  }
+		xmlhttp.open("GET","pet_breed_combo.php?selectedOption=" + selectedOption ,true);
+		xmlhttp.send();  
+} 
+
+
+  </script> 

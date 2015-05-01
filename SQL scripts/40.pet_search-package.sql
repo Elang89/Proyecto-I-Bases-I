@@ -1,3 +1,5 @@
+/*Package to do all the search of pets 
+Created by Miuyin Yong */
 CREATE OR REPLACE PACKAGE pet_search_package AS
     FUNCTION find_myPets(user_id person.person_id%type)
          RETURN SYS_REFCURSOR;  

@@ -1,3 +1,5 @@
+/*Creates a table for the questions 
+Cread by Ernesto Lang*/
 CREATE TABLE QUESTION_GROUP 
 (
        adoption_form_id NUMBER(10),

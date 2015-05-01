@@ -1,3 +1,5 @@
+/*Script to create table reasonReturned 
+Created by Miuyin Yong */
 
 CREATE TABLE REASONRETURNED
 (

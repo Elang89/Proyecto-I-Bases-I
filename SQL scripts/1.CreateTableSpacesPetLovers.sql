@@ -1,4 +1,6 @@
-/* SCRIPT #1 Tablespaces */
+/* SCRIPT #1 Tablespaces 
+Created by Miuyin Yong */
+
 CREATE TABLESPACE PetLovers_Data
        DATAFILE 'C:\app\Miuyin\oradata\petloversdb\petloversdata01.dbf'
        SIZE 10M

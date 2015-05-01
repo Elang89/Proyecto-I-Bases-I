@@ -1,3 +1,5 @@
+/*Creates a table witha all the answers 
+Created By Ernesto Lang */
 CREATE TABLE ANSWER_GROUP 
 (	
 	person_id NUMBER(10),

@@ -1,3 +1,6 @@
+/*Package to store images
+Created By Enesto Lang*/ 
+
 CREATE TABLE PET_PHOTO_STORAGE 
 ( 
 	pet_image_id NUMBER(8), 

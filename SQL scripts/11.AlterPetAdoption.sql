@@ -1,7 +1,6 @@
 /*
-Se crea la llave primaria codigo con su índice
-en la tabla Adoption
-por Adrian Diaz Azofeifa
+Script to create alter the table PetAdoption
+created by Ernesto Lang
 */
 
 ALTER TABLE PetAdoption

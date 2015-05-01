@@ -1,3 +1,6 @@
+/* Script to create table Photo Storage 
+Created By Ernesto Lang */ 
+
 CREATE TABLE PHOTO_STORAGE
 (
   photo_id NUMBER(8),

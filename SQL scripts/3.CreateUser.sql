@@ -1,13 +1,13 @@
 /*
-Script para crear la tabla de usuario
-por Adrian Diaz Azofeifa
+Script to create User table
+created by Miuyin Yong
 */
 
 CREATE TABLE Usuario
 (
-       username VARCHAR2(12), /* El nombre de usuario*/
-       user_password VARCHAR2(16),  /*El password*/
-       user_type NUMBER(1) /*El tipo de usuario: administrador(1) o normal(0)*/ 
+       username VARCHAR2(12), /* Users name*/
+       user_password VARCHAR2(16),  /*Password*/
+       user_type NUMBER(1) /*Type of user: administrador(1) or normal(0)*/ 
        
        
 );

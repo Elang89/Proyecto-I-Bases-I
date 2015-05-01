@@ -1,3 +1,5 @@
+/* Script to create table petTreatments 
+Created By Miuyin Yong */
 CREATE TABLE petTreatments 
 (
     pet_Treatment VARCHAR(20) CONSTRAINT pet_Treatment_nn NOT NULL, 

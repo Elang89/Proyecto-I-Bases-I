@@ -1,3 +1,6 @@
+/*More alters to return pets 
+Created By Ernesto Lang*/ 
+
 ALTER TABLE PETRETURN
       ADD RETURN_REASON VARCHAR2(50); 
 ALTER TABLE PETRETURN

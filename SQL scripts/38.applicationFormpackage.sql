@@ -1,3 +1,5 @@
+/*Package applications to adopt 
+Created by Ernesto Lang*/
 
 CREATE OR REPLACE PACKAGE applications_package AS
        PROCEDURE evaluate_application

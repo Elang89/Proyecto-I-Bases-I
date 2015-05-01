@@ -1,5 +1,4 @@
-/* Made by Adrian Diaz Azofeifa on 03/31/2015
-Edited by Ernesto Lang Oreamuno on 04/04/2015
+/* Created by by Ernesto Lang Oreamuno 
 
 Script for adding foreign key references and primary key constraints to Person table
 And to related tables Phone and Email

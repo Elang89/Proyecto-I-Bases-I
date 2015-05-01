@@ -1,7 +1,7 @@
 
 /*
-Se crea la llave primaria USERNAME con su indice
-por Adrian Diaz Azofeifa
+Creates primary key for user 
+Created by Ernesto Lang
 */
 ALTER TABLE Usuario
 ADD CONSTRAINT pk_username PRIMARY KEY (username)

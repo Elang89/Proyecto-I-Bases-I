@@ -1,3 +1,6 @@
+/* Script that creates the table PetReturn with all its primary keys and foreign keys 
+Created by Enresto Lang*/
+
 CREATE TABLE PetReturn
 (
        return_code NUMBER(10) CONSTRAINT return_code_nn NOT NULL, /* Return code id */

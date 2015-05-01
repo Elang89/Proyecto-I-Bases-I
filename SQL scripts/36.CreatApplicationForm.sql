@@ -1,3 +1,6 @@
+/*Script to create table application Form 
+Created by Miuyin Yong*/ 
+
 CREATE TABLE applicationForm
 (
        questionID NUMBER(10), /* The questions ID*/

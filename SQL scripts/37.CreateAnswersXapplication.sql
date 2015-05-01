@@ -1,3 +1,5 @@
+/*Script to create Table answersXapplication
+created by Miuyin Yong*/ 
 CREATE TABLE answersXapplication
 (
        questionID NUMBER(10), /* Question code*/

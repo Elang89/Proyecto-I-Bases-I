@@ -1,4 +1,4 @@
-/* Made by Adrian Diaz Azofeifa on 03/31/2015
+/* Made by Miuyin Yong
 
 Script for creating the Pet table
 */

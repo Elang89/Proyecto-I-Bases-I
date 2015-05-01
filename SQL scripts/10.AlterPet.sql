@@ -1,4 +1,4 @@
-/* Made by Adrian Diaz Azofeifa on 04/07/2015
+/* Created By Miuyin Yong 
 
 Script for adding foreign key related columns and references, and primary key constraints to Pet table
 */

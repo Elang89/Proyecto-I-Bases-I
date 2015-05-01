@@ -1,7 +1,8 @@
---SCRIPT #2 PetLoversScheme(this is the main scheme)
+--SCRIPT #2 PetLoversScheme(this is the main scheme) 
+-- Created by Miuyin Yong 
 
 CREATE USER DBadmin
-       identified by dbadmin              --Password para este usuario
+       identified by dbadmin              --Password for this user
        DEFAULT TABLESPACE  PetLovers_Data
        QUOTA 10M ON  PetLovers_Data
        TEMPORARY TABLESPACE temp

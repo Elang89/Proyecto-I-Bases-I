@@ -1,3 +1,6 @@
+/*Script to create table petSpace 
+Made By Miuyin Yong */ 
+
 CREATE TABLE PetSpace
 (
     pet_Space VARCHAR(20) CONSTRAINT pet_Space_nn NOT NULL, 

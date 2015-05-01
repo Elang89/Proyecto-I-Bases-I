@@ -1,3 +1,6 @@
+/*Sequences for adoption, answer and question Group 
+Created By ernesto Lang*/ 
+
 CREATE SEQUENCE question_group_id_generator 
   START WITH 1
   INCREMENT BY 1

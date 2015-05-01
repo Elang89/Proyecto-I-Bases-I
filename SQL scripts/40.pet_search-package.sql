@@ -10,7 +10,9 @@ CREATE OR REPLACE PACKAGE pet_search_package AS
     FUNCTION pet_search(TYPE in VARCHAR2, BREED in VARCHAR2, COLOR in VARCHAR2, PETSIZE in VARCHAR2, TS in VARCHAR2, ENERGY in VARCHAR2, SPACE in VARCHAR2)
          RETURN SYS_REFCURSOR; 
     FUNCTION find_myAdoptedPets(user_id person.person_id%type)
-         RETURN SYS_REFCURSOR;  
+         RETURN SYS_REFCURSOR; 
+    FUNCTION all_returned_pets
+       RETURN SYS_REFCURSOR;  
 END pet_search_package; 
 
 CREATE OR REPLACE PACKAGE BODY pet_search_package AS
@@ -236,5 +238,34 @@ CREATE OR REPLACE PACKAGE BODY pet_search_package AS
       RETURN NULL;
        END;
 
+       FUNCTION all_returned_pets
+       RETURN SYS_REFCURSOR
+       IS
+          allReturned SYS_REFCURSOR;
+       BEGIN
+        OPEN allReturned FOR select pet.pet_code,pet_name, pet_type_name, pet_race_name, pet_cond_name, pet_energy_level, pet_learn_skill, vet_name, person_name, petlocation, petnotes, petabandondescription, pet_space, pet_treatment, pet_color, pet_sickness_name, pet_med_name, image, return_count
+    from pet, pettype, petrace, petCondition, petSize,petEnergy, petlearningskill, veterinary, person, petSpace, pettreatments, petcolor, petsickness, petmedicine, pet_photo_storage
+    where pettype.pet_type_code = pet.pet_type_code 
+    AND pet.return_count > 0
+    AND petrace.pet_race_code = pet.pet_race_code
+    AND pet.pet_cond_code = petcondition.pet_cond_code
+    AND pet.pet_size_code = petsize.pet_size_code
+    AND pet.pet_energy_code = petEnergy.Pet_Energy_Code
+    AND pet.pet_learn_code = petlearningskill.pet_learn_code
+    AND pet.vet_code = veterinary.vet_code
+    AND pet.owner_id = person.person_id
+    AND pet.petspace_id = petSpace.Pet_Space_Code
+    AND pet.pettreatments_id = pettreatments.pet_treatment_code
+    AND pet.pet_color_code = petcolor.pet_color_code
+    AND pet.pet_sickness_code = petsickness.pet_sickness_code
+    AND pet.pet_medicine_code = petmedicine.pet_med_code
+    AND pet.pet_code = pet_photo_storage.pet_code
+    ORDER BY pet.pet_date DESC;
+        RETURN allReturned;
+
+      EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+          RETURN null;
+      END; 
 END pet_search_package;
 

@@ -235,9 +235,15 @@ PROCEDURE RETURN_PET
       UPDATE PET
       SET ADOPTION_ID = null
       WHERE PET_CODE = r_pet_id;   
+      
+      UPDATE PET 
+      SET RETURN_COUNT = RETURN_COUNT + 1 
+      WHERE PET_CODE = r_pet_id;
+     
+    COMMIT; 
 
 
-END RETURN_PET;   
+END RETURN_PET; 
 
 PROCEDURE EDIT_PET
   (pet_id in NUMBER, pet_type in VARCHAR2, breed in VARCHAR2, color in VARCHAR2, pet_size_param in VARCHAR2, TrainningSkills in VARCHAR2, vet in VARCHAR2, treatment in VARCHAR2,
@@ -328,8 +334,6 @@ PROCEDURE EDIT_PET
     
     COMMIT;
 
-END EDIT_PET;
+END EDIT_PET;  
 
 END pet_package;
-
-

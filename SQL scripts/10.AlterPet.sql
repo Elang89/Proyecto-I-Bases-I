@@ -67,7 +67,10 @@ ALTER TABLE PET
 ADD Pet_Sickness_code NUMBER(10);  
 
 ALTER TABLE PET 
-ADD Pet_Medicine_code NUMBER(10);  
+ADD Pet_Medicine_code NUMBER(10);   
+
+ALTER TABLE PET 
+ADD RETURN_COUNT Number(10) default 0; 
 
 /*
 Add Foreign Key constraints to TABLE Pet

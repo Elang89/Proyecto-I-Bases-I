@@ -8,7 +8,7 @@
     <div class="sl-slider">
       <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
         <div class="sl-slide-inner">
-          <div class="bg-img bg-img-1"></div>
+          <div class="bg-img bg-img-2"></div>
           <h2>PetLovers International</h2>
           <blockquote>
             <p class="location"></span> San Jos&#233;, Costa Rica</p>

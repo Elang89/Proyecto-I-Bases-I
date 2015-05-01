@@ -86,7 +86,7 @@
                 <div class="carousel-inner">
                   <!-- Item 1 -->
                   <div class="item active">
-                    <img src="images/properties/4.jpg" class="properties" alt="properties" />
+                    <img src="images/properties/3.jpg" class="properties" alt="properties" />
                   </div>
                   <!-- #Item 1 -->
                   <!-- Item 2 -->
@@ -102,7 +102,7 @@
                   <!-- #Item 3 -->
                   <!-- Item 4 -->
                   <div class="item ">
-                    <img src="images/properties/3.jpg" class="properties" alt="properties" />
+                    <img src="images/properties/4.jpg" class="properties" alt="properties" />
                     
                   </div>
                   <!-- # Item 4 -->

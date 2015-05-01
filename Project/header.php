@@ -93,7 +93,8 @@
               <li><button type="button" class="btn btn-info" onclick="window.location.href='manage-categories.php'">Manage Categories</button></li>
 			  <li><button type="button" class="btn btn-info" onclick="window.location.href='manage-returnReasons.php'">Manage Return Reason</button></li>
 			  <li><button type="button" class="btn btn-info" onclick="window.location.href='search-users.php'">Find A User</button></li>
-			  <li><button type="button" class="btn btn-info" onclick="window.location.href='search-pets.php'">Find A Pet</button></li>
+			  <li><button type="button" class="btn btn-info" onclick="window.location.href='search-pets.php'">Find A Pet</button></li> 
+			  <li><button type="button" class="btn btn-info" onclick="window.location.href='returnedPets.php'"> Returned Pets</button></li>
               <li><button type="button" class="btn btn-info" onclick="window.location.href='Statistics.php'"> Statistics</button></li>
               <li><button type="button" class="btn btn-info" onclick="window.location.href='blacklist.php'">Blacklist</button></li>
             <?php else: ?>

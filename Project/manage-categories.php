@@ -91,7 +91,7 @@
               <div class="deleteButton"> 
                 <ul class="pull-right">  
 				<button class="btn btn-primary" type= "button" data-toggle="modal"  data-target="#create_button">NEW!</button>
-                  <li><button id="delete" class="btn btn-info" data-toggle="modal" data-target="#deleteButton">Delete</button></li> <!-- Actual login is in footer.php -->
+                 <!--  <li><button id="delete" class="btn btn-info" data-toggle="modal" data-target="#deleteButton">Delete</button></li> Actual login is in footer.php -->
                 </ul>
               </div>
             </div>

@@ -2,8 +2,8 @@
 <!-- banner -->
 <div class="inside-banner">
   <div class="container">
-    <span class="pull-right"><a href="index.php">Home</a> / My pets</span>
-    <h2>My Pets</h2> 
+    <span class="pull-right"><a href="index.php">Home</a> / Returned pets</span>
+    <h2>Returned Pets</h2> 
   </div>
 </div>
 <!-- banner -->  
@@ -20,13 +20,12 @@
 		$resultArray;
 		$finalResult = ' '; 
 		
-		$sqlVariableFindMyPets = 'BEGIN :pet_variable := pet_search_package.find_myPets(:p_search_data);END;';   
+		$sqlVariableFindMyPets = 'BEGIN :pet_variable := pet_search_package.all_returned_pets;END;';   
 		
 		$result = oci_new_cursor($db_connection);	 
 		$dataToReceive = oci_parse($db_connection, $sqlVariableFindMyPets);		 
 		
 		oci_bind_by_name($dataToReceive, ':pet_variable', $result, -1, OCI_B_CURSOR); 
-		oci_bind_by_name($dataToReceive, ':p_search_data', $searchData);  
 		oci_execute($dataToReceive); 
 		oci_execute($result, OCI_DEFAULT); 
 		oci_fetch_all($result, $resultArray, null, null, OCI_FETCHSTATEMENT_BY_ROW);
@@ -71,19 +70,20 @@
         <div class="row">  
 		
 				<?php
-			if($searchData == "" || $resultArray == null){
+			if($resultArray == null){
 				echo "<h2>No results found<h2>";
 			} else { 
 				foreach($resultArray as $iterator){
 					$finalResult = $finalResult.'<div class="col-lg-4 col-sm-6"> 
 													<div class="properties">
 														<form action="pet-detail.php" method="POST">
-															<h4>'.$iterator['PET_TYPE_NAME'].' </h4>
+															<h4>'.$iterator['PET_NAME'].' </h4>
 															<div class="image-holder"><img src="'.$iterator['IMAGE'].'"class="img-responsive" alt="properties"/></div>
+															<h5>Returned times: '.$iterator['RETURN_COUNT'].'</h5>
 															<h5>'.$iterator['PET_RACE_NAME'].' </h5> 
 															<h5>'.$iterator['PET_COLOR'].' </h5>  
 															<h5>'.$iterator['PET_ENERGY_LEVEL'].'</h5>
-															<h5>'.$iterator['PET_COND_NAME'].'</h5>
+															<h5>'.$iterator['PET_COND_NAME'].'</h5> 
 															<input class="form-control" type="text" style="display: none" readonly name="pet_code" value="'.$iterator['PET_CODE'].'"/> 
 															<input class="form-control" type="text" style="display: none" readonly name="pet_name" value="'.$iterator['PET_NAME'].'"/> 
 															<input class="form-control" type="text" style="display: none" readonly name="pet_type" value="'.$iterator['PET_TYPE_NAME'].'"/>

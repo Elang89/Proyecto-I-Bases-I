@@ -33,7 +33,7 @@ if (!$conn) {
 		oci_execute($stid2); 
 		$adopted = oci_fetch_array($stid2);  
 		
-		$stid3 = ociparse($conn, "select count(*) from person where BLACKLIST IS NULL"); 
+		$stid3 = ociparse($conn, "select count(*) from person where BLACKLIST  < 0"); 
 		oci_execute($stid3); 
 		$blacklist = oci_fetch_array($stid3); 
 		
@@ -42,7 +42,7 @@ if (!$conn) {
        (select PET_ID, count(PET_ID)
        from PETRETURN
        group by PET_ID
-       having count (pet_id) = 1)"); 
+       having count (pet_id) >= 1)"); 
 		oci_execute($stid4); 
 		$returned = oci_fetch_array($stid4); 
 		

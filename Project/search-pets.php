@@ -162,12 +162,12 @@
 					$finalResult = $finalResult.'<div class="col-lg-4 col-sm-6"> 
 													<div class="properties">
 														<form action="pet-detail.php" method="POST">
-															<h4>'.$iterator['PET_TYPE_NAME'].' </h4>
+															<h4>'.$iterator['PET_NAME'].' </h4>
 															<div class="image-holder"><img src="'.$iterator['IMAGE'].'"class="img-responsive" alt="properties"/></div>
+															<h5>'.$iterator['PET_TYPE_NAME'].'</h5>
 															<h5>'.$iterator['PET_RACE_NAME'].' </h5> 
 															<h5>'.$iterator['PET_COLOR'].' </h5>  
 															<h5>'.$iterator['PET_ENERGY_LEVEL'].'</h5>
-															<h5>'.$iterator['PET_COND_NAME'].'</h5>
 															<input class="form-control" type="text" style="display: none" readonly name="pet_code" value="'.$iterator['PET_CODE'].'"/>  
 															<input class="form-control" type="text" style="display: none" readonly name="pet_name" value="'.$iterator['PET_NAME'].'"/> 
 															<input class="form-control" type="text" style="display: none" readonly name="pet_type" value="'.$iterator['PET_TYPE_NAME'].'"/>

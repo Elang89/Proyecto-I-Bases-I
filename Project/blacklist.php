@@ -2,7 +2,7 @@
 <!-- banner -->
 <div class="inside-banner">
   <div class="container">
-    <span class="pull-right"><a href="index.php">Home</a> / User Results</span>
+    <span class="pull-right"><a href="index.php">Home</a> / Blacklist </span>
     <h2>Blacklist</h2>
   </div>
 </div>
@@ -38,27 +38,27 @@
       <div class="col-lg-3 col-sm-4 ">
         <div class="hot-properties hidden-xs">
           <div class="row">
-            <div class="col-lg-4 col-sm-5"><img src="images/properties/9.jpg" class="img-responsive img-circle" alt="properties"></div>
+            <div class="col-lg-4 col-sm-5"><img src="images/properties/Rottweiler.jpg" class="img-responsive img-circle" alt="properties"></div>
 			<div class="col-lg-8 col-sm-7">
-				<h5>Golden Retriever</h5>
+				<h5>Rottweiler</h5>
 			</div>
           </div>
 		   <div class="row">
-            <div class="col-lg-4 col-sm-5"><img src="images/properties/4.jpg" class="img-responsive img-circle" alt="properties"></div>
+            <div class="col-lg-4 col-sm-5"><img src="images/properties/Yorkie.jpg" class="img-responsive img-circle" alt="properties"></div>
 			<div class="col-lg-8 col-sm-7">
-				<h5>Siberian Husky</h5>
+				<h5>Yorkie</h5>
 			</div>
           </div>
 		  <div class="row">
-            <div class="col-lg-4 col-sm-5"><img src="images/properties/Weimeraner.jpg" class="img-responsive img-circle" alt="properties"></div>
+            <div class="col-lg-4 col-sm-5"><img src="images/properties/Mix.jpg" class="img-responsive img-circle" alt="properties"></div>
 			<div class="col-lg-8 col-sm-7">
-				<h5>Weimeraner</h5>
+				<h5>Mix Breed</h5>
 			</div>
           </div>
 		  <div class="row">
-            <div class="col-lg-4 col-sm-5"><img src="images/properties/Ridgeback.jpg" class="img-responsive img-circle" alt="properties"></div>
+            <div class="col-lg-4 col-sm-5"><img src="images/properties/bernese.jpg" class="img-responsive img-circle" alt="properties"></div>
 			<div class="col-lg-8 col-sm-7">
-				<h5>Ridgeback</h5>
+				<h5>Bernese</h5>
 			</div>
           </div>
         </div>

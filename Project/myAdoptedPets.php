@@ -42,27 +42,27 @@
       <div class="col-lg-3 col-sm-4 ">
         <div class="hot-properties hidden-xs">
           <div class="row">
-            <div class="col-lg-4 col-sm-5"><img src="images/properties/9.jpg" class="img-responsive img-circle" alt="properties"></div>
+            <div class="col-lg-4 col-sm-5"><img src="images/properties/Spaniel.jpg" class="img-responsive img-circle" alt="properties"></div>
 			<div class="col-lg-8 col-sm-7">
-				<h5>Golden Retriever</h5>
+				<h5>Spaniel</h5>
 			</div>
           </div>
 		   <div class="row">
-            <div class="col-lg-4 col-sm-5"><img src="images/properties/4.jpg" class="img-responsive img-circle" alt="properties"></div>
+            <div class="col-lg-4 col-sm-5"><img src="images/properties/10.jpg" class="img-responsive img-circle" alt="properties"></div>
 			<div class="col-lg-8 col-sm-7">
-				<h5>Siberian Husky</h5>
+				<h5>Labrador</h5>
 			</div>
           </div>
 		  <div class="row">
-            <div class="col-lg-4 col-sm-5"><img src="images/properties/Weimeraner.jpg" class="img-responsive img-circle" alt="properties"></div>
+            <div class="col-lg-4 col-sm-5"><img src="images/properties/12.jpg" class="img-responsive img-circle" alt="properties"></div>
 			<div class="col-lg-8 col-sm-7">
-				<h5>Weimeraner</h5>
+				<h5>Chiwawa</h5>
 			</div>
           </div>
 		  <div class="row">
-            <div class="col-lg-4 col-sm-5"><img src="images/properties/Ridgeback.jpg" class="img-responsive img-circle" alt="properties"></div>
+            <div class="col-lg-4 col-sm-5"><img src="images/properties/Maltes.jpg" class="img-responsive img-circle" alt="properties"></div>
 			<div class="col-lg-8 col-sm-7">
-				<h5>Ridgeback</h5>
+				<h5>Maltes</h5>
 			</div>
           </div>
         </div>

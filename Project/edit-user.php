@@ -90,38 +90,30 @@
       <div class="col-lg-6 col-sm-6">
         <legend>Profile Picture</legend>
         <img id="image" src="<?php echo $path?>" class="img-responsive img-circle" alt="properties"/>
-        <input id="image_name" type="text" class="form-control name="photo" title="Photo"  placeholder="Image URL goes here">
+
+        </div>
+      <div class="col-lg-6 col-sm-6"> 
+		<h5>First name</h5>
+        <input id="user_first_name" type="text" class="form-control" name="form_name" maxlength="20" readonly value="<?php echo $firstName?>"> 
+		<h5>First Last name</h5>
+        <input id="user_first_lastname" type="text" class="form-control" name="form_name" maxlength="16" readonly value="<?php echo $lastName?>"> 
+		<h5>Second Last name</h5>
+        <input id="user_second_lastname" type="text" class="form-control" name="form_name" maxlength="16" readonly value="<?php echo $secondLastName?>">
+		<h5>E-mail</h5>
+        <input id="user_email" type="text" class="form-control" name="form_email" maxlength="30" readonly value="<?php echo $primaryEmail?>"> 
+		<h5>Phone number</h5>
+        <input id="user_phone" type="text" class="form-control" name="form_email" maxlength="8" readonly value="<?php echo $primaryPhone?>">  
+		<h5>Username</h5>
         <input id="user_username" type="text" class="form-control" placeholder="Username" name="form_name" maxlength="12" value="<?php echo $_SESSION['name']?>" readonly>
+		<h5>Change profile picture here:</h5>
+		<input id="image_name" type="text" class="form-control name="photo" title="Photo"  placeholder="Image URL goes here">
 		<div class="col-lg-6">
 			<button id="upload_image" type="button" class="btn btn-success">Upload</button>
 	    </div>
-        </div>
-      <div class="col-lg-6 col-sm-6">
-        <input id="user_first_name" type="text" class="form-control" name="form_name" maxlength="20" readonly value="<?php echo $firstName?>">
-        <input id="user_first_lastname" type="text" class="form-control" name="form_name" maxlength="16" readonly value="<?php echo $lastName?>">
-        <input id="user_second_lastname" type="text" class="form-control" name="form_name" maxlength="16" readonly value="<?php echo $secondLastName?>">
-        <input id="user_email" type="text" class="form-control" name="form_email" maxlength="30" readonly value="<?php echo $primaryEmail?>">
-        <input id="user_phone" type="text" class="form-control" name="form_email" maxlength="8" readonly value="<?php echo $primaryPhone?>">
-        <div class="row">
-          <div class="col-lg-6">
-            <button id="user_phones_butt" type="button" class="btn btn-success" data-toggle="modal" data-target="#user_phones">View Phones</button>
-          </div>
-          <div class="col-lg-6">
-            <button id="user_email_butt" type="button" class="btn btn-success" data-toggle="modal" data-target="#user_Email">View Emails</button>
-          </div>
+ 
         </div>
 		<br>
-		<div class="row">
-          <div class="col-lg-6">
-            <input id="insert_email" type="text" class="form-control" name="form_email" placeholder="New Email Address" maxlength="30">
-          </div>
-          <div class="col-lg-6">
-            <input id="insert_phone" type="text" class="form-control" name="form_email" placeholder="New Phone Number" maxlength="8">
-          </div>
-		  <div class="col-lg-6">
-            <button id="insert_email_phone" type="button" class="btn btn-success" >Confirm</button>
-          </div>
-        </div>
+
       </div>
     </div>
   </div>

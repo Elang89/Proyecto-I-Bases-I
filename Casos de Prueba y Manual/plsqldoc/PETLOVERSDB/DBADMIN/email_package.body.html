@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+ <LINK REL="STYLESHEET" TYPE="text/css" HREF="../../plsqldoc.css">
+ <TITLE>Package body email_package</TITLE>
+ <META name="object" content="PACKAGE BODY">
+ <META name="name" content="PETLOVERSDB DBADMIN.email_package">
+ <META name="description" content="">
+</HEAD>
+<BODY>
+<TABLE WIDTH="100%"><TR>
+<TD><P ALIGN="LEFT"><STRONG><SMALL>DBADMIN@PETLOVERSDB</SMALL></STRONG></TD>
+<TD><P ALIGN="RIGHT"><STRONG><SMALL><A HREF="../../index.html">index</A></SMALL></STRONG></TD>
+</TR></TABLE>
+<TABLE CLASS="MAIN_TABLE"><TR><TD CLASS="DESC_TEXT">
+<P CLASS="MAIN_TITLE">Package body email_package</P>
+
+<BR>
+</TD></TR></TABLE>
+<HR>
+<A NAME="Program units"></A>
+<TABLE CLASS="SUB_TABLE"><TR><TD CLASS="SUB_TITLE">
+Program units
+</TD></TR></TABLE>
+<TABLE CLASS="SUB_TABLE">
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#add_email">add_email</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#retrieve_user_emails">retrieve_user_emails</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#return_email">return_email</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="add_email"></A>
+<P CLASS="TYPE_TITLE">
+add_email
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure add_email(p_email    <A HREF="EMAIL.html">email.email</A>%type,
+                    p_username <A HREF="PERSON.html">person.username</A>%type)
+
+</PRE>
+<HR>
+<A NAME="retrieve_user_emails"></A>
+<P CLASS="TYPE_TITLE">
+retrieve_user_emails
+</P>
+<PRE CLASS="DECL_TEXT">
+Function retrieve_user_emails(p_id <A HREF="EMAIL.html">email.person_id</A>%type)
+  RETURN SYS_REFCURSOR
+
+</PRE>
+<HR>
+<A NAME="return_email"></A>
+<P CLASS="TYPE_TITLE">
+return_email
+</P>
+<PRE CLASS="DECL_TEXT">
+Function return_email(p_id <A HREF="EMAIL.html">email.person_id</A>%type) RETURN VARCHAR2
+
+</PRE>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+</BODY>
+</HTML>

@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+ <LINK REL="STYLESHEET" TYPE="text/css" HREF="../../plsqldoc.css">
+ <TITLE>Package body applications_package</TITLE>
+ <META name="object" content="PACKAGE BODY">
+ <META name="name" content="PETLOVERSDB DBADMIN.applications_package">
+ <META name="description" content="">
+</HEAD>
+<BODY>
+<TABLE WIDTH="100%"><TR>
+<TD><P ALIGN="LEFT"><STRONG><SMALL>DBADMIN@PETLOVERSDB</SMALL></STRONG></TD>
+<TD><P ALIGN="RIGHT"><STRONG><SMALL><A HREF="../../index.html">index</A></SMALL></STRONG></TD>
+</TR></TABLE>
+<TABLE CLASS="MAIN_TABLE"><TR><TD CLASS="DESC_TEXT">
+<P CLASS="MAIN_TITLE">Package body applications_package</P>
+
+<BR>
+</TD></TR></TABLE>
+<HR>
+<A NAME="Program units"></A>
+<TABLE CLASS="SUB_TABLE"><TR><TD CLASS="SUB_TITLE">
+Program units
+</TD></TR></TABLE>
+<TABLE CLASS="SUB_TABLE">
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#evaluate_application">evaluate_application</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#create_application">create_application</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#create_question_group">create_question_group</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#create_answer_group">create_answer_group</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#retrieve_question_group">retrieve_question_group</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#check_adoption_form_submission">check_adoption_form_submission</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#retrieve_application">retrieve_application</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#create_return_form">create_return_form</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="evaluate_application"></A>
+<P CLASS="TYPE_TITLE">
+evaluate_application
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure evaluate_application(p_application_id <A HREF="PETADOPTION.html">petadoption.adoption_code</A>%type,
+                               p_adoptant_id    <A HREF="PET.html">pet.adoptant_id</A>%type,
+                               p_pet_id         <A HREF="PET.html">pet.pet_code</A>%type,
+                               p_approval_state NUMBER)
+
+</PRE>
+<HR>
+<A NAME="create_application"></A>
+<P CLASS="TYPE_TITLE">
+create_application
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure create_application(p_owner_id <A HREF="PETADOPTION.html">petadoption.owner_id</A>%type)
+
+</PRE>
+<HR>
+<A NAME="create_question_group"></A>
+<P CLASS="TYPE_TITLE">
+create_question_group
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure create_question_group(p_question1 IN VARCHAR2,
+                                p_question2 IN VARCHAR2,
+                                p_question3 IN VARCHAR2,
+                                p_question4 IN VARCHAR2,
+                                p_question5 IN VARCHAR2)
+
+</PRE>
+<HR>
+<A NAME="create_answer_group"></A>
+<P CLASS="TYPE_TITLE">
+create_answer_group
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure create_answer_group(p_id             <A HREF="ANSWER_GROUP.html">answer_group.person_id</A>%type,
+                              p_question_group <A HREF="ANSWER_GROUP.html">answer_group.question_group_id</A>%type,
+                              p_answer1        IN VARCHAR2,
+                              p_answer2        IN VARCHAR2,
+                              p_answer3        IN VARCHAR2,
+                              p_answer4        IN VARCHAR2,
+                              p_answer5        IN VARCHAR2)
+
+</PRE>
+<HR>
+<A NAME="retrieve_question_group"></A>
+<P CLASS="TYPE_TITLE">
+retrieve_question_group
+</P>
+<PRE CLASS="DECL_TEXT">
+Function retrieve_question_group(p_pet_code <A HREF="PETADOPTION.html">petadoption.pet_id</A>%type)
+  RETURN SYS_REFCURSOR
+
+</PRE>
+<HR>
+<A NAME="check_adoption_form_submission"></A>
+<P CLASS="TYPE_TITLE">
+check_adoption_form_submission
+</P>
+<PRE CLASS="DECL_TEXT">
+Function check_adoption_form_submission(p_id <A HREF="ANSWER_GROUP.html">answer_group.person_id</A>%type)
+  RETURN NUMBER
+
+</PRE>
+<HR>
+<A NAME="retrieve_application"></A>
+<P CLASS="TYPE_TITLE">
+retrieve_application
+</P>
+<PRE CLASS="DECL_TEXT">
+Function retrieve_application(p_owner_id <A HREF="PETADOPTION.html">petadoption.owner_id</A>%type)
+  RETURN SYS_REFCURSOR
+
+</PRE>
+<HR>
+<A NAME="create_return_form"></A>
+<P CLASS="TYPE_TITLE">
+create_return_form
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure create_return_form(p_id     <A HREF="PERSON.html">person.person_id</A>%type,
+                             p_pet_id <A HREF="PET.html">pet.pet_code</A>%type,
+                             p_option <A HREF="PETRETURN.html">petreturn.return_reason</A>%type)
+
+</PRE>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+</BODY>
+</HTML>

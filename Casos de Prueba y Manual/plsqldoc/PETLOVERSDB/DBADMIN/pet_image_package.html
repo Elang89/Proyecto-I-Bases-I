@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+ <LINK REL="STYLESHEET" TYPE="text/css" HREF="../../plsqldoc.css">
+ <TITLE>Package pet_image_package</TITLE>
+ <META name="object" content="PACKAGE">
+ <META name="name" content="PETLOVERSDB DBADMIN.pet_image_package">
+ <META name="description" content="">
+</HEAD>
+<BODY>
+<TABLE WIDTH="100%"><TR>
+<TD><P ALIGN="LEFT"><STRONG><SMALL>DBADMIN@PETLOVERSDB</SMALL></STRONG></TD>
+<TD><P ALIGN="RIGHT"><STRONG><SMALL><A HREF="../../index.html">index</A></SMALL></STRONG></TD>
+</TR></TABLE>
+<TABLE CLASS="MAIN_TABLE"><TR><TD CLASS="DESC_TEXT">
+<P CLASS="MAIN_TITLE">Package pet_image_package</P>
+
+<BR>
+</TD></TR></TABLE>
+<HR>
+<A NAME="Program units"></A>
+<TABLE CLASS="SUB_TABLE"><TR><TD CLASS="SUB_TITLE">
+Program units
+</TD></TR></TABLE>
+<TABLE CLASS="SUB_TABLE">
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#add_pet_image">add_pet_image</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+This procedure adds a pet's image to the database
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#return_pet_image">return_pet_image</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+This function retrieves a pet's image from the database in order to display it on the pet's detail page
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="add_pet_image"></A>
+<P CLASS="TYPE_TITLE">
+add_pet_image
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure add_pet_image(p_image <A HREF="PET_PHOTO_STORAGE.html">pet_photo_storage.image</A>%type)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+This procedure adds a pet's image to the database<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="return_pet_image"></A>
+<P CLASS="TYPE_TITLE">
+return_pet_image
+</P>
+<PRE CLASS="DECL_TEXT">
+Function return_pet_image(p_id <A HREF="PET_PHOTO_STORAGE.html">pet_photo_storage.pet_code</A>%type)
+  RETURN VARCHAR2
+
+</PRE>
+<P CLASS="DESC_TEXT">
+This function retrieves a pet's image from the database in order to display it on the pet's detail page<br>
+
+<BR>
+</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+</BODY>
+</HTML>

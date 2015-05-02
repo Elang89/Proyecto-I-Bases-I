@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+ <LINK REL="STYLESHEET" TYPE="text/css" HREF="../../plsqldoc.css">
+ <TITLE>Package phone_package</TITLE>
+ <META name="object" content="PACKAGE">
+ <META name="name" content="PETLOVERSDB DBADMIN.phone_package">
+ <META name="description" content="">
+</HEAD>
+<BODY>
+<TABLE WIDTH="100%"><TR>
+<TD><P ALIGN="LEFT"><STRONG><SMALL>DBADMIN@PETLOVERSDB</SMALL></STRONG></TD>
+<TD><P ALIGN="RIGHT"><STRONG><SMALL><A HREF="../../index.html">index</A></SMALL></STRONG></TD>
+</TR></TABLE>
+<TABLE CLASS="MAIN_TABLE"><TR><TD CLASS="DESC_TEXT">
+<P CLASS="MAIN_TITLE">Package phone_package</P>
+
+<BR>
+</TD></TR></TABLE>
+<HR>
+<A NAME="Program units"></A>
+<TABLE CLASS="SUB_TABLE"><TR><TD CLASS="SUB_TITLE">
+Program units
+</TD></TR></TABLE>
+<TABLE CLASS="SUB_TABLE">
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#add_phone">add_phone</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+This procedure inserts a user's <A HREF="PHONE.html">phone</A> number into the database,
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#retrieve_user_phones">retrieve_user_phones</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+This procedure retrieves the user's <A HREF="PHONE.html">phone</A> number
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="add_phone"></A>
+<P CLASS="TYPE_TITLE">
+add_phone
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure add_phone(p_number   <A HREF="PHONE.html">phone.phone_number</A>%type,
+                    p_username <A HREF="PERSON.html">person.username</A>%type)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+This procedure inserts a user's <A HREF="PHONE.html">phone</A> number into the database,<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="retrieve_user_phones"></A>
+<P CLASS="TYPE_TITLE">
+retrieve_user_phones
+</P>
+<PRE CLASS="DECL_TEXT">
+Function retrieve_user_phones(p_id <A HREF="PHONE.html">phone.person_id</A>%type)
+  RETURN SYS_REFCURSOR
+
+</PRE>
+<P CLASS="DESC_TEXT">
+This procedure retrieves the user's <A HREF="PHONE.html">phone</A> number<br>
+
+<BR>
+</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+</BODY>
+</HTML>

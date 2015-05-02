@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+ <LINK REL="STYLESHEET" TYPE="text/css" HREF="../../plsqldoc.css">
+ <TITLE>Package person_package</TITLE>
+ <META name="object" content="PACKAGE">
+ <META name="name" content="PETLOVERSDB DBADMIN.person_package">
+ <META name="description" content="">
+</HEAD>
+<BODY>
+<TABLE WIDTH="100%"><TR>
+<TD><P ALIGN="LEFT"><STRONG><SMALL>DBADMIN@PETLOVERSDB</SMALL></STRONG></TD>
+<TD><P ALIGN="RIGHT"><STRONG><SMALL><A HREF="../../index.html">index</A></SMALL></STRONG></TD>
+</TR></TABLE>
+<TABLE CLASS="MAIN_TABLE"><TR><TD CLASS="DESC_TEXT">
+<P CLASS="MAIN_TITLE">Package person_package</P>
+
+<BR>
+</TD></TR></TABLE>
+<HR>
+<A NAME="Program units"></A>
+<TABLE CLASS="SUB_TABLE"><TR><TD CLASS="SUB_TITLE">
+Program units
+</TD></TR></TABLE>
+<TABLE CLASS="SUB_TABLE">
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#add_person">add_person</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+This procedure is used to insert a <A HREF="PERSON.html">person</A> into the database.
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#add_blacklist_value">add_blacklist_value</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+Whenever a rating is submitted, the following procedure is called to either insert a number or to update it.
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#return_user_type">return_user_type</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+This retrieves the person's id in order to store it into a session which is used to identify the <A HREF="PERSON.html">person</A> in various pages
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#find_person_id">find_person_id</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+This is used in the user search, when searching a <A HREF="PERSON.html">person</A> can enter any character and the search will return a list of users who's usernames fit that pattern.
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#retrieve_user_details">retrieve_user_details</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+This is used to get a users details into a detail page which includes their contact information, names and username.
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#find_users">find_users</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+This is used in the user search, when searching a <A HREF="PERSON.html">person</A> can enter any character and the search will return a list of users who's usernames fit that pattern.
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#return_blacklisted_users">return_blacklisted_users</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+This diaplays all users within the blacklist, anyone can have access to this list.
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="add_person"></A>
+<P CLASS="TYPE_TITLE">
+add_person
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure add_person(p_name      <A HREF="PERSON.html">person.person_name</A>%type,
+                     p_first_ln  <A HREF="PERSON.html">person.first_last_name</A>%type,
+                     p_second_ln <A HREF="PERSON.html">person.second_last_name</A>%type,
+                     p_username  <A HREF="PERSON.html">person.username</A>%type,
+                     p_user_type <A HREF="PERSON.html">person.normal_user_type</A>%type)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+This procedure is used to insert a <A HREF="PERSON.html">person</A> into the database. All this information is take from the web page and later inserted to the appropriate columns in the <A HREF="PERSON.html">person</A> table<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="add_blacklist_value"></A>
+<P CLASS="TYPE_TITLE">
+add_blacklist_value
+</P>
+<PRE CLASS="DECL_TEXT">
+Procedure add_blacklist_value(p_value <A HREF="PERSON.html">person.blacklist</A>%type,
+                              p_uname <A HREF="PERSON.html">person.username</A>%type)
+
+</PRE>
+<P CLASS="DESC_TEXT">
+Whenever a rating is submitted, the following procedure is called to either insert a number or to update it. If a <A HREF="PERSON.html">person</A> reaches a rating of -8 they are in the blacklist<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="return_user_type"></A>
+<P CLASS="TYPE_TITLE">
+return_user_type
+</P>
+<PRE CLASS="DECL_TEXT">
+Function return_user_type(p_uname <A HREF="PERSON.html">person.username</A>%type) RETURN NUMBER
+
+</PRE>
+<P CLASS="DESC_TEXT">
+This retrieves the person's id in order to store it into a session which is used to identify the <A HREF="PERSON.html">person</A> in various pages<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="find_person_id"></A>
+<P CLASS="TYPE_TITLE">
+find_person_id
+</P>
+<PRE CLASS="DECL_TEXT">
+Function find_person_id(u_name <A HREF="PERSON.html">person.username</A>%type) RETURN NUMBER
+
+</PRE>
+<P CLASS="DESC_TEXT">
+This is used in the user search, when searching a <A HREF="PERSON.html">person</A> can enter any character and the search will return a list of users who's usernames fit that pattern.<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="retrieve_user_details"></A>
+<P CLASS="TYPE_TITLE">
+retrieve_user_details
+</P>
+<PRE CLASS="DECL_TEXT">
+Function retrieve_user_details(p_id <A HREF="PERSON.html">person.person_id</A>%type)
+  RETURN SYS_REFCURSOR
+
+</PRE>
+<P CLASS="DESC_TEXT">
+This is used to get a users details into a detail page which includes their contact information, names and username.<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="find_users"></A>
+<P CLASS="TYPE_TITLE">
+find_users
+</P>
+<PRE CLASS="DECL_TEXT">
+Function find_users(p_search_data VARCHAR2) RETURN SYS_REFCURSOR
+
+</PRE>
+<P CLASS="DESC_TEXT">
+This is used in the user search, when searching a <A HREF="PERSON.html">person</A> can enter any character and the search will return a list of users who's usernames fit that pattern.<br>
+
+<BR>
+</P>
+<HR>
+<A NAME="return_blacklisted_users"></A>
+<P CLASS="TYPE_TITLE">
+return_blacklisted_users
+</P>
+<PRE CLASS="DECL_TEXT">
+Function return_blacklisted_users RETURN SYS_REFCURSOR
+
+</PRE>
+<P CLASS="DESC_TEXT">
+This diaplays all users within the blacklist, anyone can have access to this list. It is called when the blacklist is accessed. It works similarly to the search users function.<br>
+
+<BR>
+</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+</BODY>
+</HTML>

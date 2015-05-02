@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+ <LINK REL="STYLESHEET" TYPE="text/css" HREF="../../plsqldoc.css">
+ <TITLE>Package body pet_search_package</TITLE>
+ <META name="object" content="PACKAGE BODY">
+ <META name="name" content="PETLOVERSDB DBADMIN.pet_search_package">
+ <META name="description" content="">
+</HEAD>
+<BODY>
+<TABLE WIDTH="100%"><TR>
+<TD><P ALIGN="LEFT"><STRONG><SMALL>DBADMIN@PETLOVERSDB</SMALL></STRONG></TD>
+<TD><P ALIGN="RIGHT"><STRONG><SMALL><A HREF="../../index.html">index</A></SMALL></STRONG></TD>
+</TR></TABLE>
+<TABLE CLASS="MAIN_TABLE"><TR><TD CLASS="DESC_TEXT">
+<P CLASS="MAIN_TITLE">Package body pet_search_package</P>
+
+<BR>
+</TD></TR></TABLE>
+<HR>
+<A NAME="Program units"></A>
+<TABLE CLASS="SUB_TABLE"><TR><TD CLASS="SUB_TITLE">
+Program units
+</TD></TR></TABLE>
+<TABLE CLASS="SUB_TABLE">
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#find_myPets">find_myPets</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#all_pets">all_pets</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#pet_detail">pet_detail</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#pet_search">pet_search</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+<TR><TD VALIGN="TOP" CLASS="TYPE_ITEM">
+<A HREF="#find_myAdoptedPets">find_myAdoptedPets</A>&nbsp;&nbsp;
+</TD><TD CLASS="DESC_TEXT" WIDTH=95%>
+
+</TD></TR>
+</TABLE>
+<BR>
+<HR>
+<A NAME="find_myPets"></A>
+<P CLASS="TYPE_TITLE">
+find_myPets
+</P>
+<PRE CLASS="DECL_TEXT">
+Function find_myPets(user_id <A HREF="PERSON.html">person.person_id</A>%type) RETURN SYS_REFCURSOR
+
+</PRE>
+<HR>
+<A NAME="all_pets"></A>
+<P CLASS="TYPE_TITLE">
+all_pets
+</P>
+<PRE CLASS="DECL_TEXT">
+Function all_pets RETURN SYS_REFCURSOR
+
+</PRE>
+<HR>
+<A NAME="pet_detail"></A>
+<P CLASS="TYPE_TITLE">
+pet_detail
+</P>
+<PRE CLASS="DECL_TEXT">
+Function pet_detail(pet_id <A HREF="PET.html">pet.pet_code</A>%type) RETURN SYS_REFCURSOR
+
+</PRE>
+<HR>
+<A NAME="pet_search"></A>
+<P CLASS="TYPE_TITLE">
+pet_search
+</P>
+<PRE CLASS="DECL_TEXT">
+Function pet_search(TYPE    in VARCHAR2,
+                    BREED   in VARCHAR2,
+                    COLOR   in VARCHAR2,
+                    <A HREF="PETSIZE.html">PETSIZE</A> in VARCHAR2,
+                    TS      in VARCHAR2,
+                    ENERGY  in VARCHAR2,
+                    SPACE   in VARCHAR2) RETURN SYS_REFCURSOR
+
+</PRE>
+<HR>
+<A NAME="find_myAdoptedPets"></A>
+<P CLASS="TYPE_TITLE">
+find_myAdoptedPets
+</P>
+<PRE CLASS="DECL_TEXT">
+Function find_myAdoptedPets(user_id <A HREF="PERSON.html">person.person_id</A>%type)
+  RETURN SYS_REFCURSOR
+
+</PRE>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+</BODY>
+</HTML>

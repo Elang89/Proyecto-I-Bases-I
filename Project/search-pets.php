@@ -128,8 +128,27 @@
 		
         <button class="btn btn-primary">Find Now</button>
       </div> 
-	  </form>	
-    </div>
+	  </form> 
+    <h5>Search by Months</h5> 
+	<select id = "consultMonths"  name = "consultMonths" class="form-control" >  
+	<option value = "-1">Select Months Since announcement:</option>
+						  <option>0</option>
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                          <option>6</option> 
+						  <option>7</option> 
+						  <option>8</option> 
+						  <option>9</option> 
+						  <option>10</option>
+						  <option>11</option> 
+						  <option>12</option> 
+                    </select>
+	<button class="btn btn-primary" onClick = "javascript:month();">Find by Months</button>
+    </div> 
+
     <div class="col-lg-9 col-sm-8" id = "petSearch">
 
 <!-- pets --> 
@@ -269,6 +288,30 @@ function updateBreed(){
 		  }
 		xmlhttp.open("GET","pet_breed_combo_search.php?selectedOption=" + selectedOption ,true);
 		xmlhttp.send();  
+} 
+
+function month(){
+	
+		var Id1 = document.getElementById("consultMonths");  
+		var month = Id1.options[Id1.selectedIndex].value;  		
+	var xmlhttp;
+		if (window.XMLHttpRequest)
+		  {// code for IE7+, Firefox, Chrome, Opera, Safari
+		  xmlhttp=new XMLHttpRequest();
+		  }
+		else
+		  {// code for IE6, IE5
+		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		  }
+		 xmlhttp.onreadystatechange=function()
+		  {
+		  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+			document.getElementById("petSearch").innerHTML=xmlhttp.responseText;
+			}
+		  }
+		xmlhttp.open("GET","monthSearch.php?month=" + month, true);
+		xmlhttp.send();
 } 	
 </script>
 <?php include'footer.php';?>
